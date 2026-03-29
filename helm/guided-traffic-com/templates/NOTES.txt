@@ -1,0 +1,12 @@
+1. Backend is accessible at:
+   kubectl port-forward svc/{{ include "guided-traffic-com.fullname" . }}-backend 8080:{{ .Values.backend.service.port }}
+
+2. Frontend is accessible at:
+   kubectl port-forward svc/{{ include "guided-traffic-com.fullname" . }}-frontend 4000:{{ .Values.frontend.service.port }}
+
+{{- if .Values.ingress.enabled }}
+3. Ingress is configured for:
+   {{- range .Values.ingress.hosts }}
+   - {{ .host }}
+   {{- end }}
+{{- end }}
