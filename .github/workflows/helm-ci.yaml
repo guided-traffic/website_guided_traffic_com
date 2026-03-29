@@ -1,9 +1,6 @@
 name: Helm CI
 
 on:
-  push:
-    paths:
-      - 'helm/**'
   pull_request:
     paths:
       - 'helm/**'
