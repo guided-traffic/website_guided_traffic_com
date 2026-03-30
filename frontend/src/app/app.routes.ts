@@ -11,7 +11,8 @@ export const routes: Routes = [
   },
   {
     path: 'features',
-    loadComponent: () => import('./pages/features/features.component').then(m => m.FeaturesComponent),
+    redirectTo: '',
+    pathMatch: 'full',
   },
   {
     path: '**',
