@@ -1,9 +1,17 @@
 name: Backend CI
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
   pull_request:
     paths:
       - 'backend/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:

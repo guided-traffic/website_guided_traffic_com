@@ -1,9 +1,17 @@
 name: Helm CI
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'helm/**'
   pull_request:
     paths:
       - 'helm/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint-and-template:

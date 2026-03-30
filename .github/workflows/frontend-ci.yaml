@@ -1,9 +1,17 @@
 name: Frontend CI
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
   pull_request:
     paths:
       - 'frontend/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
