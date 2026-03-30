@@ -103,74 +103,88 @@ jobs:
           summary: true
 
   release-helm-gh:
-    runs-on: self-hosted
+    name: Release Helm Chart to GitHub Pages
     needs: build
+    runs-on: self-hosted
+    permissions:
+      contents: write
+      pages: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - uses: azure/setup-helm@v4
+      - name: Install Helm
+        uses: azure/setup-helm@v5
         with:
           version: v3.12.0
 
-      - name: Extract version
-        id: version
-        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
-
-      - name: Update Chart.yaml version
+      - name: Update Chart Version
         run: |
-          sed -i "s/^version:.*/version: ${{ steps.version.outputs.VERSION }}/" helm/guided-traffic-com/Chart.yaml
-          sed -i "s/^appVersion:.*/appVersion: \"${{ steps.version.outputs.VERSION }}\"/" helm/guided-traffic-com/Chart.yaml
+          # Extrahiere Version aus dem Release-Tag (ohne 'v' Prefix)
+          VERSION=${GITHUB_REF_NAME#v}
+          # Aktualisiere Chart und App Version
+          sed -i "s/^version:.*$/version: ${VERSION}/" deploy/helm/internal-secrets-operator/Chart.yaml
+          sed -i "s/^appVersion:.*$/appVersion: \"${VERSION}\"/" deploy/helm/internal-secrets-operator/Chart.yaml
+          # Aktualisiere Image Tag in values.yaml
+          sed -i "s/^  tag:.*$/  tag: \"${VERSION}\"/" deploy/helm/internal-secrets-operator/values.yaml
 
-      - name: Update values.yaml image tags
+      - name: Create Helm Package
         run: |
-          # Update backend image tag (backend.image.tag)
-          sed -i '/^backend:/,/^[a-z]/ s/^\(    tag:\).*/\1 "${{ steps.version.outputs.VERSION }}"/' helm/guided-traffic-com/values.yaml
-          # Update frontend image tag (frontend.image.tag)
-          sed -i '/^frontend:/,/^[a-z]/ s/^\(    tag:\).*/\1 "${{ steps.version.outputs.VERSION }}"/' helm/guided-traffic-com/values.yaml
-
-      - name: Package Helm chart
-        run: |
-          helm package helm/guided-traffic-com/
+          cd deploy/helm
+          helm package internal-secrets-operator/
           mkdir -p repo
-          mv guided-traffic-com-*.tgz repo/
-          helm repo index repo/ --url https://guided-traffic.github.io/website_guided_traffic_com/
+          mv *.tgz repo/
+          # Erstelle temporären Index für das neue Chart
+          helm repo index repo/ --url https://guided-traffic.github.io/internal-secrets-operator/
+          cd ../..
 
-      - name: Save chart artifacts
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Save Chart Package
         run: |
           mkdir -p /tmp/helm-charts
-          cp repo/*.tgz /tmp/helm-charts/
-          cp repo/index.yaml /tmp/helm-charts/
+          cp -r deploy/helm/repo/* /tmp/helm-charts/
 
-      - name: Publish to gh-pages
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to GitHub Pages
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Kopiere neue Charts ins Root-Verzeichnis
+          cp /tmp/helm-charts/*.tgz .
 
-          # Save packaged chart
-          cp repo/*.tgz /tmp/helm-charts/
-          cp repo/index.yaml /tmp/helm-charts/new-index.yaml
-
-          # Switch to gh-pages
-          git checkout gh-pages || git checkout --orphan gh-pages
-
-          # Merge with existing index if present
+          # Merge mit existierendem index.yaml falls vorhanden
           if [ -f index.yaml ]; then
-            helm repo index /tmp/helm-charts/ --url https://guided-traffic.github.io/website_guided_traffic_com/ --merge index.yaml
+            # Erstelle temporären Ordner für Merge
+            mkdir -p temp-repo
+            cp *.tgz temp-repo/
+            # Merge mit existierendem Index
+            helm repo index temp-repo/ --url https://guided-traffic.github.io/internal-secrets-operator/ --merge index.yaml
+            cp temp-repo/index.yaml .
+            rm -rf temp-repo
+          else
+            # Erstelle neuen Index falls keiner existiert
+            helm repo index . --url https://guided-traffic.github.io/internal-secrets-operator/
           fi
 
-          # Copy artifacts
-          cp /tmp/helm-charts/*.tgz .
-          cp /tmp/helm-charts/index.yaml . 2>/dev/null || cp /tmp/helm-charts/new-index.yaml index.yaml
-
           git add --force *.tgz index.yaml
-          git commit -m "chore: publish helm chart ${{ steps.version.outputs.VERSION }}"
-          git push origin gh-pages
+          git commit -m "Release Helm chart for $GITHUB_REF_NAME"
+          git push --force origin gh-pages
 
-      - name: Upload Helm assets to release
+      - name: Update Release Assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            /tmp/helm-charts/*.tgz
-            /tmp/helm-charts/index.yaml
+            *.tgz
+            index.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
