@@ -4,7 +4,7 @@
 backend:
   replicaCount: 1
   image:
-    repository: ghcr.io/guided-traffic/website-backend
+    repository: guidedtraffic/website-guided-traffic-backend
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -26,7 +26,7 @@ backend:
 frontend:
   replicaCount: 1
   image:
-    repository: ghcr.io/guided-traffic/website-frontend
+    repository: guidedtraffic/website-guided-traffic-frontend
     tag: latest
     pullPolicy: IfNotPresent
   service:

@@ -35,17 +35,41 @@ npm run serve:ssr   # Serves SSR on :4000
 
 Deploys both backend and frontend to Kubernetes.
 
+The chart is published to GitHub Pages via the release pipeline.
+
+### Add the Helm repo
+
 ```bash
-# Add the Helm repo
-helm repo add guided-traffic https://guided-traffic.github.io/website_guided_traffic_com
+helm repo add guided-traffic https://guided-traffic.github.io/website_guided_traffic_com/
 helm repo update
-
-# Install
-helm install guided-traffic guided-traffic/guided-traffic-com
 ```
 
-Or from source:
+### Install
 
 ```bash
-helm install guided-traffic ./helm/guided-traffic-com
+helm install guided-traffic-com guided-traffic/guided-traffic-com
 ```
+
+### Upgrade
+
+```bash
+helm repo update
+helm upgrade guided-traffic-com guided-traffic/guided-traffic-com
+```
+
+### Install from source
+
+```bash
+helm install guided-traffic-com ./helm/guided-traffic-com
+```
+
+### Docker images
+
+The chart pulls images from Docker Hub:
+
+| Component | Image |
+|-----------|-------|
+| Frontend  | `guidedtraffic/website-guided-traffic-frontend` |
+| Backend   | `guidedtraffic/website-guided-traffic-backend` |
+
+The default tag is `latest`. The release pipeline overrides the tag with the release version via `sed` before packaging.
