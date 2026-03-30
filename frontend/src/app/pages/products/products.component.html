@@ -1,30 +1,44 @@
-<section class="products">
-  <div class="products__header">
-    <h1>Products</h1>
-    <p class="products__subtitle">
-      Open-source tooling and licensed solutions to modernise your infrastructure.
-      Most of what we build is free.
-    </p>
+<!-- Products Hero -->
+<section class="products-hero">
+  <div class="container">
+    <div class="products-hero__content">
+      <h1 class="products-hero__headline">Open Source Tools</h1>
+      <p class="products-hero__sub">
+        Most of our tools are free and open source. We build what we need,
+        and share it with the community.
+      </p>
+    </div>
   </div>
+</section>
 
-  <div class="products__grid">
-    @for (product of products; track product.name) {
-      <article class="product-card">
-        <div class="product-card__header">
-          <h2 class="product-card__name">{{ product.name }}</h2>
-          <span
-            class="product-card__badge"
-            [class.product-card__badge--free]="product.license === 'FREE'"
-            [class.product-card__badge--licensed]="product.license === 'LICENSED'"
-          >
-            {{ product.license }}
-          </span>
-        </div>
-        <p class="product-card__description">{{ product.description }}</p>
-        <a [routerLink]="product.ctaLink" class="product-card__cta">
-          {{ product.ctaLabel }}
-        </a>
-      </article>
-    }
+<!-- Products Grid -->
+<section class="products">
+  <div class="container">
+    <div class="products__grid">
+      @for (product of products; track product.name) {
+        <article class="product-card">
+          <div class="product-card__header">
+            <h2 class="product-card__name">{{ product.name }}</h2>
+            <span
+              class="product-card__badge"
+              [class.product-card__badge--free]="product.license === 'FREE'"
+              [class.product-card__badge--licensed]="product.license === 'LICENSED'"
+            >
+              {{ product.license }}
+            </span>
+          </div>
+          <p class="product-card__description">{{ product.description }}</p>
+          @if (product.ctaLink.startsWith('http')) {
+            <a [href]="product.ctaLink" target="_blank" rel="noopener noreferrer" class="btn btn-secondary product-card__cta">
+              {{ product.ctaLabel }}
+            </a>
+          } @else {
+            <a [routerLink]="product.ctaLink" class="btn btn-primary product-card__cta">
+              {{ product.ctaLabel }}
+            </a>
+          }
+        </article>
+      }
+    </div>
   </div>
 </section>

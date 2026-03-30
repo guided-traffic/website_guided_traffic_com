@@ -12,28 +12,44 @@ export interface Product {
 export class ProductsService {
   private readonly products: Product[] = [
     {
+      name: 'Internal Secrets Operator',
+      description:
+        'Auto-generates random secret values in Kubernetes. No more manual secret management or plaintext credentials in your repo.',
+      license: 'FREE',
+      ctaLabel: 'View on GitHub',
+      ctaLink: 'https://github.com/guided-traffic/internal-secrets-operator',
+    },
+    {
       name: 'FluxCD Starter Kit',
       description:
-        'Pre-configured GitOps templates for FluxCD. Get your first cluster reconciling from git in under an hour.',
+        'Opinionated FluxCD repo structure to get started fast. Pre-configured with Kustomize overlays and HelmRelease patterns.',
       license: 'FREE',
-      ctaLabel: 'Get started',
-      ctaLink: '/products',
+      ctaLabel: 'View on GitHub',
+      ctaLink: 'https://github.com/guided-traffic/fluxcd-starter-kit',
     },
     {
-      name: 'K8s Migration Toolkit',
+      name: 'Helm Chart Library',
       description:
-        'Automated assessment and migration tooling to move workloads from VMs to Kubernetes with minimal downtime.',
+        'Production-ready Helm charts for common workloads. Ingress, cert-manager, monitoring — all battle-tested and documented.',
+      license: 'FREE',
+      ctaLabel: 'View on GitHub',
+      ctaLink: 'https://github.com/guided-traffic/helm-charts',
+    },
+    {
+      name: 'Guided Traffic Platform',
+      description:
+        'Our full GitOps platform with managed clusters, automated pipelines, and dedicated support. Built for teams going all-in on Kubernetes.',
       license: 'LICENSED',
-      ctaLabel: 'Learn more',
-      ctaLink: '/products',
+      ctaLabel: 'Learn More',
+      ctaLink: '/contact',
     },
     {
-      name: 'CI/CD Pipeline Blueprints',
+      name: 'Migration Toolkit',
       description:
-        'Battle-tested GitHub Actions and pipeline configs for building, testing, and deploying containerised apps.',
+        'Scripts and guides to containerize legacy applications. Dockerfile generators, Helm scaffolding, and step-by-step migration playbooks.',
       license: 'FREE',
-      ctaLabel: 'Browse blueprints',
-      ctaLink: '/products',
+      ctaLabel: 'View on GitHub',
+      ctaLink: 'https://github.com/guided-traffic/migration-toolkit',
     },
   ];
 

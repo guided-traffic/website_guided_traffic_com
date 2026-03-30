@@ -74,4 +74,40 @@ describe('HomeComponent', () => {
     expect(titles[2].textContent).toContain('Implement');
     expect(titles[3].textContent).toContain('Enable');
   });
+
+  it('should render three engagement model cards', () => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    fixture.detectChanges();
+    const cards = fixture.nativeElement.querySelectorAll('.engagement-card');
+    expect(cards.length).toBe(3);
+  });
+
+  it('should render engagement card titles', () => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    fixture.detectChanges();
+    const titles = fixture.nativeElement.querySelectorAll('.engagement-card__title');
+    expect(titles[0].textContent).toContain('Discovery Sprint');
+    expect(titles[1].textContent).toContain('Migration Project');
+    expect(titles[2].textContent).toContain('Ongoing Partnership');
+  });
+
+  it('should render engagement card pricing labels', () => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    fixture.detectChanges();
+    const prices = fixture.nativeElement.querySelectorAll('.engagement-card__price');
+    expect(prices[0].textContent).toContain('fixed-price');
+    expect(prices[1].textContent).toContain('€10k+');
+    expect(prices[2].textContent).toContain('monthly');
+  });
+
+  it('should render bullet points in each engagement card', () => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    fixture.detectChanges();
+    const bulletLists = fixture.nativeElement.querySelectorAll('.engagement-card__bullets');
+    expect(bulletLists.length).toBe(3);
+    bulletLists.forEach((list: HTMLElement) => {
+      const items = list.querySelectorAll('li');
+      expect(items.length).toBe(3);
+    });
+  });
 });
