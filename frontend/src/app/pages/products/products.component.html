@@ -1,0 +1,30 @@
+<section class="products">
+  <div class="products__header">
+    <h1>Products</h1>
+    <p class="products__subtitle">
+      Open-source tooling and licensed solutions to modernise your infrastructure.
+      Most of what we build is free.
+    </p>
+  </div>
+
+  <div class="products__grid">
+    @for (product of products; track product.name) {
+      <article class="product-card">
+        <div class="product-card__header">
+          <h2 class="product-card__name">{{ product.name }}</h2>
+          <span
+            class="product-card__badge"
+            [class.product-card__badge--free]="product.license === 'FREE'"
+            [class.product-card__badge--licensed]="product.license === 'LICENSED'"
+          >
+            {{ product.license }}
+          </span>
+        </div>
+        <p class="product-card__description">{{ product.description }}</p>
+        <a [routerLink]="product.ctaLink" class="product-card__cta">
+          {{ product.ctaLabel }}
+        </a>
+      </article>
+    }
+  </div>
+</section>

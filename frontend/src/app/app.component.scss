@@ -1,0 +1,11 @@
+main {
+  min-height: calc(100vh - 64px - 60px);
+}
+
+footer {
+  background: var(--color-primary);
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  font-size: 0.85rem;
+}
