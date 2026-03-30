@@ -55,3 +55,11 @@ jobs:
 
       - name: Run Playwright render tests
         run: npx playwright test
+
+  docker-build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t website-guided-traffic-frontend:test ./frontend

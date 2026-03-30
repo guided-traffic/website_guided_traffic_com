@@ -2,9 +2,9 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm install
+RUN npm ci --legacy-peer-deps
 COPY . .
-RUN npm run build
+RUN npx ng build --configuration production --no-prerender
 
 FROM node:22-alpine AS runner
 WORKDIR /app
