@@ -28,8 +28,17 @@ describe('NavComponent', () => {
     const links = fixture.nativeElement.querySelectorAll('.nav__links a');
     const hrefs = Array.from(links).map((a: any) => a.getAttribute('href'));
     expect(hrefs).toContain('/');
+    expect(hrefs).toContain('/services');
     expect(hrefs).toContain('/products');
-    expect(hrefs).toContain('/features');
+    expect(hrefs).toContain('/contact');
+  });
+
+  it('should render the CTA button', () => {
+    const fixture = TestBed.createComponent(NavComponent);
+    fixture.detectChanges();
+    const cta = fixture.nativeElement.querySelector('.nav__cta');
+    expect(cta).toBeTruthy();
+    expect(cta.textContent).toContain('Book a Call');
   });
 
   it('should toggle menu open state', () => {
