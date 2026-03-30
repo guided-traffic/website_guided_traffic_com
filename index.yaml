@@ -1,0 +1,17 @@
+apiVersion: v1
+entries:
+  guided-traffic-com:
+  - apiVersion: v2
+    appVersion: 1.2.5
+    created: "2026-03-30T14:38:45.040047494Z"
+    description: Helm chart for the Guided Traffic website (backend + frontend)
+    digest: 8aecc72e671856d9b0b452535e8b242fb7cd4913fcc44b9931ea973c76c24b73
+    home: https://www.guided-traffic.com
+    name: guided-traffic-com
+    sources:
+    - https://github.com/guided-traffic/website_guided_traffic_com
+    type: application
+    urls:
+    - https://guided-traffic.github.io/website_guided_traffic_com/guided-traffic-com-1.2.5.tgz
+    version: 1.2.5
+generated: "2026-03-30T14:38:45.039561525Z"
