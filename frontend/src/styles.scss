@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  // Colors — dark theme inspired by tasrieit.com
-  --color-bg-primary: #0a0a0b;
-  --color-bg-secondary: #111113;
-  --color-bg-card: #161618;
-  --color-bg-card-hover: #1c1c1f;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-text-primary: #f5f5f7;
-  --color-text-secondary: #8b8b8e;
-  --color-text-muted: #56565a;
+  // Colors — blue-tinted dark theme inspired by tasrieit.com
+  --color-bg-primary: #050a18;
+  --color-bg-secondary: #0a1128;
+  --color-bg-card: #0f1a30;
+  --color-bg-card-hover: #152240;
+  --color-border: rgba(100, 150, 255, 0.08);
+  --color-text-primary: #eef2ff;
+  --color-text-secondary: #8b95b0;
+  --color-text-muted: #4a5578;
   --color-accent: #f97316;
   --color-accent-hover: #ea580c;
   --color-accent-subtle: rgba(249, 115, 22, 0.1);
@@ -117,7 +117,7 @@ section {
 }
 
 .section-alt {
-  background-color: var(--color-bg-secondary);
+  background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
 }
 
 // Card
@@ -126,10 +126,11 @@ section {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-xl);
-  transition: background-color var(--transition-normal);
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
 
   &:hover {
     background-color: var(--color-bg-card-hover);
+    box-shadow: 0 0 20px rgba(60, 100, 220, 0.08);
   }
 }
 
@@ -168,7 +169,7 @@ section {
 
   &:hover {
     background-color: var(--color-bg-card);
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(100, 150, 255, 0.15);
   }
 }
 
