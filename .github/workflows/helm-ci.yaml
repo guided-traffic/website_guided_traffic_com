@@ -1,0 +1,29 @@
+name: Helm CI
+
+on:
+  pull_request:
+    paths:
+      - 'helm/**'
+
+jobs:
+  lint-and-template:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: azure/setup-helm@v4
+        with:
+          version: 'v3.17.0'
+
+      - name: Lint chart
+        run: helm lint helm/guided-traffic-com
+
+      - name: Template chart (default values)
+        run: helm template test-release helm/guided-traffic-com
+
+      - name: Template chart (custom values)
+        run: |
+          helm template test-release helm/guided-traffic-com \
+            --set backend.replicaCount=2 \
+            --set frontend.replicaCount=2 \
+            --set ingress.enabled=true
