@@ -1,0 +1,22 @@
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a routerLink="/" class="nav__logo" (click)="closeMenu()">Guided Traffic</a>
+
+    <button
+      class="nav__toggle"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen"
+      aria-label="Toggle navigation menu"
+    >
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+    </button>
+
+    <ul class="nav__links" [class.nav__links--open]="menuOpen">
+      <li><a routerLink="/" (click)="closeMenu()">Home</a></li>
+      <li><a routerLink="/products" (click)="closeMenu()">Products</a></li>
+      <li><a routerLink="/features" (click)="closeMenu()">Features</a></li>
+    </ul>
+  </div>
+</nav>

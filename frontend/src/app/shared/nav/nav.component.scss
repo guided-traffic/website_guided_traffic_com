@@ -1,0 +1,101 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 var(--space-xl);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 64px;
+  }
+
+  &__logo {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-cta);
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__toggle-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 200ms ease, opacity 200ms ease;
+  }
+
+  &__links {
+    display: flex;
+    list-style: none;
+    gap: var(--space-lg);
+    margin: 0;
+    padding: 0;
+
+    a {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 200ms ease;
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        color: #fff;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-cta);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(12px);
+      padding: var(--space-lg) var(--space-xl);
+      gap: var(--space-md);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      &--open {
+        display: flex;
+      }
+    }
+  }
+}
