@@ -21,6 +21,8 @@ backend:
   healthCheck:
     path: /healthz
     port: 8080
+  extraPodLabels: {}
+  extraPodAnnotations: {}
 
 # -- Frontend configuration
 frontend:
@@ -43,6 +45,8 @@ frontend:
   healthCheck:
     path: /
     port: 4000
+  extraPodLabels: {}
+  extraPodAnnotations: {}
 
 # -- Ingress configuration
 ingress:
