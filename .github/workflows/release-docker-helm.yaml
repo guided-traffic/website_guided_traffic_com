@@ -125,20 +125,20 @@ jobs:
           # Extrahiere Version aus dem Release-Tag (ohne 'v' Prefix)
           VERSION=${GITHUB_REF_NAME#v}
           # Aktualisiere Chart und App Version
-          sed -i "s/^version:.*$/version: ${VERSION}/" deploy/helm/internal-secrets-operator/Chart.yaml
-          sed -i "s/^appVersion:.*$/appVersion: \"${VERSION}\"/" deploy/helm/internal-secrets-operator/Chart.yaml
+          sed -i "s/^version:.*$/version: ${VERSION}/" helm/guided-traffic-com/Chart.yaml
+          sed -i "s/^appVersion:.*$/appVersion: \"${VERSION}\"/" helm/guided-traffic-com/Chart.yaml
           # Aktualisiere Image Tag in values.yaml
-          sed -i "s/^  tag:.*$/  tag: \"${VERSION}\"/" deploy/helm/internal-secrets-operator/values.yaml
+          sed -i "s/^  tag:.*$/  tag: \"${VERSION}\"/" helm/guided-traffic-com/values.yaml
 
       - name: Create Helm Package
         run: |
-          cd deploy/helm
-          helm package internal-secrets-operator/
+          cd helm
+          helm package guided-traffic-com/
           mkdir -p repo
           mv *.tgz repo/
           # Erstelle temporären Index für das neue Chart
-          helm repo index repo/ --url https://guided-traffic.github.io/internal-secrets-operator/
-          cd ../..
+          helm repo index repo/ --url https://guided-traffic.github.io/website_guided_traffic_com/
+          cd ..
 
       - name: Configure Git
         run: |
@@ -148,7 +148,7 @@ jobs:
       - name: Save Chart Package
         run: |
           mkdir -p /tmp/helm-charts
-          cp -r deploy/helm/repo/* /tmp/helm-charts/
+          cp -r helm/repo/* /tmp/helm-charts/
 
       - name: Checkout gh-pages branch
         uses: actions/checkout@v6
@@ -168,12 +168,12 @@ jobs:
             mkdir -p temp-repo
             cp *.tgz temp-repo/
             # Merge mit existierendem Index
-            helm repo index temp-repo/ --url https://guided-traffic.github.io/internal-secrets-operator/ --merge index.yaml
+            helm repo index temp-repo/ --url https://guided-traffic.github.io/website_guided_traffic_com/ --merge index.yaml
             cp temp-repo/index.yaml .
             rm -rf temp-repo
           else
             # Erstelle neuen Index falls keiner existiert
-            helm repo index . --url https://guided-traffic.github.io/internal-secrets-operator/
+            helm repo index . --url https://guided-traffic.github.io/website_guided_traffic_com/
           fi
 
           git add --force *.tgz index.yaml
