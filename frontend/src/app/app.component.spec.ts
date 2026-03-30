@@ -20,4 +20,18 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Guided Traffic');
   });
+
+  it('should render the nav component', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const nav = fixture.nativeElement.querySelector('app-nav');
+    expect(nav).toBeTruthy();
+  });
+
+  it('should render the footer component', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const footer = fixture.nativeElement.querySelector('app-footer');
+    expect(footer).toBeTruthy();
+  });
 });

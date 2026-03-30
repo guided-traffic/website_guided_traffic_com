@@ -23,7 +23,7 @@ test.describe('Homepage render test', () => {
     await expect(nav.getByText('Guided Traffic')).toBeVisible();
     await expect(nav.getByText('Home')).toBeVisible();
     await expect(nav.getByText('Products')).toBeVisible();
-    await expect(nav.getByText('Features')).toBeVisible();
+    await expect(nav.getByText('Services')).toBeVisible();
   });
 
   test('products page renders', async ({ page }) => {

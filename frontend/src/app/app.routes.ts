@@ -6,12 +6,21 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
   },
   {
+    path: 'services',
+    loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesComponent),
+  },
+  {
     path: 'products',
     loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent),
   },
   {
+    path: 'contact',
+    loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent),
+  },
+  {
     path: 'features',
-    loadComponent: () => import('./pages/features/features.component').then(m => m.FeaturesComponent),
+    redirectTo: '',
+    pathMatch: 'full',
   },
   {
     path: '**',

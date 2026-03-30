@@ -1,5 +1,5 @@
-// ─── Products Hero ──────────────────────────────────────────────────────────
-.products-hero {
+// ─── Hero Mini-Section ──────────────────────────────────────────────────────
+.services-hero {
   position: relative;
   padding: var(--space-4xl) 0 var(--space-2xl);
   text-align: center;
@@ -43,8 +43,8 @@
   }
 }
 
-// ─── Products Grid ─────────────────────────────────────────────────────────
-.products {
+// ─── Services Grid ─────────────────────────────────────────────────────────
+.services {
   padding-top: var(--space-3xl);
   padding-bottom: var(--space-4xl);
 
@@ -55,8 +55,8 @@
   }
 }
 
-// ─── Product Card ──────────────────────────────────────────────────────────
-.product-card {
+// ─── Service Card ──────────────────────────────────────────────────────────
+.service-card {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -74,66 +74,34 @@
     box-shadow: 0 0 20px rgba(60, 100, 220, 0.08);
   }
 
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--space-sm);
+  &__icon {
+    font-size: 2rem;
+    line-height: 1;
     margin-bottom: var(--space-xs);
   }
 
-  &__name {
+  &__title {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-text-primary);
-  }
-
-  &__badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: var(--radius-full);
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-    flex-shrink: 0;
-
-    &--free {
-      background: rgba(34, 197, 94, 0.15);
-      color: var(--color-success);
-      border: 1px solid rgba(34, 197, 94, 0.25);
-    }
-
-    &--licensed {
-      background: rgba(251, 146, 60, 0.12);
-      color: #fb923c;
-      border: 1px solid rgba(251, 146, 60, 0.2);
-    }
   }
 
   &__description {
     font-size: 0.9375rem;
     line-height: 1.7;
     color: var(--color-text-secondary);
-    flex: 1;
-  }
-
-  &__cta {
-    align-self: flex-start;
-    margin-top: var(--space-md);
   }
 }
 
 // ─── Responsive ────────────────────────────────────────────────────────────
 @media (max-width: 768px) {
-  .products__grid {
+  .services__grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .products__grid {
+  .services__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }

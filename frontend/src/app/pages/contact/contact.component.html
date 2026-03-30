@@ -1,0 +1,100 @@
+<!-- Contact Hero -->
+<section class="contact-hero">
+  <div class="container">
+    <div class="contact-hero__content">
+      <h1 class="contact-hero__headline">Let's Talk About Your Infrastructure</h1>
+      <p class="contact-hero__sub">
+        No sales pitch — just a conversation to see if we can help.
+        We reply within 1 business day.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Main -->
+<section class="contact">
+  <div class="container">
+    <div class="contact__grid">
+      <!-- Left: Value Props -->
+      <div class="contact__info">
+        <div class="contact__point">
+          <span class="contact__point-icon" aria-hidden="true">&#x2705;</span>
+          <div>
+            <h3 class="contact__point-title">Free assessment</h3>
+            <p class="contact__point-desc">We audit your current setup at no cost.</p>
+          </div>
+        </div>
+        <div class="contact__point">
+          <span class="contact__point-icon" aria-hidden="true">&#x1F513;</span>
+          <div>
+            <h3 class="contact__point-title">No lock-in</h3>
+            <p class="contact__point-desc">Everything we build is yours. Open source, documented, transferable.</p>
+          </div>
+        </div>
+        <div class="contact__point">
+          <span class="contact__point-icon" aria-hidden="true">&#x1F6E0;</span>
+          <div>
+            <h3 class="contact__point-title">Real engineers</h3>
+            <p class="contact__point-desc">You talk to the people who do the work, not account managers.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <form class="contact__form" (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="contact__field">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="contactForm.name"
+            required
+            placeholder="Your name"
+          />
+        </div>
+        <div class="contact__field">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="contactForm.email"
+            required
+            placeholder="you@company.com"
+          />
+        </div>
+        <div class="contact__field">
+          <label for="company">Company</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            [(ngModel)]="contactForm.company"
+            placeholder="Your company"
+          />
+        </div>
+        <div class="contact__field">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            [(ngModel)]="contactForm.message"
+            rows="5"
+            required
+            placeholder="Tell us about your infrastructure…"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary contact__submit">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Bottom Info -->
+    <div class="contact__bottom">
+      <p class="contact__email">
+        <a href="mailto:hello@guided-traffic.com">hello&#64;guided-traffic.com</a>
+      </p>
+      <p class="contact__location">Germany</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<section class="services-hero">
+  <div class="services-hero__content">
+    <h1 class="services-hero__headline">What We Do</h1>
+    <p class="services-hero__sub">
+      Specialized consulting to bring your infrastructure from legacy to cloud-native.
+    </p>
+  </div>
+</section>
+
+<section class="services container section-alt">
+  <div class="services__grid">
+    @for (service of services; track service.title) {
+      <article class="service-card">
+        <span class="service-card__icon">{{ service.icon }}</span>
+        <h2 class="service-card__title">{{ service.title }}</h2>
+        <p class="service-card__description">{{ service.description }}</p>
+      </article>
+    }
+  </div>
+</section>
