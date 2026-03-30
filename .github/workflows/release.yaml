@@ -17,15 +17,13 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
 
       - name: Install semantic-release
-        run: npm install -g semantic-release @semantic-release/changelog @semantic-release/git
+        run: npm install -g semantic-release
 
       - name: Run semantic-release
         run: npx semantic-release
