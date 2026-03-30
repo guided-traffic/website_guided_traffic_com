@@ -12,5 +12,6 @@ export const serverRoutes: ServerRoute[] = [
   {
     path: '**',
     renderMode: RenderMode.Client,
+    status: 404,
   },
 ];
