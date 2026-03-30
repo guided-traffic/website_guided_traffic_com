@@ -13,6 +13,13 @@ spec:
     metadata:
       labels:
         {{- include "guided-traffic-com.backendSelectorLabels" . | nindent 8 }}
+        {{- with .Values.backend.extraPodLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- with .Values.backend.extraPodAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
