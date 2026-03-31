@@ -1,4 +1,4 @@
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<nav class="nav" [class.nav--scrolled]="scrolled" role="navigation" aria-label="Main navigation">
   <div class="nav__inner">
     <a routerLink="/" class="nav__logo" (click)="closeMenu()">Guided Traffic</a>
 
@@ -16,7 +16,41 @@
     <div class="nav__right" [class.nav__right--open]="menuOpen">
       <ul class="nav__links">
         <li><a routerLink="/" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a></li>
-        <li><a routerLink="/services" routerLinkActive="nav__link--active" (click)="closeMenu()">Services</a></li>
+
+        <!-- Desktop: hover dropdown -->
+        <li class="nav__services-item nav__services-item--desktop">
+          <a routerLink="/services" routerLinkActive="nav__link--active" (click)="closeMenu()">
+            Services <span class="nav__chevron">&#9662;</span>
+          </a>
+          <ul class="nav__dropdown">
+            @for (service of services; track service.title) {
+              <li>
+                <a [routerLink]="['/services']" [fragment]="getSlug(service.title)" (click)="closeMenu()">
+                  <span class="nav__dropdown-icon">{{ service.icon }}</span>
+                  {{ service.title }}
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
+
+        <!-- Mobile: accordion toggle -->
+        <li class="nav__services-item nav__services-item--mobile">
+          <a href="#" (click)="toggleServices($event)" [class.nav__link--active-parent]="servicesOpen">
+            Services <span class="nav__chevron" [class.nav__chevron--open]="servicesOpen">&#9662;</span>
+          </a>
+          <ul class="nav__sub-list" [class.nav__sub-list--open]="servicesOpen">
+            @for (service of services; track service.title) {
+              <li>
+                <a [routerLink]="['/services']" [fragment]="getSlug(service.title)" (click)="closeMenu()">
+                  <span class="nav__dropdown-icon">{{ service.icon }}</span>
+                  {{ service.title }}
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
+
         <li><a routerLink="/products" routerLinkActive="nav__link--active" (click)="closeMenu()">Products</a></li>
         <li><a routerLink="/contact" routerLinkActive="nav__link--active" (click)="closeMenu()">Contact</a></li>
       </ul>
