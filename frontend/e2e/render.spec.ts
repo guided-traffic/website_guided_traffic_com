@@ -19,11 +19,11 @@ test.describe('Homepage render test', () => {
   test('navigation links are present', async ({ page }) => {
     await page.goto('/');
 
-    const nav = page.locator('nav');
+    const nav = page.locator('nav').first();
     await expect(nav.getByText('Guided Traffic')).toBeVisible();
-    await expect(nav.getByText('Home')).toBeVisible();
-    await expect(nav.getByText('Products')).toBeVisible();
-    await expect(nav.getByText('Services')).toBeVisible();
+    await expect(nav.getByRole('link', { name: /Home/ }).first()).toBeVisible();
+    await expect(nav.getByRole('link', { name: /Products/ }).first()).toBeVisible();
+    await expect(nav.getByRole('link', { name: /Services/ }).first()).toBeVisible();
   });
 
   test('products page renders', async ({ page }) => {
