@@ -130,11 +130,10 @@
     border-bottom-color: var(--color-accent) !important;
   }
 
-  // Services dropdown (desktop)
+  // Services item
   &__services-item {
-    position: relative;
-
     &--desktop {
+      position: static;
       display: list-item;
 
       @media (max-width: 768px) {
@@ -163,58 +162,137 @@
     }
   }
 
-  // Desktop hover dropdown
   &__services-item--desktop:hover &__chevron {
     transform: rotate(180deg);
   }
 
-  &__dropdown {
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    list-style: none;
-    margin: 0;
-    padding: var(--space-sm) 0;
-    background: rgba(5, 10, 24, 0.95);
+  &__services-item--desktop:hover > a {
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-accent);
+  }
+
+  // Mega-menu
+  &__mega {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(5, 10, 24, 0.97);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    min-width: 260px;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem var(--space-xl);
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%) translateY(8px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
     pointer-events: none;
+    z-index: 99;
 
     .nav__services-item--desktop:hover & {
       opacity: 1;
       visibility: visible;
-      transform: translateX(-50%) translateY(0);
+      transform: translateY(0);
       pointer-events: auto;
     }
+  }
 
-    li a {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: 0.55rem 1.15rem;
-      color: var(--color-text-secondary);
-      font-size: 0.875rem;
-      white-space: nowrap;
-      border-bottom: none;
+  &__mega-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-      &:hover {
-        color: var(--color-text-primary);
-        background: rgba(255, 255, 255, 0.05);
+  &__mega-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__mega-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: background 0.15s ease;
+    position: relative;
+
+    &:hover {
+      background: var(--color-bg-card-hover);
+
+      .nav__mega-item-arrow {
+        opacity: 1;
+        transform: translateX(0);
       }
     }
   }
 
-  &__dropdown-icon {
-    font-size: 1rem;
+  &__mega-item-icon {
+    font-size: 1.4rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent-subtle);
+    border-radius: var(--radius-sm);
     flex-shrink: 0;
+  }
+
+  &__mega-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1;
+  }
+
+  &__mega-item-title {
+    color: var(--color-text-primary);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  &__mega-item-desc {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  &__mega-item-arrow {
+    color: var(--color-accent);
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  &__mega-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.875rem;
+
+    span {
+      color: var(--color-text-muted);
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        color: var(--color-accent-hover);
+      }
+    }
   }
 
   // Mobile accordion sub-list
