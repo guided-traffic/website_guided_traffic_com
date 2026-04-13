@@ -1,0 +1,347 @@
+<!-- Hero Section -->
+<section class="dxo-hero">
+  <div class="container">
+    <div class="dxo-hero__content">
+      <div class="dxo-hero__icon">🛂</div>
+      <h1 class="dxo-hero__headline">Dex-Operator</h1>
+      <p class="dxo-hero__sub">
+        Dex-Identity-Provider und OAuth2-Clients deklarativ als CRDs verwalten —
+        statt monolithischer YAML-Konfiguration. Jede Änderung ist ein
+        <code>kubectl apply</code>, jedes Ereignis ein Audit-Log-Eintrag.
+      </p>
+      <div class="dxo-hero__meta">
+        <span class="dxo-hero__meta-item">
+          <span class="dxo-hero__meta-label">Status</span>
+          <span class="dxo-hero__meta-badge dxo-hero__meta-badge--stable">Stable</span>
+        </span>
+        <span class="dxo-hero__meta-separator"></span>
+        <span class="dxo-hero__meta-item">
+          <span class="dxo-hero__meta-label">Lizenz</span>
+          <span class="dxo-hero__meta-value">Apache 2.0</span>
+        </span>
+        <span class="dxo-hero__meta-separator"></span>
+        <span class="dxo-hero__meta-item">
+          <span class="dxo-hero__meta-label">Kubernetes</span>
+          <span class="dxo-hero__meta-value">1.25+</span>
+        </span>
+        <span class="dxo-hero__meta-separator"></span>
+        <span class="dxo-hero__meta-item">
+          <span class="dxo-hero__meta-label">Version</span>
+          <span class="dxo-hero__meta-value">v1.2.1 (April 2026)</span>
+        </span>
+      </div>
+      <div class="dxo-hero__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratungstermin buchen</a>
+        <a
+          href="https://github.com/guided-traffic/dex-operator"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Auf GitHub ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="dxo-problem">
+  <div class="container">
+    <div class="dxo-problem__content">
+      <h2 class="dxo-problem__headline">Das Problem</h2>
+      <p class="dxo-problem__text">
+        Wer Dex manuell betreibt, pflegt eine monolithische YAML-Datei, in der
+        alle Connectoren und OAuth2-Clients gleichzeitig geändert werden müssen —
+        jede Anpassung erfordert einen Pod-Neustart und birgt das Risiko,
+        die gesamte Konfiguration zu beschädigen. Credentials landen als Klartext
+        in Git oder in kaum nachvollziehbaren Config-Einträgen, RBAC-Granularität
+        auf Connector-Ebene existiert nicht, und ein GitOps-Workflow für
+        Identity-Änderungen lässt sich mit einem einzelnen Helm-Chart schlicht
+        nicht abbilden.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Connectors Section -->
+<section class="dxo-connectors">
+  <div class="container">
+    <h2 class="dxo-connectors__headline">16 Connector-CRDs</h2>
+    <p class="dxo-connectors__intro">
+      Jeder Identity-Provider wird durch eine eigene CRD unter der API-Gruppe
+      <code class="dxo-connectors__api-group">dex.gtrfc.com/v1</code> abgebildet.
+      Nicht-sensible Felder stehen direkt in der CR-Spec; Credentials werden
+      per Secret-Referenz eingebunden.
+    </p>
+    <div class="dxo-connectors__groups">
+
+      <div class="dxo-connector-group">
+        <h3 class="dxo-connector-group__title">Directory-Services</h3>
+        <div class="dxo-connector-group__chips">
+          <span class="dxo-chip">LDAP</span>
+          <span class="dxo-chip">Atlassian Crowd</span>
+          <span class="dxo-chip">OpenStack Keystone</span>
+        </div>
+      </div>
+
+      <div class="dxo-connector-group">
+        <h3 class="dxo-connector-group__title">Social / Cloud Identity</h3>
+        <div class="dxo-connector-group__chips">
+          <span class="dxo-chip">GitHub</span>
+          <span class="dxo-chip">GitLab</span>
+          <span class="dxo-chip">Gitea</span>
+          <span class="dxo-chip">Bitbucket</span>
+          <span class="dxo-chip">Google</span>
+          <span class="dxo-chip">Microsoft</span>
+          <span class="dxo-chip">LinkedIn</span>
+        </div>
+      </div>
+
+      <div class="dxo-connector-group">
+        <h3 class="dxo-connector-group__title">Standards-basiert</h3>
+        <div class="dxo-connector-group__chips">
+          <span class="dxo-chip">OIDC (generisch)</span>
+          <span class="dxo-chip">OAuth2 (generisch)</span>
+          <span class="dxo-chip">SAML 2.0</span>
+        </div>
+      </div>
+
+      <div class="dxo-connector-group">
+        <h3 class="dxo-connector-group__title">Spezialisiert</h3>
+        <div class="dxo-connector-group__chips">
+          <span class="dxo-chip">OpenShift OAuth</span>
+          <span class="dxo-chip">AuthProxy</span>
+          <span class="dxo-chip">Local</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Core CRDs Section -->
+<section class="dxo-crds">
+  <div class="container">
+    <h2 class="dxo-crds__headline">Kern-CRDs im Überblick</h2>
+    <div class="dxo-crds__grid">
+
+      <article class="dxo-crd-card">
+        <span class="dxo-crd-card__icon">🔌</span>
+        <h3 class="dxo-crd-card__title">DexConnector CRDs <span class="dxo-crd-card__count">(16 Stück)</span></h3>
+        <p class="dxo-crd-card__desc">
+          Deklarative Konfiguration jedes unterstützten Identity-Providers. Allgemeine
+          Felder stehen direkt in der CR-Spec; sensible Credentials werden ausschließlich
+          als Referenzen auf Kubernetes Secrets hinterlegt — nie im Klartext.
+        </p>
+      </article>
+
+      <article class="dxo-crd-card">
+        <span class="dxo-crd-card__icon">🔑</span>
+        <h3 class="dxo-crd-card__title">DexStaticClient</h3>
+        <p class="dxo-crd-card__desc">
+          Registriert OAuth2-Clients, die Dex als OIDC-Provider nutzen — etwa Grafana,
+          Argo CD oder Harbor. Der Operator schreibt das Client-Secret in ein dediziertes
+          Kubernetes Secret mit vorhersehbarer Benennung (z.&nbsp;B.
+          <code>GRAFANA_CLIENT_SECRET</code>), das andere Operatoren oder Helm-Charts
+          direkt einbinden können.
+        </p>
+      </article>
+
+      <article class="dxo-crd-card">
+        <span class="dxo-crd-card__icon">🏛️</span>
+        <h3 class="dxo-crd-card__title">DexInstallation</h3>
+        <p class="dxo-crd-card__desc">
+          Cluster-scoped Reconciliation-Root: definiert, welcher Dex-Helm-Release vom
+          Operator verwaltet wird, und legt fest, welche Namespaces Connectoren und
+          Clients registrieren dürfen — ein zentraler Sicherheitsanker gegen
+          unberechtigte Connector-Registrierungen.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="dxo-features">
+  <div class="container">
+    <h2 class="dxo-features__headline">Weitere Funktionen</h2>
+    <div class="dxo-features__grid">
+
+      <article class="dxo-feature-card">
+        <span class="dxo-feature-card__icon">⚙️</span>
+        <h3 class="dxo-feature-card__title">Automatische Secret-Assembly</h3>
+        <p class="dxo-feature-card__desc">
+          Bei jedem Reconciliation-Zyklus erzeugt der Operator zwei Kubernetes Secrets:
+          ein vollständiges Dex-Konfigurations-YAML (per Volume-Mount ins Dex-Pod
+          eingebunden) und ein Env-Var-Secret mit Client-Credentials für nachgelagerte
+          Anwendungen.
+        </p>
+      </article>
+
+      <article class="dxo-feature-card">
+        <span class="dxo-feature-card__icon">🔄</span>
+        <h3 class="dxo-feature-card__title">Opt-in Rolling Restart</h3>
+        <p class="dxo-feature-card__desc">
+          Eine einzelne Annotation am Dex-Deployment genügt, damit der Operator nach
+          jeder Konfigurationsänderung automatisch einen Rolling Restart auslöst — kein
+          manuelles Eingreifen, kein Downtime-Risiko durch veraltete Konfiguration.
+        </p>
+      </article>
+
+      <article class="dxo-feature-card">
+        <span class="dxo-feature-card__icon">🛡️</span>
+        <h3 class="dxo-feature-card__title">Sichere Secret-Rotation (v1.2.0)</h3>
+        <p class="dxo-feature-card__desc">
+          Wird ein referenziertes Secret gelöscht, überspringt der Operator den
+          Reconciliation-Zyklus, statt eine fehlerhafte Dex-Konfiguration zu schreiben.
+          So bleibt die laufende Dex-Instanz stabil, bis das Secret wiederhergestellt ist.
+        </p>
+      </article>
+
+      <article class="dxo-feature-card">
+        <span class="dxo-feature-card__icon">🔍</span>
+        <h3 class="dxo-feature-card__title">Rotationserkennung (v1.1.4)</h3>
+        <p class="dxo-feature-card__desc">
+          Der Operator erkennt Secret-Rotationen und verhindert unnötige Pod-Neustarts
+          während des Rotationsvorgangs — produktiver Traffic bleibt ungestört, während
+          Credentials nahtlos ausgetauscht werden.
+        </p>
+      </article>
+
+      <article class="dxo-feature-card">
+        <span class="dxo-feature-card__icon">🗂️</span>
+        <h3 class="dxo-feature-card__title">Namespace-Whitelisting</h3>
+        <p class="dxo-feature-card__desc">
+          Die <code>DexInstallation</code>-CR kontrolliert, welche Namespaces
+          Connectoren und Clients registrieren dürfen. Connectoren in nicht
+          freigegebenen Namespaces werden vom Operator ignoriert — ein klarer
+          Sicherheitsanker ergänzend zu Kubernetes-RBAC.
+        </p>
+      </article>
+
+      <article class="dxo-feature-card">
+        <span class="dxo-feature-card__icon">🪶</span>
+        <h3 class="dxo-feature-card__title">Minimaler Footprint</h3>
+        <p class="dxo-feature-card__desc">
+          Der Operator läuft mit 10m CPU und 64&nbsp;Mi RAM — ohne Datenbank, ohne JVM,
+          ohne externe SaaS-Abhängigkeit. Ideal für ressourcenbeschränkte Cluster und
+          Air-Gapped-Umgebungen.
+        </p>
+      </article>
+
+      <article class="dxo-feature-card">
+        <span class="dxo-feature-card__icon">🔒</span>
+        <h3 class="dxo-feature-card__title">Gehärteter Container</h3>
+        <p class="dxo-feature-card__desc">
+          Non-Root Security Context, alle Linux-Capabilities gedroppt, schreibgeschütztes
+          Dateisystem. Das OCI-Image folgt aktuellen Sicherheits-Best-Practices für
+          produktionsreife Kubernetes-Workloads.
+        </p>
+      </article>
+
+      <article class="dxo-feature-card">
+        <span class="dxo-feature-card__icon">📦</span>
+        <h3 class="dxo-feature-card__title">Leader-Election für HA</h3>
+        <p class="dxo-feature-card__desc">
+          Leader-Election ist aktiviert, sodass mehrere Operator-Repliken betrieben
+          werden können, ohne dass Reconciliation-Konflikte entstehen. Der Betrieb
+          bleibt auch bei Pod-Neustarts und Node-Ausfällen unterbrechungsfrei.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Section -->
+<section class="dxo-compare">
+  <div class="container">
+    <h2 class="dxo-compare__headline">Abgrenzung zu bestehenden Lösungen</h2>
+    <div class="dxo-compare__grid">
+
+      <div class="dxo-compare__entry">
+        <h3 class="dxo-compare__vs">vs. reiner Dex-Helm-Chart</h3>
+        <p class="dxo-compare__text">
+          Der offizielle Dex-Chart erfordert, dass alle Connectoren und Clients in
+          einer einzigen <code>values.yaml</code> gepflegt werden. Jede Änderung
+          löst ein <code>helm upgrade</code> aus, das die gesamte Konfiguration
+          überschreibt — ohne RBAC-Granularität auf Connector-Ebene und ohne nativen
+          GitOps-Workflow.
+        </p>
+      </div>
+
+      <div class="dxo-compare__entry">
+        <h3 class="dxo-compare__vs">vs. Keycloak Operator</h3>
+        <p class="dxo-compare__text">
+          Keycloak ist eine vollständige IAM-Plattform mit JVM-Laufzeit und eigener
+          Datenbank. Für Teams, die Dex als schlanken OIDC-Proxy nutzen wollen, ist
+          der dex-operator die ressourcenschonende Alternative — ohne Betriebsaufwand
+          einer vollwertigen Identity-Plattform.
+        </p>
+      </div>
+
+      <div class="dxo-compare__entry">
+        <h3 class="dxo-compare__vs">vs. kommerzielle IAM (Okta, Azure AD B2C)</h3>
+        <p class="dxo-compare__text">
+          Kommerzielle IAM-Dienste routen interne Service-Tokens über externe
+          SaaS-Endpunkte. Der dex-operator hält das Identity-Brokering vollständig
+          innerhalb der eigenen Cluster-Netzwerkgrenze — unverzichtbar für
+          Air-Gapped-Umgebungen und regulierte Branchen.
+        </p>
+      </div>
+
+    </div>
+    <p class="dxo-compare__cadence">
+      Der dex-operator folgt einem disziplinierten Release-Rhythmus mit automatisiertem
+      semantischen Versioning über GitHub Actions — 13 Releases in rund sechs Wochen
+      belegen die aktive Weiterentwicklung.
+    </p>
+  </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="dxo-stack">
+  <div class="container">
+    <h2 class="dxo-stack__headline">Technischer Stack und Integrationen</h2>
+    <p class="dxo-stack__intro">
+      Gebaut auf stabilen, weit verbreiteten Open-Source-Komponenten.
+      Client-Secrets sind mit Vault Agent, external-secrets und SOPS kompatibel.
+    </p>
+    <div class="dxo-stack__chips">
+      <span class="dxo-stack__chip">Go</span>
+      <span class="dxo-stack__chip">controller-runtime</span>
+      <span class="dxo-stack__chip">Kubernetes 1.25+</span>
+      <span class="dxo-stack__chip">Helm 3+</span>
+      <span class="dxo-stack__chip">Dex (offizieller Helm-Chart)</span>
+      <span class="dxo-stack__chip">dex.gtrfc.com/v1</span>
+      <span class="dxo-stack__chip">GitHub Actions</span>
+      <span class="dxo-stack__chip">semantic-release</span>
+      <span class="dxo-stack__chip">golangci-lint</span>
+      <span class="dxo-stack__chip">Renovate</span>
+      <span class="dxo-stack__chip">Apache 2.0</span>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="dxo-cta">
+  <div class="container">
+    <div class="dxo-cta__content">
+      <h2 class="dxo-cta__headline">Brauchen Sie Unterstützung bei der Einführung?</h2>
+      <p class="dxo-cta__sub">
+        Unser Team begleitet Sie von der initialen Evaluierung bis zum produktiven
+        Einsatz — inklusive CRD-Design, RBAC-Konzept und GitOps-Integration mit
+        ArgoCD oder FluxCD.
+      </p>
+      <div class="dxo-cta__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratung anfragen</a>
+        <a
+          href="https://github.com/guided-traffic/dex-operator"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Repository ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>

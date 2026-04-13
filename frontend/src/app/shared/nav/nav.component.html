@@ -18,15 +18,19 @@
         <li><a routerLink="/" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Start</a></li>
 
         <!-- Desktop: mega-menu -->
-        <li class="nav__services-item nav__services-item--desktop">
-          <a routerLink="/services" routerLinkActive="nav__link--active" (click)="closeMenu()">
+        <li
+          class="nav__services-item nav__services-item--desktop"
+          [class.nav__services-item--force-closed]="megaForceClosed === 'services'"
+          (mouseleave)="onMegaLeave('services')"
+        >
+          <a routerLink="/services" routerLinkActive="nav__link--active" (click)="closeMega('services')">
             Services <span class="nav__chevron">&#9662;</span>
           </a>
           <div class="nav__mega">
             <div class="nav__mega-inner">
               <div class="nav__mega-grid">
                 @for (service of services; track service.title) {
-                  <a class="nav__mega-item" [routerLink]="['/services']" [fragment]="getSlug(service.title)" (click)="closeMenu()">
+                  <a class="nav__mega-item" [routerLink]="['/services']" [fragment]="getSlug(service.title)" (click)="closeMega('services')">
                     <span class="nav__mega-item-icon">{{ service.icon }}</span>
                     <span class="nav__mega-item-body">
                       <span class="nav__mega-item-title">{{ service.title }}</span>
@@ -38,7 +42,7 @@
               </div>
               <div class="nav__mega-footer">
                 <span>Nicht sicher, welcher Service passt?</span>
-                <a routerLink="/services" (click)="closeMenu()">Alle Services ansehen →</a>
+                <a routerLink="/services" (click)="closeMega('services')">Alle Services ansehen →</a>
               </div>
             </div>
           </div>
@@ -62,15 +66,19 @@
         </li>
 
         <!-- Desktop: products mega-menu -->
-        <li class="nav__services-item nav__services-item--desktop">
-          <a routerLink="/products" routerLinkActive="nav__link--active" (click)="closeMenu()">
+        <li
+          class="nav__services-item nav__services-item--desktop"
+          [class.nav__services-item--force-closed]="megaForceClosed === 'products'"
+          (mouseleave)="onMegaLeave('products')"
+        >
+          <a routerLink="/products" routerLinkActive="nav__link--active" (click)="closeMega('products')">
             Produkte <span class="nav__chevron">&#9662;</span>
           </a>
           <div class="nav__mega">
             <div class="nav__mega-inner">
               <div class="nav__mega-grid">
                 @for (product of products; track product.slug) {
-                  <a class="nav__mega-item" [routerLink]="['/products']" [fragment]="product.slug" (click)="closeMenu()">
+                  <a class="nav__mega-item" [routerLink]="product.ctaLink" (click)="closeMega('products')">
                     <span class="nav__mega-item-icon">{{ product.icon }}</span>
                     <span class="nav__mega-item-body">
                       <span class="nav__mega-item-title">{{ product.name }}</span>
@@ -82,7 +90,7 @@
               </div>
               <div class="nav__mega-footer">
                 <span>Neugierig auf unsere Open-Source-Tools?</span>
-                <a routerLink="/products" (click)="closeMenu()">Alle Produkte ansehen →</a>
+                <a routerLink="/products" (click)="closeMega('products')">Alle Produkte ansehen →</a>
               </div>
             </div>
           </div>
@@ -96,7 +104,7 @@
           <ul class="nav__sub-list" [class.nav__sub-list--open]="productsOpen">
             @for (product of products; track product.slug) {
               <li>
-                <a [routerLink]="['/products']" [fragment]="product.slug" (click)="closeMenu()">
+                <a [routerLink]="product.ctaLink" (click)="closeMenu()">
                   <span class="nav__dropdown-icon">{{ product.icon }}</span>
                   {{ product.name }}
                 </a>

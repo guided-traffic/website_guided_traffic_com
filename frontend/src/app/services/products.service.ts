@@ -43,6 +43,36 @@ export class ProductsService {
       ctaLabel: 'Mehr erfahren',
       ctaLink: '/products/openldap-operator',
     },
+    {
+      slug: 'valkey-operator',
+      icon: '💾',
+      name: 'Valkey Operator',
+      description:
+        'Betreibt Valkey — den BSD-lizenzierten Redis-Fork — als deklarative Kubernetes-Ressource. Sentinel-HA, TLS-Lifecycle und Prometheus-Observability ohne handgeschriebene StatefulSets.',
+      license: 'FREE',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/products/valkey-operator',
+    },
+    {
+      slug: 'dex-operator',
+      icon: '🛂',
+      name: 'Dex Operator',
+      description:
+        'Verwaltet Dex-Identity-Provider und OAuth2-Clients als deklarative Kubernetes-CRDs. SSO-Connectoren per kubectl apply ausrollen, mit vollständigem Audit-Trail und GitOps-Integration.',
+      license: 'FREE',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/products/dex-operator',
+    },
+    {
+      slug: 'container-images',
+      icon: '🛡️',
+      name: 'Container Images',
+      description:
+        'Kuratierter Katalog gehärteter Multi-Arch Container-Images mit wöchentlichen Rebuilds. Inklusive signierter SBOMs, SLSA-Provenance und Cosign-Signaturen — direkt aus Docker Hub nutzbar.',
+      license: 'FREE',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/products/container-images',
+    },
   ];
 
   getProducts(): Product[] {

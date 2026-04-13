@@ -18,6 +18,7 @@ export class NavComponent {
   scrolled = false;
   servicesOpen = false;
   productsOpen = false;
+  megaForceClosed: 'services' | 'products' | null = null;
   services: Service[] = this.servicesService.getServices();
   products: Product[] = this.productsService.getProducts();
 
@@ -43,6 +44,17 @@ export class NavComponent {
     this.menuOpen = false;
     this.servicesOpen = false;
     this.productsOpen = false;
+  }
+
+  closeMega(key: 'services' | 'products'): void {
+    this.megaForceClosed = key;
+    this.closeMenu();
+  }
+
+  onMegaLeave(key: 'services' | 'products'): void {
+    if (this.megaForceClosed === key) {
+      this.megaForceClosed = null;
+    }
   }
 
   toggleServices(event: Event): void {

@@ -215,6 +215,25 @@
       transform: translateY(0);
       pointer-events: auto;
     }
+
+    // Force-close override: after a click inside the mega, suppress the hover
+    // panel until the cursor leaves the <li> and re-enters. Without this, the
+    // panel stays visible because the cursor is still over the clicked item.
+    .nav__services-item--desktop.nav__services-item--force-closed:hover & {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      pointer-events: none;
+    }
+  }
+
+  &__services-item--desktop#{&}__services-item--force-closed:hover > a {
+    color: var(--color-text-secondary);
+    border-bottom-color: transparent;
+  }
+
+  &__services-item--desktop#{&}__services-item--force-closed:hover &__chevron {
+    transform: none;
   }
 
   &__mega-inner {

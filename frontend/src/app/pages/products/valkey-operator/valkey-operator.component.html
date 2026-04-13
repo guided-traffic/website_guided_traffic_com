@@ -1,0 +1,321 @@
+<!-- Hero Section -->
+<section class="vko-hero">
+  <div class="container">
+    <div class="vko-hero__content">
+      <div class="vko-hero__icon">💾</div>
+      <h1 class="vko-hero__headline">Der BSD-lizenzierte Redis-Ersatz, deklarativ betrieben</h1>
+      <p class="vko-hero__sub">
+        Valkey — der von der Linux Foundation unterstützte Redis-Fork — als vollständig deklarative
+        Kubernetes-Ressource. Sentinel-HA, TLS-Lifecycle und Prometheus-Observability ohne
+        handgeschriebene StatefulSets.
+      </p>
+      <div class="vko-hero__meta">
+        <span class="vko-hero__meta-item">
+          <span class="vko-hero__meta-label">Status</span>
+          <span class="vko-hero__meta-badge vko-hero__meta-badge--stable">Stable</span>
+        </span>
+        <span class="vko-hero__meta-separator"></span>
+        <span class="vko-hero__meta-item">
+          <span class="vko-hero__meta-label">Lizenz</span>
+          <span class="vko-hero__meta-value">Apache-2.0 Operator / BSD Valkey</span>
+        </span>
+        <span class="vko-hero__meta-separator"></span>
+        <span class="vko-hero__meta-item">
+          <span class="vko-hero__meta-label">Kubernetes</span>
+          <span class="vko-hero__meta-value">1.29+</span>
+        </span>
+        <span class="vko-hero__meta-separator"></span>
+        <span class="vko-hero__meta-item">
+          <span class="vko-hero__meta-label">Letztes Update</span>
+          <span class="vko-hero__meta-value">April 2026</span>
+        </span>
+      </div>
+      <div class="vko-hero__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratungstermin buchen</a>
+        <a
+          href="https://github.com/guided-traffic/valkey-operator"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Auf GitHub ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- License Problem Section -->
+<section class="vko-license">
+  <div class="container">
+    <div class="vko-license__content">
+      <h2 class="vko-license__headline">Das Lizenz-Problem</h2>
+      <p class="vko-license__text">
+        Im März 2024 wechselte Redis Inc. die Lizenz von BSD auf SSPL/RSALv2 — beides keine
+        OSI-anerkannten Open-Source-Lizenzen. Für Unternehmen bedeutet das: Rechts- und
+        Beschaffungsteams stufen Redis seither als proprietäre Software ein, was Einkaufs- und
+        Compliance-Prozesse erheblich erschwert. Valkey, der von der Linux Foundation
+        übernommene Fork auf Basis von Redis 7.2, schließt diese Lücke: BSD-lizenziert,
+        herstellerneutral und vollständig OSI-konform. Der valkey-operator gibt Ihnen einen
+        klaren, auditierbaren Migrationspfad — ohne SSPL-Risiko.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Deployment Modes Section -->
+<section class="vko-modes">
+  <div class="container">
+    <h2 class="vko-modes__headline">Deployment-Modi</h2>
+    <div class="vko-modes__grid">
+
+      <div class="vko-mode-card">
+        <div class="vko-mode-card__icon">🖥️</div>
+        <h3 class="vko-mode-card__title">Standalone</h3>
+        <p class="vko-mode-card__desc">
+          Einzelknoten-Valkey für Entwicklungsumgebungen und unkritische Workloads.
+          Minimaler Ressourcenverbrauch, schnelle Inbetriebnahme — ideal zum Testen
+          und für interne Tools ohne Hochverfügbarkeitsanforderung.
+        </p>
+      </div>
+
+      <div class="vko-mode-card">
+        <div class="vko-mode-card__icon">🔄</div>
+        <h3 class="vko-mode-card__title">Hochverfügbar (HA)</h3>
+        <p class="vko-mode-card__desc">
+          Multi-Node-Cluster mit automatischem Sentinel-Failover für
+          produktionskritische Anwendungen. Replica-first Rolling-Updates stellen
+          sicher, dass die Replikations-Synchronisation vor jedem Schritt
+          verifiziert wird — unterbrechungsfrei und ohne manuelle Eingriffe.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Key Features Section -->
+<section class="vko-features">
+  <div class="container">
+    <h2 class="vko-features__headline">Funktionsumfang</h2>
+    <div class="vko-features__grid">
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">🔒</span>
+        <h3 class="vko-feature-card__title">Vollständige TLS-Verschlüsselung</h3>
+        <p class="vko-feature-card__desc">
+          TLS für Valkey-Clientverbindungen, Replikation und Sentinel-Kanäle — wahlweise
+          über cert-manager-Integration oder eigene Secrets.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">🔀</span>
+        <h3 class="vko-feature-card__title">Dual-Port-Modus</h3>
+        <p class="vko-feature-card__desc">
+          Plaintext- und TLS-Port koexistieren gleichzeitig für eine unterbrechungsfreie
+          Client-Migration ohne Big-Bang-Cutover.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">🛡️</span>
+        <h3 class="vko-feature-card__title">mTLS für den Cluster Observer</h3>
+        <p class="vko-feature-card__desc">
+          Gegenseitige TLS-Authentifizierung für alle Verbindungen des Cluster Observers
+          zu Valkey- und Sentinel-Pods.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">🔑</span>
+        <h3 class="vko-feature-card__title">Passwort-Management via Secrets</h3>
+        <p class="vko-feature-card__desc">
+          Passwörter werden sicher als Kubernetes Secrets verwaltet. Für Discovery-Clients
+          ohne Sentinel-AUTH-Unterstützung steht <code>disableAuth: true</code> zur
+          Verfügung.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">💿</span>
+        <h3 class="vko-feature-card__title">RDB- und AOF-Persistenz</h3>
+        <p class="vko-feature-card__desc">
+          RDB-Snapshots, AOF oder beide Varianten gleichzeitig. Konfigurierbare
+          PersistentVolumeClaims je Knoten für flexible Storage-Anbindung.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">🔭</span>
+        <h3 class="vko-feature-card__title">Cluster Observer</h3>
+        <p class="vko-feature-card__desc">
+          Optionaler diagnostischer Sidecar prüft Master-Erreichbarkeit,
+          Replikations-Sync-Status, Write/Read-Roundtrip und Sentinel-Quorum kontinuierlich.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">📊</span>
+        <h3 class="vko-feature-card__title">Prometheus-Metriken</h3>
+        <p class="vko-feature-card__desc">
+          Metriken auf Port 8084 mit <code>/metrics</code>, <code>/healthz</code> und
+          <code>/readyz</code>. Feingranulare <code>unreadyWhen</code>-Konfiguration
+          steuert, welche Checks als unhealthy gemeldet werden.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">🌐</span>
+        <h3 class="vko-feature-card__title">NetworkPolicies</h3>
+        <p class="vko-feature-card__desc">
+          Optionale NetworkPolicy-Ressourcen beschränken eingehenden und ausgehenden
+          Datenverkehr auf deklarierte Konsumenten — konsistente Labels für zuverlässige
+          Selektoren.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">⚙️</span>
+        <h3 class="vko-feature-card__title">Deklarative Reconciliation</h3>
+        <p class="vko-feature-card__desc">
+          Der Operator überwacht CRDs der Gruppe <code>vko.gtrfc.com/v1</code> und
+          reconciliert StatefulSets, ConfigMaps, Services und Certificate-Objekte
+          kontinuierlich.
+        </p>
+      </article>
+
+      <article class="vko-feature-card">
+        <span class="vko-feature-card__icon">🔁</span>
+        <h3 class="vko-feature-card__title">Rolling-Updates mit Verifikation</h3>
+        <p class="vko-feature-card__desc">
+          Rollende Aktualisierungen mit automatischem Failover. Vor jedem Schritt wird
+          die Replikations-Synchronisation geprüft — kein Datenverlust bei Node-Wechsel.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Section -->
+<section class="vko-compare">
+  <div class="container">
+    <h2 class="vko-compare__headline">Abgrenzung zu bestehenden Lösungen</h2>
+    <div class="vko-compare__grid">
+
+      <div class="vko-compare__entry">
+        <h3 class="vko-compare__vs">vs. reiner Valkey-Helm-Chart</h3>
+        <p class="vko-compare__text">
+          Ein Helm-Chart rendert einmalig; der Operator reconciliert dauerhaft.
+          Konfigurationsabweichungen, Knotenausfälle und Änderungen werden automatisch
+          korrigiert — Sentinel-Failover ist orchestriert, nicht statisch konfiguriert.
+        </p>
+      </div>
+
+      <div class="vko-compare__entry">
+        <h3 class="vko-compare__vs">vs. Spotahome / andere Redis-Operatoren</h3>
+        <p class="vko-compare__text">
+          Bestehende Redis-Operatoren wie Spotahome zielen auf Redis ab — das nun unter
+          einer eingeschränkten Lizenz steht. Der valkey-operator ist von Grund auf für
+          Valkey entwickelt und vermeidet jede Lizenzierungsdoppeldeutigkeit.
+        </p>
+      </div>
+
+      <div class="vko-compare__entry">
+        <h3 class="vko-compare__vs">vs. Managed Cloud (Elasticache, Upstash)</h3>
+        <p class="vko-compare__text">
+          Kein GB-basiertes Egress-Pricing, keine Vendor-Lock-in, keine
+          Datenschutzbedenken bei der Datenresidenz. Vollständige Kontrolle über
+          Persistenz, Netzwerk und TLS innerhalb Ihres eigenen Clusters.
+        </p>
+      </div>
+
+      <div class="vko-compare__entry">
+        <h3 class="vko-compare__vs">vs. manueller Betrieb mit StatefulSets</h3>
+        <p class="vko-compare__text">
+          Eliminiert rund 80 % des operativen YAML-Aufwands. TLS-Lifecycle,
+          Sentinel-Topologie, Rolling-Upgrades und Health-Monitoring werden
+          vollständig vom Operator übernommen.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- License Governance Section -->
+<section class="vko-governance">
+  <div class="container">
+    <div class="vko-governance__content">
+      <h2 class="vko-governance__headline">Lizenz-Transparenz &amp; Governance</h2>
+      <p class="vko-governance__intro">
+        Ein klarer, auditierbarer Lizenzpfad — relevant für Rechts- und Beschaffungsteams,
+        die nach dem Redis-Lizenswechsel Klarheit benötigen.
+      </p>
+      <div class="vko-governance__badges">
+        <div class="vko-governance__badge">
+          <span class="vko-governance__badge-icon">✅</span>
+          <span class="vko-governance__badge-label">Valkey BSD-lizenziert</span>
+        </div>
+        <div class="vko-governance__badge">
+          <span class="vko-governance__badge-icon">✅</span>
+          <span class="vko-governance__badge-label">Operator Apache-2.0</span>
+        </div>
+        <div class="vko-governance__badge">
+          <span class="vko-governance__badge-icon">✅</span>
+          <span class="vko-governance__badge-label">Linux Foundation Governance</span>
+        </div>
+        <div class="vko-governance__badge">
+          <span class="vko-governance__badge-icon">✅</span>
+          <span class="vko-governance__badge-label">Kein SSPL-Risiko</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="vko-stack">
+  <div class="container">
+    <h2 class="vko-stack__headline">Technischer Stack &amp; Integrationen</h2>
+    <p class="vko-stack__intro">
+      Gebaut auf Go mit controller-runtime und kubebuilder — ohne proprietäre Abhängigkeiten.
+    </p>
+    <div class="vko-stack__chips">
+      <span class="vko-stack__chip">Go</span>
+      <span class="vko-stack__chip">controller-runtime</span>
+      <span class="vko-stack__chip">kubebuilder</span>
+      <span class="vko-stack__chip">Kubernetes 1.29+</span>
+      <span class="vko-stack__chip">Helm 3</span>
+      <span class="vko-stack__chip">CRD vko.gtrfc.com/v1</span>
+      <span class="vko-stack__chip">cert-manager (optional)</span>
+      <span class="vko-stack__chip">Prometheus (optional)</span>
+      <span class="vko-stack__chip">Grafana (optional)</span>
+      <span class="vko-stack__chip">golangci-lint</span>
+      <span class="vko-stack__chip">GitHub Actions</span>
+      <span class="vko-stack__chip">Apache-2.0</span>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="vko-cta">
+  <div class="container">
+    <div class="vko-cta__content">
+      <h2 class="vko-cta__headline">Brauchen Sie Unterstützung bei der Einführung?</h2>
+      <p class="vko-cta__sub">
+        Unser Team begleitet Sie von der Evaluierung des Lizenz-Migrationspfads bis zum
+        produktiven HA-Betrieb — inklusive TLS-Konfiguration, Sentinel-Setup und
+        Prometheus-Integration.
+      </p>
+      <div class="vko-cta__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratung anfragen</a>
+        <a
+          href="https://github.com/guided-traffic/valkey-operator"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Repository ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>

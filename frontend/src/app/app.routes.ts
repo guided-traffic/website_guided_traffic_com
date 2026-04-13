@@ -39,6 +39,18 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/products/openldap-operator/openldap-operator.component').then(m => m.OpenldapOperatorComponent),
   },
   {
+    path: 'products/valkey-operator',
+    loadComponent: () => import('./pages/products/valkey-operator/valkey-operator.component').then(m => m.ValkeyOperatorComponent),
+  },
+  {
+    path: 'products/dex-operator',
+    loadComponent: () => import('./pages/products/dex-operator/dex-operator.component').then(m => m.DexOperatorComponent),
+  },
+  {
+    path: 'products/container-images',
+    loadComponent: () => import('./pages/products/container-images/container-images.component').then(m => m.ContainerImagesComponent),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

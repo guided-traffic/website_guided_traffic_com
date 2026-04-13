@@ -1,0 +1,350 @@
+<!-- Hero Section -->
+<section class="cim-hero">
+  <div class="container">
+    <div class="cim-hero__content">
+      <div class="cim-hero__icon">🛡️</div>
+      <h1 class="cim-hero__headline">Gehärtete Container-Images</h1>
+      <p class="cim-hero__sub">
+        Kuratierter Katalog sicherheitsgehärteter Multi-Arch Container-Images —
+        wöchentlich automatisch neu gebaut, mit signierten SBOMs, SLSA-Provenance
+        und Cosign-Signaturen. Einfach von Docker Hub beziehen, sofort vertrauenswürdig.
+      </p>
+      <div class="cim-hero__meta">
+        <span class="cim-hero__meta-item">
+          <span class="cim-hero__meta-label">Status</span>
+          <span class="cim-hero__meta-badge cim-hero__meta-badge--stable">Production-ready</span>
+        </span>
+        <span class="cim-hero__meta-separator"></span>
+        <span class="cim-hero__meta-item">
+          <span class="cim-hero__meta-label">Lizenz</span>
+          <span class="cim-hero__meta-value">Apache 2.0</span>
+        </span>
+        <span class="cim-hero__meta-separator"></span>
+        <span class="cim-hero__meta-item">
+          <span class="cim-hero__meta-label">Architekturen</span>
+          <span class="cim-hero__meta-value">amd64 + arm64</span>
+        </span>
+        <span class="cim-hero__meta-separator"></span>
+        <span class="cim-hero__meta-item">
+          <span class="cim-hero__meta-label">Rebuild-Kadenz</span>
+          <span class="cim-hero__meta-value">wöchentlich — Sonntag 20:00 UTC</span>
+        </span>
+      </div>
+      <div class="cim-hero__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratungstermin buchen</a>
+        <a
+          href="https://github.com/guided-traffic/container-images"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Auf GitHub ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="cim-problem">
+  <div class="container">
+    <div class="cim-problem__content">
+      <h2 class="cim-problem__headline">Das Problem</h2>
+      <p class="cim-problem__text">
+        Die überwiegende Mehrheit der öffentlich verfügbaren Docker Hub Images liefert weder ein
+        Software Bill of Materials (SBOM) noch eine verifizierbare Provenance-Attestierung —
+        Security- und Compliance-Teams wissen schlicht nicht, was in einem Image steckt oder
+        wie es gebaut wurde. Dazu kommen manuelle Patch-Zyklen: Upstream-Images werden selten
+        und unregelmäßig aktualisiert, neue CVEs bleiben oft wochenlang ungepatcht.
+        Interne Base-Images erfordern dedizierten Wartungsaufwand, ohne einen externen
+        Audit-Trail zu liefern — ein blinder Fleck in jeder Supply-Chain-Sicherheitsstrategie.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Supply-Chain Security Section -->
+<section class="cim-supply-chain">
+  <div class="container">
+    <h2 class="cim-supply-chain__headline">Supply-Chain-Sicherheit — aus der Box</h2>
+    <p class="cim-supply-chain__intro">
+      Jedes Image im Katalog erfüllt alle fünf Sicherheitsgarantien —
+      automatisch, bei jedem Build, ohne manuellen Eingriff.
+    </p>
+    <div class="cim-supply-chain__grid">
+
+      <div class="cim-sc-card">
+        <span class="cim-sc-card__icon">📋</span>
+        <h3 class="cim-sc-card__title">Signierte SBOMs</h3>
+        <p class="cim-sc-card__desc">
+          Jedes Image enthält ein vollständiges Software Bill of Materials in SPDX
+          und CycloneDX — signiert und an das Image-Manifest gebunden.
+          Unterstützt US EO 14028 und EU Cyber Resilience Act.
+        </p>
+        <div class="cim-sc-card__tags">
+          <span class="cim-chip">SPDX</span>
+          <span class="cim-chip">CycloneDX</span>
+        </div>
+      </div>
+
+      <div class="cim-sc-card">
+        <span class="cim-sc-card__icon">🔗</span>
+        <h3 class="cim-sc-card__title">SLSA Provenance (Level 2+)</h3>
+        <p class="cim-sc-card__desc">
+          Maschinell verifizierbare SLSA-Provenance-Attestierungen dokumentieren
+          exakt, welcher Build-Schritt das Image erzeugt hat —
+          von der Quelle bis zum Registry-Push lückenlos nachvollziehbar.
+        </p>
+      </div>
+
+      <div class="cim-sc-card">
+        <span class="cim-sc-card__icon">✍️</span>
+        <h3 class="cim-sc-card__title">Cosign-Signaturen</h3>
+        <p class="cim-sc-card__desc">
+          Images werden kryptografisch mit Cosign signiert — keyless via OIDC
+          und Sigstore Transparency Log. Jede Signatur ist öffentlich
+          verifizierbar, bevor ein Image den Cluster berührt.
+        </p>
+        <div class="cim-sc-card__tags">
+          <span class="cim-chip">Cosign</span>
+          <span class="cim-chip">Sigstore</span>
+        </div>
+      </div>
+
+      <div class="cim-sc-card">
+        <span class="cim-sc-card__icon">🔍</span>
+        <h3 class="cim-sc-card__title">Trivy-gegated Builds</h3>
+        <p class="cim-sc-card__desc">
+          Jeder Build wird automatisch durch Trivy gescannt. Images mit
+          nicht akzeptablen CVEs werden zurückgehalten und nicht veröffentlicht —
+          kein manuelles Suppressionsmanagement.
+        </p>
+        <div class="cim-sc-card__tags">
+          <span class="cim-chip">Trivy</span>
+          <span class="cim-chip">CVE-Gate</span>
+        </div>
+      </div>
+
+      <div class="cim-sc-card">
+        <span class="cim-sc-card__icon">🔄</span>
+        <h3 class="cim-sc-card__title">Wöchentliche Rebuilds</h3>
+        <p class="cim-sc-card__desc">
+          Jedes Sonntag um 20:00 UTC werden alle Images automatisch neu gebaut —
+          unabhängig von Code-Änderungen. Maximale CVE-Patch-Fenster:
+          sieben Tage, garantiert ohne Ticket oder manuelle Pipeline.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Image Catalog Section -->
+<section class="cim-catalog">
+  <div class="container">
+    <h2 class="cim-catalog__headline">Image-Katalog</h2>
+    <p class="cim-catalog__intro">
+      Alle Images sind unter <code class="cim-catalog__prefix">docker.io/guidedtraffic/&lt;image-name&gt;</code>
+      verfügbar — kompatibel mit Docker, containerd, CRI-O und Podman.
+    </p>
+    <div class="cim-catalog__groups">
+
+      <div class="cim-catalog-group">
+        <h3 class="cim-catalog-group__title">Debug &amp; Ops-Toolkits</h3>
+        <div class="cim-catalog-group__chips">
+          <span class="cim-chip">network-debug</span>
+          <span class="cim-chip">kubectl</span>
+          <span class="cim-chip">etcd-client</span>
+        </div>
+        <p class="cim-catalog-group__note">
+          Konzipiert für <code>kubectl debug</code> und ephemere Pods —
+          die Tools, die SREs im Incident-Fall sofort brauchen.
+        </p>
+      </div>
+
+      <div class="cim-catalog-group">
+        <h3 class="cim-catalog-group__title">Daten &amp; Backup</h3>
+        <div class="cim-catalog-group__chips">
+          <span class="cim-chip">thanos</span>
+          <span class="cim-chip">velero-cli</span>
+          <span class="cim-chip">kopia</span>
+        </div>
+        <p class="cim-catalog-group__note">
+          Gehärtete Varianten für Langzeit-Metriken (Thanos / Prometheus),
+          Kubernetes-Backup (Velero) und Snapshot-Management (Kopia).
+        </p>
+      </div>
+
+    </div>
+    <p class="cim-catalog__footnote">
+      Weitere Images werden nach Bedarf ergänzt —
+      siehe Repository für den vollständigen und aktuellen Katalog.
+    </p>
+  </div>
+</section>
+
+<!-- Key Features Section -->
+<section class="cim-features">
+  <div class="container">
+    <h2 class="cim-features__headline">Weitere Funktionen im Überblick</h2>
+    <div class="cim-features__grid">
+
+      <article class="cim-feature-card">
+        <span class="cim-feature-card__icon">🏗️</span>
+        <h3 class="cim-feature-card__title">Multi-Arch Manifests</h3>
+        <p class="cim-feature-card__desc">
+          Jedes Image veröffentlicht native Manifests für amd64 und arm64 —
+          derselbe Tag funktioniert auf x86 EC2-Instanzen und AWS Graviton
+          ohne Cross-Compilation oder zusätzliche Konfiguration.
+        </p>
+      </article>
+
+      <article class="cim-feature-card">
+        <span class="cim-feature-card__icon">🧹</span>
+        <h3 class="cim-feature-card__title">CVE-gezielte Paket-Entfernung</h3>
+        <p class="cim-feature-card__desc">
+          Kernel-spezifische Pakete wie <code>linux-libc-dev</code> und
+          <code>linux-headers</code>, die im Container-Kontext nicht patchbar sind
+          und Trivy-Reports mit False-Positives fluten, werden aktiv entfernt —
+          sauberere Scans ohne manuelle Suppressionsregeln.
+        </p>
+      </article>
+
+      <article class="cim-feature-card">
+        <span class="cim-feature-card__icon">🤖</span>
+        <h3 class="cim-feature-card__title">Renovate-getriebene Base-Image-Updates</h3>
+        <p class="cim-feature-card__desc">
+          <code>renovate.json</code> pinnt Upstream-Referenzen wie
+          <code>ubuntu:24.04</code> und öffnet automatisch Pull Requests
+          bei neuen Versionen — vollständiger Audit-Trail für jeden
+          Base-Image-Wechsel.
+        </p>
+      </article>
+
+      <article class="cim-feature-card">
+        <span class="cim-feature-card__icon">🤝</span>
+        <h3 class="cim-feature-card__title">Contributor-freundliches Onboarding</h3>
+        <p class="cim-feature-card__desc">
+          Ein neues Image hinzufügen bedeutet: Verzeichnis duplizieren,
+          <code>Containerfile</code> und <code>image.yml</code> schreiben.
+          Die CI-Pipeline erkennt und baut neue Images automatisch — kein
+          separates Konfigurationsfile pro Image nötig.
+        </p>
+      </article>
+
+      <article class="cim-feature-card">
+        <span class="cim-feature-card__icon">🔭</span>
+        <h3 class="cim-feature-card__title">Vollständig transparente Pipeline</h3>
+        <p class="cim-feature-card__desc">
+          Das gesamte Build-, Scan-, Sign- und Publish-System läuft auf
+          öffentlichen GitHub Actions Logs. Teams können exakt nachvollziehen,
+          wie jedes Image entstanden ist — nichts ist verborgen.
+        </p>
+      </article>
+
+      <article class="cim-feature-card">
+        <span class="cim-feature-card__icon">📥</span>
+        <h3 class="cim-feature-card__title">Pull-based, ohne Cluster-Komponente</h3>
+        <p class="cim-feature-card__desc">
+          Kein Operator, kein Helm-Chart, keine Cluster-Erweiterung nötig.
+          Images werden direkt von Docker Hub gepullt und funktionieren mit
+          jedem OCI-kompatiblen Runtime — Docker, containerd, CRI-O, Podman.
+        </p>
+      </article>
+
+      <article class="cim-feature-card">
+        <span class="cim-feature-card__icon">📜</span>
+        <h3 class="cim-feature-card__title">Compliance-Support</h3>
+        <p class="cim-feature-card__desc">
+          Signierte SBOMs in SPDX und CycloneDX unterstützen die Anforderungen
+          von US Executive Order 14028 und dem EU Cyber Resilience Act —
+          Dokumentation, die Security-Audits standhalten.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Section -->
+<section class="cim-compare">
+  <div class="container">
+    <h2 class="cim-compare__headline">Abgrenzung zu bestehenden Alternativen</h2>
+    <div class="cim-compare__grid">
+
+      <div class="cim-compare__entry">
+        <h3 class="cim-compare__vs">vs. offizielle Upstream-Images (Docker Library)</h3>
+        <p class="cim-compare__text">
+          Docker Library Images werden meist monatlich oder nur bei Code-Änderungen
+          aktualisiert. SBOMs, SLSA-Provenance und kryptografische Signaturen
+          fehlen in der Regel vollständig — Security-Teams erhalten keine
+          maschinell verifizierbare Grundlage für Compliance-Audits.
+        </p>
+      </div>
+
+      <div class="cim-compare__entry">
+        <h3 class="cim-compare__vs">vs. selbst gepflegte interne Base-Images</h3>
+        <p class="cim-compare__text">
+          Intern gepflegte Images bedeuten dauerhaften Wartungsaufwand: manuelle
+          Patch-Zyklen, kein externer Audit-Trail und kein Vendor-Support.
+          Ohne strukturierte Supply-Chain-Praxis entstehen blinde Flecken,
+          die in Audits zum Problem werden.
+        </p>
+      </div>
+
+      <div class="cim-compare__entry">
+        <h3 class="cim-compare__vs">vs. proprietäre Image-Vendor-Lösungen</h3>
+        <p class="cim-compare__text">
+          Kommerzielle Image-Kataloge bieten oft keinen Einblick in den
+          Build-Prozess — keine öffentlichen Build-Logs, keine inspizierbare
+          Pipeline. Dazu kommen Lizenzkosten und Vendor-Lock-in.
+          Dieser Katalog ist Apache 2.0 lizenziert und vollständig open-source.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="cim-stack">
+  <div class="container">
+    <h2 class="cim-stack__headline">Technischer Stack &amp; Pipeline</h2>
+    <p class="cim-stack__intro">
+      Gebaut auf verbreiteten, stabilen Open-Source-Tools — ausschließlich
+      GitHub Actions, kein externer CI-Dienst.
+    </p>
+    <div class="cim-stack__chips">
+      <span class="cim-chip">Containerfile / Dockerfile</span>
+      <span class="cim-chip">Shell</span>
+      <span class="cim-chip">GitHub Actions</span>
+      <span class="cim-chip">Cosign / Sigstore (keyless OIDC)</span>
+      <span class="cim-chip">Trivy</span>
+      <span class="cim-chip">Renovate</span>
+      <span class="cim-chip">Docker Hub</span>
+      <span class="cim-chip">OCI (Docker / containerd / CRI-O / Podman)</span>
+      <span class="cim-chip">Apache 2.0</span>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="cim-cta">
+  <div class="container">
+    <div class="cim-cta__content">
+      <h2 class="cim-cta__headline">Brauchen Sie Unterstützung bei der Einführung?</h2>
+      <p class="cim-cta__sub">
+        Unser Team begleitet Sie bei der Integration gehärteter Container-Images in
+        Ihre bestehende Kubernetes-Infrastruktur — von der Evaluierung über
+        Cosign-Verifikation bis zur CI/CD-Pipeline-Integration.
+      </p>
+      <div class="cim-cta__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratung anfragen</a>
+        <a
+          href="https://github.com/guided-traffic/container-images"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Repository ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
