@@ -18,6 +18,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent),
   },
   {
+    path: 'impressum',
+    loadComponent: () => import('./pages/impressum/impressum.component').then(m => m.ImpressumComponent),
+  },
+  {
     path: 'features',
     redirectTo: '',
     pathMatch: 'full',
