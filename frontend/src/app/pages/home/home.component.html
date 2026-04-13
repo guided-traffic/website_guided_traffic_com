@@ -2,184 +2,66 @@
 <section class="hero">
   <div class="container">
     <div class="hero__content">
-      <h1 class="hero__headline">Ihre Infrastruktur. <span class="hero__highlight">Endlich automatisiert.</span></h1>
+      <h1 class="hero__headline">
+        Deployments per Merge. <span class="hero__highlight">Nicht per Nachtschicht.</span>
+      </h1>
       <p class="hero__sub">
-        Wir helfen Teams, die noch auf manuellen Servern arbeiten, kein CI/CD haben und Deployments per Hand verwalten —
-        und migrieren sie zu automatisierter Kubernetes-Infrastruktur mit GitOps.
-        Keine Buzzwords — nur funktionierende Systeme.
+        Wir helfen mittelständischen IT-Teams, von handgepflegten Servern und
+        Ein-Personen-Deployments zu automatisierter Infrastruktur zu kommen.
+        Pragmatisch, ohne Vendor-Lock-In — und so, dass Ihr Team am Ende alles
+        selbst betreiben kann.
       </p>
       <div class="hero__ctas">
-        <a href="https://cal.com/guided-traffic/migration-assessment" class="btn btn-primary btn-lg">Kostenloses Assessment buchen</a>
-        <a routerLink="/" fragment="how-we-work" class="btn btn-secondary btn-lg">So arbeiten wir</a>
+        <a
+          href="https://cal.eu/hans-fischer/kennenlernen"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-lg"
+        >Kennenlernen</a>
+        <a href="#wo-anfangen" class="btn btn-secondary btn-lg">So arbeiten wir</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Stats Row -->
-<section class="stats">
+<!-- Pain Teaser -->
+<section class="pain-teaser">
   <div class="container">
-    <div class="stats__row">
-      <div class="stats__item">
-        <span class="stats__number">100%</span>
-        <span class="stats__label">GitOps-automatisiert</span>
-      </div>
-      <div class="stats__divider" aria-hidden="true"></div>
-      <div class="stats__item">
-        <span class="stats__number">FluxCD</span>
-        <span class="stats__label">Nativ</span>
-      </div>
-      <div class="stats__divider" aria-hidden="true"></div>
-      <div class="stats__item">
-        <span class="stats__number">0</span>
-        <span class="stats__label">Manuelle Deployments</span>
-      </div>
-      <div class="stats__divider" aria-hidden="true"></div>
-      <div class="stats__item">
-        <span class="stats__number">24/7</span>
-        <span class="stats__label">Monitoring</span>
-      </div>
-    </div>
+    <h2 class="pain-teaser__headline">Kennen Sie das?</h2>
+    <ul class="pain-teaser__list">
+      <li>Deployments laufen noch per Hand — und nur einer weiß wirklich wie.</li>
+      <li>Jedes Team hat seine eigene CI/CD-Pipeline. Teamwechsel werden zum Onboarding-Marathon.</li>
+      <li>Jeder Server ist „irgendwie ein bisschen anders". Updates sind ein Herzinfarkt-Event.</li>
+      <li>Rollback heißt: nächtliches Backup zurückspielen.</li>
+      <li>Kubernetes steht seit zwei Jahren auf der Roadmap — aber niemand traut sich ran.</li>
+    </ul>
+    <p class="pain-teaser__hook">
+      Wenn Sie mehr als einen Punkt genickt haben — wir haben für jedes dieser
+      Probleme eine konkrete Antwort.
+    </p>
   </div>
 </section>
 
-<!-- Trust / Tech Stack Section -->
-<section class="trust">
+<!-- Topic Router -->
+<section id="wo-anfangen" class="topic-router">
   <div class="container">
-    <h2 class="trust__heading">Aufgebaut auf bewährter Technologie</h2>
-    <div class="trust__badges">
-      <span class="trust__badge">Kubernetes</span>
-      <span class="trust__badge">FluxCD</span>
-      <span class="trust__badge">Helm</span>
-      <span class="trust__badge">GitHub Actions</span>
-      <span class="trust__badge">Prometheus</span>
-      <span class="trust__badge">Grafana</span>
-    </div>
-  </div>
-</section>
-
-<!-- What Makes Us Different -->
-<section class="differentiators">
-  <div class="container">
-    <h2 class="differentiators__heading">Was uns unterscheidet</h2>
-    <div class="differentiators__grid">
-      <article class="differentiator-card card">
-        <span class="differentiator-card__icon" aria-hidden="true">&#x1F504;</span>
-        <h3>GitOps-First</h3>
-        <p>
-          Alles liegt in Git. Kein manuelles kubectl, kein SSH-und-beten.
-          Ihre Infrastruktur ist versioniert, nachvollziehbar und reproduzierbar.
-        </p>
-      </article>
-      <article class="differentiator-card card">
-        <span class="differentiator-card__icon" aria-hidden="true">&#x1F91D;</span>
-        <h3>Wir holen Sie dort ab, wo Sie stehen</h3>
-        <p>
-          Noch auf Bare Metal? Noch kein CI/CD? Lokale Builds?
-          Genau das ist unser Ausgangspunkt. Kein Urteil — nur ein klarer Weg nach vorne.
-        </p>
-      </article>
-      <article class="differentiator-card card">
-        <span class="differentiator-card__icon" aria-hidden="true">&#x1F393;</span>
-        <h3>Ihr Team lernt mit</h3>
-        <p>
-          Wir bauen nicht nur und verschwinden. Wir schulen Ihr Team in GitOps, Kubernetes
-          und modernen Workflows — damit Sie eigenständig weiterarbeiten können.
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- How We Work — tasrieit-style: deep navy diagonal gradient + dot pattern + orbs -->
-<section class="how-we-work" id="how-we-work">
-  <div class="how-we-work__orb-right" aria-hidden="true"></div>
-  <div class="how-we-work__orb-left" aria-hidden="true"></div>
-  <div class="container">
-    <h2 class="how-we-work__heading">So arbeiten wir</h2>
-    <div class="how-we-work__steps">
-      <div class="step">
-        <span class="step__number">1</span>
-        <h3 class="step__title">Analyse</h3>
-        <p class="step__desc">
-          Wir prüfen Ihre aktuelle Umgebung: Server, Deployments, Workflows.
-          Kein Urteil — nur Klarheit.
-        </p>
-      </div>
-      <div class="step">
-        <span class="step__number">2</span>
-        <h3 class="step__title">Planung</h3>
-        <p class="step__desc">
-          Eine Migrations-Roadmap mit schnellen Erfolgen zuerst.
-          Sie sehen Ergebnisse in Wochen, nicht in Monaten.
-        </p>
-      </div>
-      <div class="step">
-        <span class="step__number">3</span>
-        <h3 class="step__title">Umsetzung</h3>
-        <p class="step__desc">
-          Wir bauen Ihre GitOps-Plattform: Kubernetes, FluxCD, Pipelines, Monitoring. Hands-on.
-        </p>
-      </div>
-      <div class="step">
-        <span class="step__number">4</span>
-        <h3 class="step__title">Befähigung</h3>
-        <p class="step__desc">
-          Ihr Team wird geschult. Dokumentation, Runbooks und das nötige Vertrauen, um eigenständig zu operieren.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Engagement Models -->
-<section class="engagement">
-  <div class="container">
-    <h2 class="engagement__heading">Wie wir zusammenarbeiten</h2>
-    <p class="engagement__sub">Drei Modelle — je nachdem, wo Sie gerade stehen.</p>
-    <div class="engagement__grid">
-      <article class="engagement-card engagement-card--discovery">
-        <span class="engagement-card__price">Festpreis</span>
-        <h3 class="engagement-card__title">Discovery Sprint</h3>
-        <p class="engagement-card__desc">
-          2–3 Wochen, um Ihre Infrastruktur zu analysieren, schnelle Erfolge zu identifizieren
-          und eine Migrations-Roadmap zu erstellen.
-        </p>
-        <ul class="engagement-card__bullets">
-          <li>Infrastruktur-Audit</li>
-          <li>Risikoanalyse</li>
-          <li>90-Tage-Roadmap</li>
-        </ul>
-        <a routerLink="/contact" class="btn btn-secondary engagement-card__cta">Jetzt starten</a>
-      </article>
-      <article class="engagement-card engagement-card--migration">
-        <span class="engagement-card__price">ab €10k+</span>
-        <h3 class="engagement-card__title">Migrationsprojekt</h3>
-        <p class="engagement-card__desc">
-          Klar definierter Umfang: Containerisierung, Pipeline-Aufbau, Deployment auf Kubernetes.
-          Mit Meilensteinen und Erfolgskriterien.
-        </p>
-        <ul class="engagement-card__bullets">
-          <li>Klare Liefergegenstände</li>
-          <li>Team-Enablement inklusive</li>
-          <li>Ergebnisorientierte KPIs</li>
-        </ul>
-        <a routerLink="/contact" class="btn btn-primary engagement-card__cta">Gespräch vereinbaren</a>
-      </article>
-      <article class="engagement-card engagement-card--partnership">
-        <span class="engagement-card__price">monatlich</span>
-        <h3 class="engagement-card__title">Laufende Partnerschaft</h3>
-        <p class="engagement-card__desc">
-          Kontinuierliche Unterstützung, Architektur-Reviews und On-Call-Beratung
-          für Ihr Team.
-        </p>
-        <ul class="engagement-card__bullets">
-          <li>Praxisnahe Architektur-Reviews</li>
-          <li>On-Call-Beratung</li>
-          <li>Quartalsweise Roadmap</li>
-        </ul>
-        <a routerLink="/contact" class="btn btn-secondary engagement-card__cta">Mehr erfahren</a>
-      </article>
+    <h2 class="topic-router__headline">Wo fangen wir bei Ihnen an?</h2>
+    <p class="topic-router__intro">
+      Drei Bereiche, in denen wir Mittelstandsinfrastruktur pragmatisch modernisieren.
+      Jeder Bereich ist eine eigenständige Leistung — Sie können mit einem anfangen,
+      ohne alles auf einmal umstellen zu müssen.
+    </p>
+    <div class="topic-router__grid">
+      @for (service of services; track service.slug) {
+        <article class="topic-card">
+          <span class="topic-card__icon">{{ service.icon }}</span>
+          <h3 class="topic-card__title">{{ service.title }}</h3>
+          <p class="topic-card__desc">{{ service.description }}</p>
+          <a [routerLink]="service.ctaLink" class="topic-card__cta">
+            Mehr erfahren →
+          </a>
+        </article>
+      }
     </div>
   </div>
 </section>

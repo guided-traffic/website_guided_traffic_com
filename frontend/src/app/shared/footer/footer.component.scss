@@ -52,6 +52,10 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: var(--space-md);
+
+    &--spaced {
+      margin-top: var(--space-xl);
+    }
   }
 
   &__list {
@@ -75,6 +79,14 @@
       &:hover {
         color: var(--color-text-primary);
       }
+    }
+  }
+
+  &__list a.footer__contact-link {
+    color: var(--color-accent-light);
+
+    &:hover {
+      color: var(--color-accent);
     }
   }
 

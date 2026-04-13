@@ -2,18 +2,23 @@
   <div class="services-hero__content">
     <h1 class="services-hero__headline">Unsere Leistungen</h1>
     <p class="services-hero__sub">
-      Spezialisierte Beratung, um Ihre Infrastruktur von Legacy-Systemen in die Cloud-native Welt zu überführen.
+      Drei spezialisierte Bereiche, in denen wir mittelständische IT-Infrastruktur
+      pragmatisch modernisieren. Jeder Bereich ist eine eigenständige Leistung —
+      Sie können mit einem anfangen, ohne alles auf einmal umstellen zu müssen.
     </p>
   </div>
 </section>
 
 <section class="services container">
   <div class="services__grid">
-    @for (service of services; track service.title) {
+    @for (service of services; track service.slug) {
       <article class="service-card">
         <span class="service-card__icon">{{ service.icon }}</span>
         <h2 class="service-card__title">{{ service.title }}</h2>
         <p class="service-card__description">{{ service.description }}</p>
+        <a [routerLink]="service.ctaLink" class="service-card__cta">
+          {{ service.ctaLabel }} →
+        </a>
       </article>
     }
   </div>

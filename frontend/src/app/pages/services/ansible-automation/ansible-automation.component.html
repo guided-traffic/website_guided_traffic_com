@@ -1,0 +1,299 @@
+<!-- Hero -->
+<section class="svc-hero">
+  <div class="container">
+    <div class="svc-hero__content">
+      <div class="svc-hero__icon">🔧</div>
+      <h1 class="svc-hero__headline">Schluss mit handgepflegten Servern.</h1>
+      <p class="svc-hero__sub">
+        Wir automatisieren Ihre bestehende On-Prem-Infrastruktur mit Ansible — Inventar,
+        Baseline, Updates, Firewall-Regeln, Backups. Alles versioniert, alles reproduzierbar,
+        alles nachvollziehbar. Kein Cloud-Zwang, kein Plattform-Umzug.
+      </p>
+      <div class="svc-hero__actions">
+        <a
+          href="https://cal.eu/hans-fischer/kennenlernen"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >Kennenlerngespräch buchen</a>
+        <a href="#so-loesen-wir-das" class="btn btn-secondary">So arbeiten wir</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pain Points -->
+<section class="svc-pain">
+  <div class="container">
+    <h2 class="svc-pain__headline">Kennen Sie das?</h2>
+    <div class="svc-pain__grid">
+
+      <article class="svc-pain-card">
+        <span class="svc-pain-card__icon">❄️</span>
+        <h3 class="svc-pain-card__title">Schneeflocken-Server</h3>
+        <p class="svc-pain-card__desc">
+          Jeder Server ist „irgendwie ein bisschen anders". Über Jahre gewachsen, per SSH
+          gepflegt, Konfiguration in niemandes Kopf vollständig. Updates sind ein
+          Herzinfarkt-Event, weil niemand sicher sagen kann, was dabei kaputtgehen wird.
+        </p>
+      </article>
+
+      <article class="svc-pain-card">
+        <span class="svc-pain-card__icon">🚨</span>
+        <h3 class="svc-pain-card__title">Bus-Faktor 1</h3>
+        <p class="svc-pain-card__desc">
+          Nur eine Person weiß, wie welcher Server wirklich konfiguriert ist — und warum.
+          Ist sie im Urlaub oder krank, traut sich niemand an kritische Änderungen heran.
+        </p>
+      </article>
+
+      <article class="svc-pain-card">
+        <span class="svc-pain-card__icon">📋</span>
+        <h3 class="svc-pain-card__title">Keine Versionshistorie der Infrastruktur</h3>
+        <p class="svc-pain-card__desc">
+          Eine Sicherheitslücke taucht auf. Welche Server sind betroffen? Wer hat vor zwei
+          Jahren welchen Patch eingespielt? Die Antwort steht in keiner Dokumentation —
+          sondern im Kopf eines Kollegen, der vielleicht nicht mehr im Unternehmen ist.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Before / After -->
+<section class="svc-compare">
+  <div class="container">
+    <h2 class="svc-compare__headline">So sieht Ihre Server-Landschaft heute aus — und so sieht sie mit Ansible aus.</h2>
+    <div class="svc-compare__table">
+
+      <div class="svc-compare__row">
+        <div class="svc-compare__cell svc-compare__cell--before">
+          Jeder Server ist „irgendwie gewachsen". Niemand weiß mehr, warum welche Config-Datei so aussieht.
+        </div>
+        <div class="svc-compare__cell svc-compare__cell--after">
+          Jede Einstellung steht in einem Playbook. Git ist die Wahrheit, nicht <code>/etc</code>.
+        </div>
+      </div>
+
+      <div class="svc-compare__row">
+        <div class="svc-compare__cell svc-compare__cell--before">
+          Einen neuen Server aufsetzen? Zwei Tage manuelles Dokumentations-Puzzle.
+        </div>
+        <div class="svc-compare__cell svc-compare__cell--after">
+          Einen neuen Server aufsetzen? Ein Kommando, 30 Minuten, fertig.
+        </div>
+      </div>
+
+      <div class="svc-compare__row">
+        <div class="svc-compare__cell svc-compare__cell--before">
+          Updates werden auf Freitagabend gelegt — mit Bereitschaftsdienst am Wochenende.
+        </div>
+        <div class="svc-compare__cell svc-compare__cell--after">
+          Updates laufen werktags, identisch auf allen Servern, vorher auf einem Test-Node geprüft.
+        </div>
+      </div>
+
+      <div class="svc-compare__row">
+        <div class="svc-compare__cell svc-compare__cell--before">
+          Eine Sicherheitslücke wird auf 40 Servern manuell nachgezogen.
+        </div>
+        <div class="svc-compare__cell svc-compare__cell--after">
+          Eine Sicherheitslücke wird in einem Playbook behoben — und rollt automatisiert über alle betroffenen Server.
+        </div>
+      </div>
+
+      <div class="svc-compare__row">
+        <div class="svc-compare__cell svc-compare__cell--before">
+          Nur Herr Schmidt weiß, wie die Firewall wirklich konfiguriert ist.
+        </div>
+        <div class="svc-compare__cell svc-compare__cell--after">
+          Die Firewall-Konfiguration steht in Git, kommentiert und für jedes Teammitglied lesbar.
+        </div>
+      </div>
+
+      <div class="svc-compare__row">
+        <div class="svc-compare__cell svc-compare__cell--before">
+          Ein Compliance-Audit = drei Wochen Screenshots, Excel-Listen und Rückfragen.
+        </div>
+        <div class="svc-compare__cell svc-compare__cell--after">
+          Ein Compliance-Audit = ein Git-Repo und ein Log. Jede Änderung nachvollziehbar, jede Konfiguration dokumentiert.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Approach -->
+<section id="so-loesen-wir-das" class="svc-approach">
+  <div class="container">
+    <h2 class="svc-approach__headline">So gehen wir vor</h2>
+    <p class="svc-approach__intro">
+      Kein Plattform-Umzug. Kein Cloud-Zwang. Wir arbeiten mit Ihrer
+      bestehenden Infrastruktur — und machen sie reproduzierbar.
+    </p>
+    <div class="svc-approach__steps">
+
+      <article class="svc-step">
+        <span class="svc-step__number">1</span>
+        <div class="svc-step__body">
+          <h3 class="svc-step__title">Inventur</h3>
+          <p class="svc-step__desc">
+            Welche Server existieren, wer hängt von wem ab, wo gibt es heute Konfigurations-Drift? Wir erfassen den Ist-Zustand ehrlich — auch die unangenehmen Stellen, die lieber niemand anfasst.
+          </p>
+        </div>
+      </article>
+
+      <article class="svc-step">
+        <span class="svc-step__number">2</span>
+        <div class="svc-step__body">
+          <h3 class="svc-step__title">Baseline-Definition</h3>
+          <p class="svc-step__desc">
+            Für jede Server-Klasse (Web, Datenbank, Firewall, Monitoring, …) definieren wir einen einheitlichen Ausgangszustand. Das ist die Grundlage, auf der später alle Server zusammengeführt werden.
+          </p>
+        </div>
+      </article>
+
+      <article class="svc-step">
+        <span class="svc-step__number">3</span>
+        <div class="svc-step__body">
+          <h3 class="svc-step__title">Ansible-Collections</h3>
+          <p class="svc-step__desc">
+            Statt loser Skripte bauen wir strukturierte Rollen und Collections. Wiederverwendbar, testbar, versioniert. Kein „der eine Skript-Ordner, den niemand anfassen will".
+          </p>
+        </div>
+      </article>
+
+      <article class="svc-step">
+        <span class="svc-step__number">4</span>
+        <div class="svc-step__body">
+          <h3 class="svc-step__title">Schrittweise „Ansibilisierung"</h3>
+          <p class="svc-step__desc">
+            Server für Server wird dem Baseline-Zustand angeglichen. Produktionsserver zuletzt, nach gründlichen Tests. Kein Big Bang, keine riskanten Wochenend-Aktionen.
+          </p>
+        </div>
+      </article>
+
+      <article class="svc-step">
+        <span class="svc-step__number">5</span>
+        <div class="svc-step__body">
+          <h3 class="svc-step__title">Zentrale Verwaltung</h3>
+          <p class="svc-step__desc">
+            Je nach Team-Größe und Wunsch: Ansible Tower / AWX für größere Teams mit RBAC und Audit-Log, oder schlicht Git + GitLab CI für kleinere Setups. Wir empfehlen ehrlich, was zu Ihrer Größe passt.
+          </p>
+        </div>
+      </article>
+
+      <article class="svc-step">
+        <span class="svc-step__number">6</span>
+        <div class="svc-step__body">
+          <h3 class="svc-step__title">Enablement</h3>
+          <p class="svc-step__desc">
+            Ihr Team schreibt und pflegt Playbooks nach der Übergabe selbst. Wir schulen, begleiten und übergeben dokumentiert — damit Sie nach der Umstellung unabhängig weiterarbeiten können.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Trust Stack -->
+<section class="svc-trust">
+  <div class="container">
+    <h2 class="svc-trust__headline">Warum uns</h2>
+    <ul class="svc-trust__list">
+      <li class="svc-trust__item">
+        <strong>Terraform- und Ansible-basierte Virtual-Datacenter-Provisionierung bei einem öffentlichen IT-Dienstleister unter BSI-Grundschutz.</strong> Über drei Jahre Produktivbetrieb, mit automatisiertem Auf- und Abbau virtueller Rechenzentren pro Umgebung und Kunde.
+      </li>
+      <li class="svc-trust__item">
+        <strong>Zero-Trust-Netzwerk-Migration bei einem mittelständischen IT-Dienstleister.</strong> Fortigate-Ersatz durch pfSense auf Proxmox-Nodes, vollständig per Ansible automatisiert — inklusive IPsec/WireGuard-VPNs, VLANs und Firewall-Regelverwaltung.
+      </li>
+      <li class="svc-trust__item">
+        <strong>Eigene Ansible-Collections</strong> für Cloud- und pfSense-Automatisierung entwickelt und in produktiven Umgebungen eingesetzt.
+      </li>
+      <li class="svc-trust__item">
+        <strong>On-Premise-Kubernetes-Betrieb bei einem deutschen Internet-Service-Provider</strong> — die gesamte Grundinfrastruktur vollständig per Ansible provisioniert, inklusive Storage-Layer (Rook-Ceph) und Netzwerk.
+      </li>
+      <li class="svc-trust__item">
+        <strong>10+ Jahre Linux-Betriebserfahrung</strong> auf Debian, Ubuntu, RHEL und FreeBSD.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="svc-faq">
+  <div class="container">
+    <h2 class="svc-faq__headline">Häufige Fragen</h2>
+    <div class="svc-faq__list">
+
+      <article class="svc-faq-item">
+        <h3 class="svc-faq-item__q">„Wir haben keine Cloud und wollen auch keine — geht das überhaupt?"</h3>
+        <p class="svc-faq-item__a">
+          Ja. Genau dafür ist diese Leistung gedacht. Wir arbeiten mit Ihrer bestehenden On-Prem-Infrastruktur — Proxmox, VMware, Bare Metal, was immer Sie haben. Kein Cloud-Zwang, kein Plattform-Umzug, kein versteckter Vendor-Lock-In.
+        </p>
+      </article>
+
+      <article class="svc-faq-item">
+        <h3 class="svc-faq-item__q">„Müssen alle Server sofort umgestellt werden?"</h3>
+        <p class="svc-faq-item__a">
+          Nein. Wir arbeiten schrittweise, Server-Klasse für Server-Klasse. Produktionssysteme werden zuletzt migriert, nach ausgiebigen Tests auf nicht-kritischen Maschinen. Während der Umstellung bleibt Ihre Infrastruktur betriebsbereit.
+        </p>
+      </article>
+
+      <article class="svc-faq-item">
+        <h3 class="svc-faq-item__q">„Was ist mit unseren Windows-Servern?"</h3>
+        <p class="svc-faq-item__a">
+          Ansible kann Windows-Server genauso automatisieren wie Linux — über WinRM oder SSH. Der Fokus unserer Erfahrung liegt auf Linux, aber Windows-Baselines sind möglich. Wir sagen Ihnen im Erstgespräch ehrlich, wo wir tiefer sind und wo wir punktuell Kollegen aus dem Netzwerk hinzuziehen.
+        </p>
+      </article>
+
+      <article class="svc-faq-item">
+        <h3 class="svc-faq-item__q">„Wie dokumentieren Sie die bestehende Konfiguration?"</h3>
+        <p class="svc-faq-item__a">
+          Die Dokumentation <em>entsteht</em> durch die Automatisierung. Jede Playbook-Rolle ist gleichzeitig eine ausführbare Spezifikation des Soll-Zustands. Wer wissen will, wie ein Server konfiguriert ist, liest das Playbook — und muss nicht mehr in <code>/etc</code> archäologisch graben.
+        </p>
+      </article>
+
+      <article class="svc-faq-item">
+        <h3 class="svc-faq-item__q">„Können wir später auf Kubernetes umziehen, wenn wir wollen?"</h3>
+        <p class="svc-faq-item__a">
+          Ja. Die Ansible-basierte Automatisierung ist kein Gegensatz zu Kubernetes — im Gegenteil. Wer seine Server erst mal reproduzierbar hat, kann später viel leichter selektiv Workloads in Container oder auf einen Cluster verschieben. Wir beraten Sie auch dabei, wenn der Zeitpunkt kommt.
+        </p>
+      </article>
+
+      <article class="svc-faq-item">
+        <h3 class="svc-faq-item__q">„Was, wenn Sie ausfallen?"</h3>
+        <p class="svc-faq-item__a">
+          Wir arbeiten mit einem Netzwerk vertrauenswürdiger Kollegen zusammen, das im Notfall einspringen kann. Ansible ist außerdem eines der am weitesten verbreiteten Automatisierungstools — jeder erfahrene Linux-Admin kann Ihre Playbooks lesen und weiterpflegen, auch ohne uns.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="svc-cta">
+  <div class="container">
+    <div class="svc-cta__content">
+      <h2 class="svc-cta__headline">Bereit, Ihre Server endlich reproduzierbar zu machen?</h2>
+      <p class="svc-cta__sub">
+        Wir starten mit einem 30-minütigen Kennenlerngespräch. Unverbindlich,
+        ohne Vertrieb, ohne PowerPoint. Sie beschreiben Ihre Server-Landschaft,
+        wir sagen Ihnen ehrlich, wo eine Automatisierung den größten Hebel hat.
+      </p>
+      <div class="svc-cta__actions">
+        <a
+          href="https://cal.eu/hans-fischer/kennenlernen"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >Kennenlerngespräch buchen</a>
+        <a routerLink="/contact" class="btn btn-secondary">E-Mail schreiben</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -10,6 +10,18 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesComponent),
   },
   {
+    path: 'services/ci-pipelines',
+    loadComponent: () => import('./pages/services/ci-pipelines/ci-pipelines.component').then(m => m.CiPipelinesComponent),
+  },
+  {
+    path: 'services/ansible-automation',
+    loadComponent: () => import('./pages/services/ansible-automation/ansible-automation.component').then(m => m.AnsibleAutomationComponent),
+  },
+  {
+    path: 'services/kubernetes-cluster',
+    loadComponent: () => import('./pages/services/kubernetes-cluster/kubernetes-cluster.component').then(m => m.KubernetesClusterComponent),
+  },
+  {
     path: 'products',
     loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent),
   },

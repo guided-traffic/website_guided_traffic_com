@@ -1,32 +1,44 @@
 import { Injectable } from '@angular/core';
 
 export interface Service {
+  slug: string;
   icon: string;
   title: string;
   description: string;
+  ctaLabel: string;
+  ctaLink: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ServicesService {
   private readonly services: Service[] = [
     {
-      icon: '☸️',
-      title: 'Kubernetes Provisioning',
-      description:
-        'Produktionsreife Cluster, konfiguriert für Ihre Workloads. Operators, RBAC, Monitoring — alles inklusive.',
-    },
-    {
+      slug: 'ci-pipelines',
       icon: '🚀',
-      title: 'CI/CD Pipelines',
+      title: 'CI-Pipelines & Templates',
       description:
-        'Von lokalen Builds zu vollautomatisierten Pipelines. GitHub Actions, Tests, Linting, Container-Builds — professionell umgesetzt.',
+        'Einheitliche Pipelines und wiederverwendbare Templates für alle Teams. Mit Tests, Security-Scans und Quality-Gates. Wechselt ein Entwickler das Team, ist er am ersten Tag produktiv.',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/services/ci-pipelines',
     },
     {
-      icon: '📦',
-      title: 'Legacy-Migration',
+      slug: 'ansible-automation',
+      icon: '🔧',
+      title: 'OnPrem Provisionierung mit Ansible',
       description:
-        'Von Bare Metal und VMs zu Containern. Wir containerisieren Ihre Anwendungen, bauen die Pipelines auf und schulen Ihr Team.',
-    }
+        'Ihre bestehenden Server werden automatisiert, dokumentiert und reproduzierbar. Keine Schneeflocken-Server mehr, keine Angst vor Updates. Ohne Cloud-Zwang.',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/services/ansible-automation',
+    },
+    {
+      slug: 'kubernetes-cluster',
+      icon: '☸️',
+      title: 'Production-ready Kubernetes Cluster',
+      description:
+        'Produktionsreife Cluster, die Ihr Team wirklich versteht und selbst betreiben kann. RBAC, Monitoring, Backup, Security nach BSI-Grundschutz-Prinzipien. On-Prem, Cloud oder hybrid.',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/services/kubernetes-cluster',
+    },
   ];
 
   getServices(): Service[] {

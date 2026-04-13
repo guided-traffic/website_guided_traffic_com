@@ -90,6 +90,21 @@
     font-size: 0.9375rem;
     line-height: 1.7;
     color: var(--color-text-secondary);
+    flex: 1;
+  }
+
+  &__cta {
+    display: inline-block;
+    margin-top: var(--space-md);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-accent-light);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
   }
 }
 
