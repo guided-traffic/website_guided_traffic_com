@@ -2,8 +2,21 @@ apiVersion: v1
 entries:
   guided-traffic-com:
   - apiVersion: v2
+    appVersion: 1.8.0
+    created: "2026-04-13T09:19:52.645093141Z"
+    description: Helm chart for the Guided Traffic website (backend + frontend)
+    digest: 04633e00ce440d3d25ca08724b09bb0d9be15101b08709a68cc9321c49b92c5d
+    home: https://www.guided-traffic.com
+    name: guided-traffic-com
+    sources:
+    - https://github.com/guided-traffic/website_guided_traffic_com
+    type: application
+    urls:
+    - https://guided-traffic.github.io/website_guided_traffic_com/guided-traffic-com-1.8.0.tgz
+    version: 1.8.0
+  - apiVersion: v2
     appVersion: 1.7.0
-    created: "2026-04-13T08:30:12.911210974Z"
+    created: "2026-04-13T09:19:52.64471108Z"
     description: Helm chart for the Guided Traffic website (backend + frontend)
     digest: fb0e208cef2541922501884050fd50b41b315d04117de6b3ba72646bc24019c4
     home: https://www.guided-traffic.com
@@ -16,7 +29,7 @@ entries:
     version: 1.7.0
   - apiVersion: v2
     appVersion: 1.4.1
-    created: "2026-04-13T08:30:12.910590122Z"
+    created: "2026-04-13T09:19:52.64433989Z"
     description: Helm chart for the Guided Traffic website (backend + frontend)
     digest: 2228dcf8240dfddcce7d8dd4a24e5c4e83cd7fa2d0f07f3973387d0db34e2354
     home: https://www.guided-traffic.com
@@ -29,7 +42,7 @@ entries:
     version: 1.4.1
   - apiVersion: v2
     appVersion: 1.4.0
-    created: "2026-04-13T08:30:12.909956387Z"
+    created: "2026-04-13T09:19:52.64395821Z"
     description: Helm chart for the Guided Traffic website (backend + frontend)
     digest: 4068691c8f97de0759bc5daffcaa3cd92f1d849eccc3991f15bdd7a89c43ad17
     home: https://www.guided-traffic.com
@@ -42,7 +55,7 @@ entries:
     version: 1.4.0
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2026-04-13T08:30:12.908035904Z"
+    created: "2026-04-13T09:19:52.643485087Z"
     description: Helm chart for the Guided Traffic website (backend + frontend)
     digest: edb80b8570d78ed5f2dae67b01a1802da4dfe8099219b8482ab469201e37bb01
     home: https://www.guided-traffic.com
@@ -55,7 +68,7 @@ entries:
     version: 1.3.1
   - apiVersion: v2
     appVersion: 1.3.0
-    created: "2026-04-13T08:30:12.907453576Z"
+    created: "2026-04-13T09:19:52.641955141Z"
     description: Helm chart for the Guided Traffic website (backend + frontend)
     digest: 408f0fdd856c466d8e332475c6bd378f818cc78c27371a10b0af442d4d46c87f
     home: https://www.guided-traffic.com
@@ -68,7 +81,7 @@ entries:
     version: 1.3.0
   - apiVersion: v2
     appVersion: 1.2.6
-    created: "2026-04-13T08:30:12.906832885Z"
+    created: "2026-04-13T09:19:52.641527895Z"
     description: Helm chart for the Guided Traffic website (backend + frontend)
     digest: 09e0a8f8f7f220897dfd235d2b997c69a810b633bfde00fe20e75ba811afabd2
     home: https://www.guided-traffic.com
@@ -81,7 +94,7 @@ entries:
     version: 1.2.6
   - apiVersion: v2
     appVersion: 1.2.5
-    created: "2026-04-13T08:30:12.905863596Z"
+    created: "2026-04-13T09:19:52.641070232Z"
     description: Helm chart for the Guided Traffic website (backend + frontend)
     digest: 8aecc72e671856d9b0b452535e8b242fb7cd4913fcc44b9931ea973c76c24b73
     home: https://www.guided-traffic.com
@@ -92,4 +105,4 @@ entries:
     urls:
     - https://guided-traffic.github.io/website_guided_traffic_com/guided-traffic-com-1.2.5.tgz
     version: 1.2.5
-generated: "2026-04-13T08:30:12.905048368Z"
+generated: "2026-04-13T09:19:52.640391441Z"
