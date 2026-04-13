@@ -14,41 +14,41 @@ export class ProductsService {
     {
       name: 'Internal Secrets Operator',
       description:
-        'Auto-generates random secret values in Kubernetes. No more manual secret management or plaintext credentials in your repo.',
+        'Generiert zufällige Secret-Werte in Kubernetes automatisch. Kein manuelles Secret-Management und keine Klartext-Credentials mehr im Repository.',
       license: 'FREE',
-      ctaLabel: 'View on GitHub',
+      ctaLabel: 'Auf GitHub ansehen',
       ctaLink: 'https://github.com/guided-traffic/internal-secrets-operator',
     },
     {
       name: 'FluxCD Starter Kit',
       description:
-        'Opinionated FluxCD repo structure to get started fast. Pre-configured with Kustomize overlays and HelmRelease patterns.',
+        'Vorgefertigte FluxCD-Repo-Struktur für einen schnellen Einstieg. Mit Kustomize-Overlays und HelmRelease-Patterns vorkonfiguriert.',
       license: 'FREE',
-      ctaLabel: 'View on GitHub',
+      ctaLabel: 'Auf GitHub ansehen',
       ctaLink: 'https://github.com/guided-traffic/fluxcd-starter-kit',
     },
     {
       name: 'Helm Chart Library',
       description:
-        'Production-ready Helm charts for common workloads. Ingress, cert-manager, monitoring — all battle-tested and documented.',
+        'Produktionsreife Helm-Charts für gängige Workloads. Ingress, cert-manager, Monitoring — alles erprobt und dokumentiert.',
       license: 'FREE',
-      ctaLabel: 'View on GitHub',
+      ctaLabel: 'Auf GitHub ansehen',
       ctaLink: 'https://github.com/guided-traffic/helm-charts',
     },
     {
       name: 'Guided Traffic Platform',
       description:
-        'Our full GitOps platform with managed clusters, automated pipelines, and dedicated support. Built for teams going all-in on Kubernetes.',
+        'Unsere vollständige GitOps-Plattform mit verwalteten Clustern, automatisierten Pipelines und dediziertem Support. Für Teams, die konsequent auf Kubernetes setzen.',
       license: 'LICENSED',
-      ctaLabel: 'Learn More',
+      ctaLabel: 'Mehr erfahren',
       ctaLink: '/contact',
     },
     {
       name: 'Migration Toolkit',
       description:
-        'Scripts and guides to containerize legacy applications. Dockerfile generators, Helm scaffolding, and step-by-step migration playbooks.',
+        'Skripte und Anleitungen zur Containerisierung von Legacy-Anwendungen. Dockerfile-Generatoren, Helm-Scaffolding und Schritt-für-Schritt-Migrations-Playbooks.',
       license: 'FREE',
-      ctaLabel: 'View on GitHub',
+      ctaLabel: 'Auf GitHub ansehen',
       ctaLink: 'https://github.com/guided-traffic/migration-toolkit',
     },
   ];

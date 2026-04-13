@@ -13,37 +13,37 @@ export class ServicesService {
       icon: '🔄',
       title: 'GitOps & FluxCD',
       description:
-        'Automated deployments via Git. Every change tracked, every rollback instant. FluxCD as your single source of truth.',
+        'Automatisierte Deployments über Git. Jede Änderung nachvollziehbar, jedes Rollback sofort verfügbar. FluxCD als Ihre einzige Quelle der Wahrheit.',
     },
     {
       icon: '☸️',
       title: 'Kubernetes Provisioning',
       description:
-        'Production-ready clusters configured for your workload. Operators, RBAC, monitoring — all included.',
+        'Produktionsreife Cluster, konfiguriert für Ihre Workloads. Operators, RBAC, Monitoring — alles inklusive.',
     },
     {
       icon: '🚀',
       title: 'CI/CD Pipelines',
       description:
-        'From local builds to automated pipelines. GitHub Actions, testing, linting, container builds — done right.',
+        'Von lokalen Builds zu vollautomatisierten Pipelines. GitHub Actions, Tests, Linting, Container-Builds — professionell umgesetzt.',
     },
     {
       icon: '📦',
-      title: 'Legacy Migration',
+      title: 'Legacy-Migration',
       description:
-        'From bare metal and VMs to containers. We containerize your apps, build the pipelines, and train your team.',
+        'Von Bare Metal und VMs zu Containern. Wir containerisieren Ihre Anwendungen, bauen die Pipelines auf und schulen Ihr Team.',
     },
     {
       icon: '📊',
       title: 'Monitoring & Observability',
       description:
-        'Prometheus, Grafana, alerting. Know what\'s happening in your cluster before your users do.',
+        'Prometheus, Grafana, Alerting. Behalten Sie den Überblick über Ihren Cluster — bevor es Ihre Nutzer merken.',
     },
     {
       icon: '🎓',
       title: 'Training & Enablement',
       description:
-        'Hands-on workshops for your team. Kubernetes, GitOps, CI/CD — we teach until you\'re confident.',
+        'Praxisnahe Workshops für Ihr Team. Kubernetes, GitOps, CI/CD — wir schulen Sie, bis Sie sicher eigenständig arbeiten.',
     },
   ];
 
