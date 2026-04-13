@@ -73,6 +73,16 @@ export class ProductsService {
       ctaLabel: 'Mehr erfahren',
       ctaLink: '/products/container-images',
     },
+    {
+      slug: 's3-encryption-proxy',
+      icon: '🔒',
+      name: 'S3 Encryption Proxy',
+      description:
+        'Transparenter S3-Proxy mit Envelope-Encryption pro Objekt — Schlüsselhoheit bleibt vollständig bei Ihnen. Drop-in-Verschlüsselung für AWS S3, MinIO oder jedes S3-kompatible Backend, ohne Änderungen am Anwendungscode.',
+      license: 'LICENSED',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/products/s3-encryption-proxy',
+    },
   ];
 
   getProducts(): Product[] {

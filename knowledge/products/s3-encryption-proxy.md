@@ -1,7 +1,7 @@
 # s3-encryption-proxy
 
 **Repository:** https://github.com/guided-traffic/s3-encryption-proxy
-**Status:** stable (actively maintained, automated updates)
+**Status:** beta (actively maintained, automated updates)
 **License:** Non-standard / proprietary (SPDX: NOASSERTION — review LICENSE file before redistribution or resale)
 **Last updated:** 2026-04-13
 

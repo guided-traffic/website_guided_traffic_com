@@ -51,6 +51,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/products/container-images/container-images.component').then(m => m.ContainerImagesComponent),
   },
   {
+    path: 'products/s3-encryption-proxy',
+    loadComponent: () => import('./pages/products/s3-encryption-proxy/s3-encryption-proxy.component').then(m => m.S3EncryptionProxyComponent),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

@@ -16,18 +16,61 @@
       <p class="products-hero__sub products-hero__sub--stacked">
         Diese Produkte sind die direkte Antwort darauf. Jedes Tool löst ein
         konkretes Problem, das wir im Betrieb produktiver Kubernetes-Cluster
-        selbst getroffen haben. Sie sind Open Source und stehen unter der
-        Apache-2.0-Lizenz.
+        selbst getroffen haben. Die Open-Source-Werkzeuge stehen unter der Apache-2.0-Lizenz; kommerziell lizenzierte Produkte sind gesondert ausgewiesen.
       </p>
     </div>
   </div>
 </section>
 
-<!-- Products Grid -->
-<section class="products">
+<!-- Open-Source Products -->
+<section class="products products--open-source">
   <div class="container">
+    <div class="products__section-header">
+      <h2 class="products__section-title">Open-Source-Tools</h2>
+      <p class="products__section-intro">Apache-2.0 lizenziert, frei nutzbar und auf GitHub verfügbar.</p>
+    </div>
     <div class="products__grid">
-      @for (product of products; track product.name) {
+      @for (product of openSourceProducts; track product.name) {
+        <article class="product-card" [id]="product.slug">
+          <div class="product-card__header">
+            <h2 class="product-card__name">{{ product.name }}</h2>
+            <span
+              class="product-card__badge"
+              [class.product-card__badge--free]="product.license === 'FREE'"
+              [class.product-card__badge--licensed]="product.license === 'LICENSED'"
+            >
+              {{ product.license }}
+            </span>
+          </div>
+          <p class="product-card__description">{{ product.description }}</p>
+          @if (product.ctaLink.startsWith('http')) {
+            <a [href]="product.ctaLink" target="_blank" rel="noopener noreferrer" class="btn btn-secondary product-card__cta">
+              {{ product.ctaLabel }}
+            </a>
+          } @else {
+            <a [routerLink]="product.ctaLink" class="btn btn-primary product-card__cta">
+              {{ product.ctaLabel }}
+            </a>
+          }
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Commercial Products -->
+<section class="products products--commercial">
+  <div class="container">
+    <div class="products__section-header">
+      <h2 class="products__section-title">Kommerzielle Produkte</h2>
+      <p class="products__section-intro">
+        Neben unseren Open-Source-Werkzeugen entwickeln wir kommerziell lizenzierte Produkte
+        für spezialisierte Anforderungen. Kontaktieren Sie uns für Details zu Einsatzszenario,
+        Lizenzmodell und Early-Access-Programmen.
+      </p>
+    </div>
+    <div class="products__grid">
+      @for (product of commercialProducts; track product.name) {
         <article class="product-card" [id]="product.slug">
           <div class="product-card__header">
             <h2 class="product-card__name">{{ product.name }}</h2>

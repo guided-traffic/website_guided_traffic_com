@@ -108,10 +108,38 @@
   padding-top: var(--space-3xl);
   padding-bottom: var(--space-4xl);
 
+  &__section-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  &__section-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  &__section-intro {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-xl);
+  }
+
+  &--commercial {
+    padding-top: var(--space-3xl);
+    border-top: 1px solid rgba(251, 146, 60, 0.18);
+    background: rgba(251, 146, 60, 0.025);
+
+    .products__section-title { color: var(--color-text-primary); }
   }
 }
 

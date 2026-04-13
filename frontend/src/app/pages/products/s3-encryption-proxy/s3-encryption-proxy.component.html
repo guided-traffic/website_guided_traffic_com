@@ -1,0 +1,369 @@
+<!-- Hero Section -->
+<section class="s3p-hero">
+  <div class="container">
+    <div class="s3p-hero__content">
+      <div class="s3p-hero__icon">🔒</div>
+      <h1 class="s3p-hero__headline">S3 Encryption Proxy</h1>
+      <p class="s3p-hero__sub">
+        Transparenter Go-Proxy zwischen beliebigen S3-Clients und S3-kompatiblen Backends.
+        Jedes Objekt wird per Envelope Encryption mit einem eindeutigen Data-Encryption-Key
+        (DEK) verschlüsselt, bevor es den Storage-Layer erreicht — weder der Anbieter noch
+        ein kompromittierter Bucket-Key legt den gesamten Datenbestand offen.
+      </p>
+      <div class="s3p-hero__meta">
+        <span class="s3p-hero__meta-item">
+          <span class="s3p-hero__meta-label">Status</span>
+          <span class="s3p-hero__meta-badge s3p-hero__meta-badge--beta">Beta</span>
+        </span>
+        <span class="s3p-hero__meta-separator"></span>
+        <span class="s3p-hero__meta-item">
+          <span class="s3p-hero__meta-label">Lizenz</span>
+          <span class="s3p-hero__meta-value">Kommerziell</span>
+        </span>
+        <span class="s3p-hero__meta-separator"></span>
+        <span class="s3p-hero__meta-item">
+          <span class="s3p-hero__meta-label">Runtime</span>
+          <span class="s3p-hero__meta-value">Go / Docker / Helm</span>
+        </span>
+        <span class="s3p-hero__meta-separator"></span>
+        <span class="s3p-hero__meta-item">
+          <span class="s3p-hero__meta-label">Backends</span>
+          <span class="s3p-hero__meta-value">S3-kompatibel</span>
+        </span>
+      </div>
+      <div class="s3p-hero__actions">
+        <a routerLink="/contact" class="btn btn-primary">Lizenz anfragen</a>
+        <a
+          href="https://github.com/guided-traffic/s3-encryption-proxy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Repository ansehen</a>
+      </div>
+      <p class="s3p-hero__tagline"><em>Streaming. Transparent. Secure.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="s3p-problem">
+  <div class="container">
+    <div class="s3p-problem__content">
+      <h2 class="s3p-problem__headline">Das Problem</h2>
+      <p class="s3p-problem__text">
+        Provider-managed SSE — ob AWS SSE-S3, SSE-KMS oder MinIO-seitige Verschlüsselung —
+        legt die Schlüsselhoheit in die Hände des Anbieters. Compliance-Anforderungen in
+        regulierten Branchen verlangen jedoch Customer-Managed Keys, die niemals die eigene
+        Kontrolldomäne verlassen. Heterogene S3-Backends unterscheiden sich erheblich in
+        ihren Encryption-Features, was eine einheitliche Strategie erschwert. Und
+        Anwendungscode anzupassen oder auf andere SDKs zu wechseln ist in produktiven
+        Umgebungen keine realistische Option.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="s3p-flow">
+  <div class="container">
+    <h2 class="s3p-flow__headline">So funktioniert der Proxy</h2>
+    <div class="s3p-flow__steps">
+
+      <div class="s3p-step">
+        <div class="s3p-step__number">1</div>
+        <div class="s3p-step__body">
+          <h3 class="s3p-step__title">Client spricht Standard-S3</h3>
+          <p class="s3p-step__desc">
+            AWS CLI, rclone, Terraform S3 Backend, jedes S3-SDK — keinerlei
+            Code-Änderungen erforderlich. Der Proxy ist ein transparenter
+            Drop-in.
+          </p>
+        </div>
+      </div>
+
+      <div class="s3p-step s3p-step--arrow" aria-hidden="true"></div>
+
+      <div class="s3p-step">
+        <div class="s3p-step__number">2</div>
+        <div class="s3p-step__body">
+          <h3 class="s3p-step__title">Proxy validiert &amp; verschlüsselt</h3>
+          <p class="s3p-step__desc">
+            AWS Signature V4 wird geprüft. Pro Objekt erzeugt der Proxy einen
+            eindeutigen DEK, verschlüsselt ihn mit dem KEK (Envelope Encryption)
+            und signiert die Anfrage für das Backend neu.
+          </p>
+        </div>
+      </div>
+
+      <div class="s3p-step s3p-step--arrow" aria-hidden="true"></div>
+
+      <div class="s3p-step">
+        <div class="s3p-step__number">3</div>
+        <div class="s3p-step__body">
+          <h3 class="s3p-step__title">Backend erhält nur Chiffretext</h3>
+          <p class="s3p-step__desc">
+            AWS S3, MinIO, Ceph oder jedes andere S3-kompatible Ziel speichert
+            ausschließlich verschlüsselte Daten — Klartext verlässt nie Ihre
+            Kontrolldomäne.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Encryption Providers Section -->
+<section class="s3p-providers">
+  <div class="container">
+    <h2 class="s3p-providers__headline">Encryption-Provider</h2>
+    <div class="s3p-providers__grid">
+
+      <div class="s3p-provider-card s3p-provider-card--recommended">
+        <div class="s3p-provider-card__badge">Empfohlen</div>
+        <div class="s3p-provider-card__icon">🔑</div>
+        <h3 class="s3p-provider-card__title">RSA Envelope</h3>
+        <p class="s3p-provider-card__desc">
+          Ein asymmetrischer RSA-KEK schützt die pro-Objekt generierten AES-Schlüssel.
+          Der Proxy wählt automatisch zwischen AES-GCM für Single-Part-Uploads und
+          AES-CTR für Multipart-Uploads — optimiert für Korrektheit und Streaming-Effizienz.
+          Geeignet für Umgebungen mit hohen Sicherheitsanforderungen.
+        </p>
+      </div>
+
+      <div class="s3p-provider-card">
+        <div class="s3p-provider-card__icon">🗝️</div>
+        <h3 class="s3p-provider-card__title">AES Envelope</h3>
+        <p class="s3p-provider-card__desc">
+          Ein symmetrischer Master-Key schützt die pro-Objekt generierten AES-Schlüssel.
+          Einfacheres Schlüssel-Management und schnellere Kryptografieoperationen — geeignet
+          für niedrigere Bedrohungsmodelle oder interne Deployments ohne externe
+          Schlüsselinfrastruktur.
+        </p>
+      </div>
+
+    </div>
+    <p class="s3p-providers__note">
+      Beide Provider können gleichzeitig betrieben werden. Lese-Operationen erkennen
+      automatisch, mit welchem Provider ein Objekt geschrieben wurde — Migration ohne
+      Downtime, kein Maintenance-Window erforderlich.
+    </p>
+  </div>
+</section>
+
+<!-- Key Features Section -->
+<section class="s3p-features">
+  <div class="container">
+    <h2 class="s3p-features__headline">Funktionsumfang</h2>
+    <div class="s3p-features__grid">
+
+      <article class="s3p-feature-card">
+        <span class="s3p-feature-card__icon">🔄</span>
+        <h3 class="s3p-feature-card__title">Transparente S3-Kompatibilität</h3>
+        <p class="s3p-feature-card__desc">
+          Clients sprechen Standard-S3 ohne Anpassungen. Der Proxy fängt Anfragen ab,
+          verschlüsselt und signiert sie neu — Zero Code Changes.
+        </p>
+      </article>
+
+      <article class="s3p-feature-card">
+        <span class="s3p-feature-card__icon">🧩</span>
+        <h3 class="s3p-feature-card__title">Per-Objekt-DEKs</h3>
+        <p class="s3p-feature-card__desc">
+          Jedes Objekt erhält einen eindeutigen Data-Encryption-Key. Ein kompromittierter
+          DEK legt nur ein einzelnes Objekt offen — der Blast Radius bleibt minimal.
+        </p>
+      </article>
+
+      <article class="s3p-feature-card">
+        <span class="s3p-feature-card__icon">📦</span>
+        <h3 class="s3p-feature-card__title">Streaming-Multipart-Uploads</h3>
+        <p class="s3p-feature-card__desc">
+          Konfigurierbare Buffer-Größen (4 KB – 2 MB, Standard 64 KB) und Segment-Größen
+          (5 MB – 5 GB, Standard 12 MB) für große Dateien ohne vollständiges In-Memory-Buffering.
+        </p>
+      </article>
+
+      <article class="s3p-feature-card">
+        <span class="s3p-feature-card__icon">🛡️</span>
+        <h3 class="s3p-feature-card__title">HMAC-SHA256-Integritätsprüfung</h3>
+        <p class="s3p-feature-card__desc">
+          Vier Modi: <code>off</code>, <code>lax</code> (Warnung), <code>strict</code>
+          (Ablehnung) und <code>hybrid</code> (gemischte Policy) — Tamper-Detection
+          ohne Kompromisse.
+        </p>
+      </article>
+
+      <article class="s3p-feature-card">
+        <span class="s3p-feature-card__icon">🔐</span>
+        <h3 class="s3p-feature-card__title">AWS Signature V4 Validierung</h3>
+        <p class="s3p-feature-card__desc">
+          Inbound-Authentifizierung mit Rate-Limiting, Tracking fehlgeschlagener Versuche
+          und IP-Blocking sowie Clock-Skew-Validierung (Standard: 5 Minuten).
+        </p>
+      </article>
+
+      <article class="s3p-feature-card">
+        <span class="s3p-feature-card__icon">📊</span>
+        <h3 class="s3p-feature-card__title">Prometheus-Metriken</h3>
+        <p class="s3p-feature-card__desc">
+          Metriken auf Port 9090 unter <code>/metrics</code> — direkt in bestehende
+          Observability-Stacks integrierbar.
+        </p>
+      </article>
+
+      <article class="s3p-feature-card">
+        <span class="s3p-feature-card__icon">⚙️</span>
+        <h3 class="s3p-feature-card__title">YAML-Konfiguration mit Env-Var-Substitution</h3>
+        <p class="s3p-feature-card__desc">
+          Variablen via <code>$&#123;VAR_NAME&#125;</code> — fehlende Pflicht-Variablen stoppen
+          den Start mit einer klaren Fehlermeldung. Accidental-Plaintext-Betrieb wird
+          so verhindert.
+        </p>
+      </article>
+
+      <article class="s3p-feature-card">
+        <span class="s3p-feature-card__icon">🔀</span>
+        <h3 class="s3p-feature-card__title">Zero-Downtime-Provider-Migration</h3>
+        <p class="s3p-feature-card__desc">
+          Neues und altes Verschlüsselungsschema können parallel betrieben werden.
+          Lese-Operationen erkennen den verwendeten Provider automatisch — kein
+          Maintenance-Window für Schlüssel-Transitionen.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Section -->
+<section class="s3p-compare">
+  <div class="container">
+    <h2 class="s3p-compare__headline">Abgrenzung zu bestehenden Lösungen</h2>
+    <div class="s3p-compare__grid">
+
+      <div class="s3p-compare__entry">
+        <h3 class="s3p-compare__vs">vs. AWS SSE-S3 / SSE-KMS</h3>
+        <p class="s3p-compare__text">
+          Bei AWS SSE verwaltet AWS die Schlüssel — Ihre Daten liegen potenziell
+          im Einflussbereich des Anbieters. Der S3 Encryption Proxy hält Schlüssel
+          vollständig in Ihrer Infrastruktur und funktioniert mit jedem S3-kompatiblen Backend.
+        </p>
+      </div>
+
+      <div class="s3p-compare__entry">
+        <h3 class="s3p-compare__vs">vs. AWS SSE-C</h3>
+        <p class="s3p-compare__text">
+          SSE-C erfordert, dass die Anwendung pro Request Schlüsselmaterial mitschickt.
+          Der Proxy übernimmt die Schlüsselinjektion transparent — die Anwendung überträgt
+          kein Schlüsselmaterial und benötigt keine Anpassungen.
+        </p>
+      </div>
+
+      <div class="s3p-compare__entry">
+        <h3 class="s3p-compare__vs">vs. MinIO Server-Side Encryption</h3>
+        <p class="s3p-compare__text">
+          MinIO SSE bindet Verschlüsselungslogik an MinIO-spezifische Mechanismen.
+          Der S3 Encryption Proxy ist vollständig anbieterunabhängig und portierbar
+          über beliebige S3-kompatible Backends hinweg.
+        </p>
+      </div>
+
+      <div class="s3p-compare__entry">
+        <h3 class="s3p-compare__vs">vs. Client-seitige SDK-Verschlüsselung</h3>
+        <p class="s3p-compare__text">
+          Tools wie das AWS Encryption SDK erfordern Code-Änderungen in jeder Anwendung.
+          Der Proxy verschlüsselt automatisch für alle Clients — AWS CLI, rclone, Terraform
+          und jedes S3-SDK profitieren ohne eine Zeile Code-Änderung.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases Section -->
+<section class="s3p-usecases">
+  <div class="container">
+    <h2 class="s3p-usecases__headline">Anwendungsfälle</h2>
+    <div class="s3p-usecases__chips">
+      <span class="s3p-usecases__chip">🏦 Regulierte Branchen (Finance, Healthcare, Public Sector)</span>
+      <span class="s3p-usecases__chip">🇪🇺 EU-Datensouveränität</span>
+      <span class="s3p-usecases__chip">☁️ Multi-Cloud / Hybrid mit MinIO oder Ceph</span>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="s3p-stack">
+  <div class="container">
+    <h2 class="s3p-stack__headline">Technischer Stack &amp; Deployment</h2>
+    <div class="s3p-stack__chips">
+      <span class="s3p-stack__chip">Go</span>
+      <span class="s3p-stack__chip">Docker (GHCR-Image)</span>
+      <span class="s3p-stack__chip">Helm-Chart</span>
+      <span class="s3p-stack__chip">AWS Signature V4</span>
+      <span class="s3p-stack__chip">RSA (KEK)</span>
+      <span class="s3p-stack__chip">AES-GCM / AES-CTR (DEK)</span>
+      <span class="s3p-stack__chip">HMAC-SHA256</span>
+      <span class="s3p-stack__chip">Prometheus</span>
+      <span class="s3p-stack__chip">YAML-Konfig + Env-Vars</span>
+      <span class="s3p-stack__chip">AWS S3</span>
+      <span class="s3p-stack__chip">MinIO</span>
+      <span class="s3p-stack__chip">Ceph</span>
+    </div>
+  </div>
+</section>
+
+<!-- License & Status Section -->
+<section class="s3p-license">
+  <div class="container">
+    <div class="s3p-license__content">
+      <h2 class="s3p-license__headline">Lizenz &amp; Status</h2>
+      <div class="s3p-license__grid">
+        <div class="s3p-license__item">
+          <span class="s3p-license__item-label">Status</span>
+          <span class="s3p-license__item-value">
+            <strong>Beta</strong> — aktive Entwicklung; wir arbeiten gemeinsam mit
+            frühen Anwendern an der Produktionsreife.
+          </span>
+        </div>
+        <div class="s3p-license__item">
+          <span class="s3p-license__item-label">Lizenz</span>
+          <span class="s3p-license__item-value">
+            <strong>Kommerziell</strong> — Details und Pricing auf Anfrage.
+          </span>
+        </div>
+      </div>
+      <p class="s3p-license__note">
+        Dies ist unser erstes kommerziell lizenziertes Produkt. Kontaktieren Sie uns für
+        ein Gespräch über Ihr Einsatzszenario, das passende Lizenzmodell und
+        Early-Partnership-Möglichkeiten.
+      </p>
+      <a routerLink="/contact" class="btn btn-primary">Gespräch vereinbaren</a>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="s3p-cta">
+  <div class="container">
+    <div class="s3p-cta__content">
+      <h2 class="s3p-cta__headline">Interessiert an einer Lizenz oder einem Proof of Concept?</h2>
+      <p class="s3p-cta__sub">
+        Sprechen Sie mit uns über Ihr Einsatzszenario — von der ersten Evaluierung bis
+        zum produktiven Betrieb begleiten wir Sie bei der Integration in Ihre
+        Infrastruktur.
+      </p>
+      <div class="s3p-cta__actions">
+        <a routerLink="/contact" class="btn btn-primary">Gespräch vereinbaren</a>
+        <a
+          href="https://github.com/guided-traffic/s3-encryption-proxy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Repository ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>

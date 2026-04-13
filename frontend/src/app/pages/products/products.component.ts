@@ -11,5 +11,12 @@ import { ProductsService, Product } from '../../services/products.service';
 })
 export class ProductsComponent {
   private readonly productsService = inject(ProductsService);
-  readonly products: Product[] = this.productsService.getProducts();
+
+  get openSourceProducts(): Product[] {
+    return this.productsService.getProducts().filter(p => p.license === 'FREE');
+  }
+
+  get commercialProducts(): Product[] {
+    return this.productsService.getProducts().filter(p => p.license === 'LICENSED');
+  }
 }
