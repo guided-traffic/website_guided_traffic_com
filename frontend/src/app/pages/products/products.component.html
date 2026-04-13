@@ -16,7 +16,7 @@
   <div class="container">
     <div class="products__grid">
       @for (product of products; track product.name) {
-        <article class="product-card">
+        <article class="product-card" [id]="product.slug">
           <div class="product-card__header">
             <h2 class="product-card__name">{{ product.name }}</h2>
             <span

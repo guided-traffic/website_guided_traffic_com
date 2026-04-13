@@ -27,6 +27,18 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'products/internal-secrets-operator',
+    loadComponent: () => import('./pages/products/internal-secrets-operator/internal-secrets-operator.component').then(m => m.InternalSecretsOperatorComponent),
+  },
+  {
+    path: 'products/jinja-template-operator',
+    loadComponent: () => import('./pages/products/jinja-template-operator/jinja-template-operator.component').then(m => m.JinjaTemplateOperatorComponent),
+  },
+  {
+    path: 'products/openldap-operator',
+    loadComponent: () => import('./pages/products/openldap-operator/openldap-operator.component').then(m => m.OpenldapOperatorComponent),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

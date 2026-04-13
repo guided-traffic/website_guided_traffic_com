@@ -1,0 +1,325 @@
+<!-- Hero Section -->
+<section class="olo-hero">
+  <div class="container">
+    <div class="olo-hero__content">
+      <div class="olo-hero__icon">👥</div>
+      <h1 class="olo-hero__headline">OpenLDAP Operator</h1>
+      <p class="olo-hero__sub">
+        Bestehenden OpenLDAP-Server als native Kubernetes-Ressource verwalten —
+        Benutzer, Gruppen und Verbindungen deklarativ per CRD statt mit manuellen
+        LDIF-Dateien oder <code>ldapadd</code>-Skripten.
+      </p>
+      <div class="olo-hero__meta">
+        <span class="olo-hero__meta-item">
+          <span class="olo-hero__meta-label">Status</span>
+          <span class="olo-hero__meta-badge olo-hero__meta-badge--stable">Stable</span>
+        </span>
+        <span class="olo-hero__meta-separator"></span>
+        <span class="olo-hero__meta-item">
+          <span class="olo-hero__meta-label">Lizenz</span>
+          <span class="olo-hero__meta-value">Apache 2.0</span>
+        </span>
+        <span class="olo-hero__meta-separator"></span>
+        <span class="olo-hero__meta-item">
+          <span class="olo-hero__meta-label">Test-Coverage</span>
+          <span class="olo-hero__meta-value">90,6&nbsp;%</span>
+        </span>
+        <span class="olo-hero__meta-separator"></span>
+        <span class="olo-hero__meta-item">
+          <span class="olo-hero__meta-label">Letztes Update</span>
+          <span class="olo-hero__meta-value">April 2026</span>
+        </span>
+      </div>
+      <div class="olo-hero__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratungstermin buchen</a>
+        <a
+          href="https://github.com/guided-traffic/openldap-operator"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Auf GitHub ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="olo-problem">
+  <div class="container">
+    <div class="olo-problem__content">
+      <h2 class="olo-problem__headline">Das Problem</h2>
+      <p class="olo-problem__text">
+        Wer heute Benutzer und Gruppen in OpenLDAP verwaltet, greift meistens zu
+        handgefertigten LDIF-Dateien und <code>ldapadd</code>/<code>ldapmodify</code>-Skripten —
+        eine fehleranfällige, nicht versionierte Arbeitsweise, die Drift zwischen dem
+        tatsächlichen Directory-Zustand und dem dokumentierten Sollzustand garantiert.
+        GitOps-Workflows, wie sie für Kubernetes-Workloads selbstverständlich sind,
+        enden an der Grenze zum LDAP-Server. Änderungen an Benutzern oder Gruppen
+        lassen sich weder per Pull-Request reviewen noch automatisiert reconcilen —
+        Compliance-Anforderungen und konsistente Provisionierung bleiben damit dauerhafter
+        manueller Aufwand.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CRDs Section -->
+<section class="olo-crds">
+  <div class="container">
+    <h2 class="olo-crds__headline">Die drei Custom Resources</h2>
+    <p class="olo-crds__api-group">API-Gruppe: <code>openldap.guided-traffic.com/v1</code></p>
+    <div class="olo-crds__grid">
+
+      <div class="olo-crd-card">
+        <div class="olo-crd-card__icon">🖧</div>
+        <h3 class="olo-crd-card__title">LDAPServer</h3>
+        <p class="olo-crd-card__desc">
+          Registriert die Verbindung zu einem externen OpenLDAP-Server: Host, Port,
+          TLS-Konfiguration und Bind-Credentials werden sicher als Kubernetes Secret
+          hinterlegt. Eine LDAPServer-Ressource ist Voraussetzung für alle weiteren CRDs.
+        </p>
+      </div>
+
+      <div class="olo-crd-card">
+        <div class="olo-crd-card__icon">🪪</div>
+        <h3 class="olo-crd-card__title">LDAPUser</h3>
+        <p class="olo-crd-card__desc">
+          Deklariert einen POSIX-Benutzer mit uid, uidNumber, gidNumber,
+          Home-Directory-Pfad und Gruppenmitgliedschaften. Der Operator legt den
+          LDAP-Eintrag an, hält ihn aktuell und entfernt ihn sauber beim Löschen
+          der Ressource.
+        </p>
+      </div>
+
+      <div class="olo-crd-card">
+        <div class="olo-crd-card__icon">🗂️</div>
+        <h3 class="olo-crd-card__title">LDAPGroup</h3>
+        <p class="olo-crd-card__desc">
+          Verwaltet Gruppen vom Typ <code>posixGroup</code>, <code>groupOfNames</code>
+          oder <code>groupOfUniqueNames</code> inklusive vollständiger Mitgliederverwaltung.
+          Mitglieder werden per Liste gepflegt und bei jedem Reconciliation-Lauf
+          abgeglichen.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="olo-features">
+  <div class="container">
+    <h2 class="olo-features__headline">Funktionsumfang</h2>
+    <div class="olo-features__grid">
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">🔄</span>
+        <h3 class="olo-feature-card__title">Kontinuierliche Reconciliation</h3>
+        <p class="olo-feature-card__desc">
+          Jede Änderung an einer CRD-Ressource löst sofort einen Reconciliation-Lauf aus.
+          Drift zwischen dem Kubernetes-Sollzustand und dem tatsächlichen LDAP-Eintrag
+          wird automatisch korrigiert.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">🧹</span>
+        <h3 class="olo-feature-card__title">Finalizer-basiertes Cleanup</h3>
+        <p class="olo-feature-card__desc">
+          Beim Löschen einer Kubernetes-Ressource entfernt der Operator den zugehörigen
+          LDAP-Eintrag sauber, bevor das Kubernetes-Objekt verschwindet. Kein
+          verwaister LDAP-Datensatz bleibt zurück.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">📊</span>
+        <h3 class="olo-feature-card__title">Echtzeit-Status-Reporting</h3>
+        <p class="olo-feature-card__desc">
+          Jede Ressource führt ein aktuelles Status-Objekt mit Verbindungsstatus,
+          letztem Sync-Zeitpunkt und Fehlerbedingungen — direkt per
+          <code>kubectl describe</code> einsehbar.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">🔒</span>
+        <h3 class="olo-feature-card__title">TLS / LDAPS standardmäßig aktiv</h3>
+        <p class="olo-feature-card__desc">
+          Verbindungen zum OpenLDAP-Server werden per TLS/LDAPS gesichert. Die
+          Zertifikats-Verifikation ist konfigurierbar — für interne CAs ebenso wie
+          für öffentliche Zertifikate.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">🛡️</span>
+        <h3 class="olo-feature-card__title">Bind-Credentials via Secret &amp; RBAC</h3>
+        <p class="olo-feature-card__desc">
+          Admin-Credentials werden ausschließlich in Kubernetes Secrets abgelegt.
+          RBAC-Regeln steuern, wer LDAPServer-, LDAPUser- und LDAPGroup-Ressourcen
+          lesen oder schreiben darf.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">🔍</span>
+        <h3 class="olo-feature-card__title">Search-User-Pattern</h3>
+        <p class="olo-feature-card__desc">
+          Für Anwendungs-Authentifizierung steht ein separates Read-only-Service-Account-Muster
+          bereit — strikt getrennt von den schreibberechtigten Admin-Credentials.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">📋</span>
+        <h3 class="olo-feature-card__title">LDAP-ACL-Konfiguration</h3>
+        <p class="olo-feature-card__desc">
+          Zugriffssteuerungslisten auf dem OpenLDAP-Server lassen sich über die
+          Operator-Konfiguration verwalten und versionieren — kein direkter
+          Server-Zugriff mehr für ACL-Änderungen erforderlich.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">🏢</span>
+        <h3 class="olo-feature-card__title">Namespace-Multi-Tenancy</h3>
+        <p class="olo-feature-card__desc">
+          Ressourcen sind Namespace-scoped. Teams oder Umgebungen erhalten isolierte
+          Bereiche innerhalb desselben Clusters — eine Operator-Instanz bedient
+          beliebig viele Mandanten.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">🐧</span>
+        <h3 class="olo-feature-card__title">POSIX-Compliance</h3>
+        <p class="olo-feature-card__desc">
+          Automatische Verwaltung von <code>uidNumber</code>, <code>gidNumber</code> und
+          Home-Directory-Pfad (<code>/home/&lt;username&gt;</code>) für Linux- und
+          POSIX-Workloads.
+        </p>
+      </article>
+
+      <article class="olo-feature-card">
+        <span class="olo-feature-card__icon">✅</span>
+        <h3 class="olo-feature-card__title">90,6 % Test-Coverage</h3>
+        <p class="olo-feature-card__desc">
+          Hohe Testabdeckung in kritischen Paketen, ergänzt durch Integrationstests
+          gegen einen echten <code>osixia/openldap</code>-Container — vollständige
+          CRUD-Validierung unter realen Bedingungen.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Section -->
+<section class="olo-compare">
+  <div class="container">
+    <h2 class="olo-compare__headline">Abgrenzung zu bestehenden Lösungen</h2>
+    <div class="olo-compare__grid">
+
+      <div class="olo-compare__entry">
+        <h3 class="olo-compare__vs">vs. manuelle StatefulSets / LDIF-Skripte</h3>
+        <p class="olo-compare__text">
+          <code>ldapadd</code>- und <code>ldapmodify</code>-Skripte kennen keinen
+          Reconciliation-Loop, tracken keinen Zustand und sind nicht reviewbar.
+          Der Operator ersetzt sie durch versionierte, deklarative Manifeste
+          mit vollständigem GitOps-Audit-Trail.
+        </p>
+      </div>
+
+      <div class="olo-compare__entry">
+        <h3 class="olo-compare__vs">vs. Deployment via bitnami/openldap</h3>
+        <p class="olo-compare__text">
+          Helm-Charts wie bitnami/openldap stellen einen neuen OpenLDAP-Server bereit
+          und erzwingen damit eine Datenmigration. Der openldap-operator verbindet sich
+          mit dem bestehenden externen Server — kein Cutover, keine Re-Import-Prozedur.
+        </p>
+      </div>
+
+      <div class="olo-compare__entry">
+        <h3 class="olo-compare__vs">vs. Cloud-managed Directory-Dienste</h3>
+        <p class="olo-compare__text">
+          AWS Directory Service, Azure AD DS und Google Managed AD senden Verzeichnisdaten
+          an Cloud-Anbieter. Der openldap-operator belässt alle Daten im eigenen
+          Rechenzentrum — vollständig selbst gehostet, Apache 2.0, ohne Lizenzkosten.
+        </p>
+      </div>
+
+      <div class="olo-compare__entry">
+        <h3 class="olo-compare__vs">vs. kommerzielle LDAP-GUI-Tools</h3>
+        <p class="olo-compare__text">
+          Tools wie JXplorer oder LDAP Account Manager erfordern eine eigene
+          UI-Oberfläche mit separatem Zugangsschutz. Der openldap-operator nutzt
+          die native Kubernetes-API — kubectl, Helm und RBAC decken die gesamte
+          Verwaltungsfläche ab.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Application Integrations Section -->
+<section class="olo-integrations">
+  <div class="container">
+    <div class="olo-integrations__content">
+      <h2 class="olo-integrations__headline">Anwendungs-Integrationen</h2>
+      <p class="olo-integrations__intro">
+        Dokumentierte Integrationsbeispiele für gängige Anwendungs-Stacks.
+      </p>
+      <div class="olo-integrations__chips">
+        <span class="olo-integrations__chip">Java / Spring</span>
+        <span class="olo-integrations__chip">Python / Django</span>
+        <span class="olo-integrations__chip">Node.js / Passport</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="olo-stack">
+  <div class="container">
+    <h2 class="olo-stack__headline">Technischer Stack</h2>
+    <p class="olo-stack__intro">
+      Gebaut auf stabilen Open-Source-Komponenten — ohne proprietäre Abhängigkeiten.
+    </p>
+    <div class="olo-stack__chips">
+      <span class="olo-stack__chip">Go 1.26+</span>
+      <span class="olo-stack__chip">Kubernetes 1.25+</span>
+      <span class="olo-stack__chip">operator-sdk / controller-runtime</span>
+      <span class="olo-stack__chip">CRD openldap.guided-traffic.com/v1</span>
+      <span class="olo-stack__chip">Helm</span>
+      <span class="olo-stack__chip">Kustomize</span>
+      <span class="olo-stack__chip">Docker (Integrationstests)</span>
+      <span class="olo-stack__chip">golangci-lint</span>
+      <span class="olo-stack__chip">Apache 2.0</span>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="olo-cta">
+  <div class="container">
+    <div class="olo-cta__content">
+      <h2 class="olo-cta__headline">Brauchen Sie Unterstützung bei der Einführung?</h2>
+      <p class="olo-cta__sub">
+        Unser Team begleitet Sie von der initialen Evaluierung bis zum produktiven Einsatz —
+        inklusive Verbindungskonzept, RBAC-Design und GitOps-Integration für Ihr
+        bestehendes Directory.
+      </p>
+      <div class="olo-cta__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratung anfragen</a>
+        <a
+          href="https://github.com/guided-traffic/openldap-operator"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Repository ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>

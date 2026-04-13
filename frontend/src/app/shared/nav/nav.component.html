@@ -61,7 +61,50 @@
           </ul>
         </li>
 
-        <li><a routerLink="/products" routerLinkActive="nav__link--active" (click)="closeMenu()">Produkte</a></li>
+        <!-- Desktop: products mega-menu -->
+        <li class="nav__services-item nav__services-item--desktop">
+          <a routerLink="/products" routerLinkActive="nav__link--active" (click)="closeMenu()">
+            Produkte <span class="nav__chevron">&#9662;</span>
+          </a>
+          <div class="nav__mega">
+            <div class="nav__mega-inner">
+              <div class="nav__mega-grid">
+                @for (product of products; track product.slug) {
+                  <a class="nav__mega-item" [routerLink]="['/products']" [fragment]="product.slug" (click)="closeMenu()">
+                    <span class="nav__mega-item-icon">{{ product.icon }}</span>
+                    <span class="nav__mega-item-body">
+                      <span class="nav__mega-item-title">{{ product.name }}</span>
+                      <span class="nav__mega-item-desc">{{ product.description }}</span>
+                    </span>
+                    <span class="nav__mega-item-arrow">→</span>
+                  </a>
+                }
+              </div>
+              <div class="nav__mega-footer">
+                <span>Neugierig auf unsere Open-Source-Tools?</span>
+                <a routerLink="/products" (click)="closeMenu()">Alle Produkte ansehen →</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Mobile: products accordion toggle -->
+        <li class="nav__services-item nav__services-item--mobile">
+          <a href="#" (click)="toggleProducts($event)" [class.nav__link--active-parent]="productsOpen">
+            Produkte <span class="nav__chevron" [class.nav__chevron--open]="productsOpen">&#9662;</span>
+          </a>
+          <ul class="nav__sub-list" [class.nav__sub-list--open]="productsOpen">
+            @for (product of products; track product.slug) {
+              <li>
+                <a [routerLink]="['/products']" [fragment]="product.slug" (click)="closeMenu()">
+                  <span class="nav__dropdown-icon">{{ product.icon }}</span>
+                  {{ product.name }}
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
+
         <li><a routerLink="/contact" routerLinkActive="nav__link--active" (click)="closeMenu()">Kontakt</a></li>
       </ul>
       <a routerLink="/contact" class="nav__cta btn btn-primary" (click)="closeMenu()">Termin buchen</a>

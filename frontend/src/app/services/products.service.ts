@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 export interface Product {
+  slug: string;
+  icon: string;
   name: string;
   description: string;
   license: 'FREE' | 'LICENSED';
@@ -12,44 +14,34 @@ export interface Product {
 export class ProductsService {
   private readonly products: Product[] = [
     {
+      slug: 'internal-secrets-operator',
+      icon: '🔐',
       name: 'Internal Secrets Operator',
       description:
         'Generiert zufällige Secret-Werte in Kubernetes automatisch. Kein manuelles Secret-Management und keine Klartext-Credentials mehr im Repository.',
       license: 'FREE',
-      ctaLabel: 'Auf GitHub ansehen',
-      ctaLink: 'https://github.com/guided-traffic/internal-secrets-operator',
-    },
-    {
-      name: 'FluxCD Starter Kit',
-      description:
-        'Vorgefertigte FluxCD-Repo-Struktur für einen schnellen Einstieg. Mit Kustomize-Overlays und HelmRelease-Patterns vorkonfiguriert.',
-      license: 'FREE',
-      ctaLabel: 'Auf GitHub ansehen',
-      ctaLink: 'https://github.com/guided-traffic/fluxcd-starter-kit',
-    },
-    {
-      name: 'Helm Chart Library',
-      description:
-        'Produktionsreife Helm-Charts für gängige Workloads. Ingress, cert-manager, Monitoring — alles erprobt und dokumentiert.',
-      license: 'FREE',
-      ctaLabel: 'Auf GitHub ansehen',
-      ctaLink: 'https://github.com/guided-traffic/helm-charts',
-    },
-    {
-      name: 'Guided Traffic Platform',
-      description:
-        'Unsere vollständige GitOps-Plattform mit verwalteten Clustern, automatisierten Pipelines und dediziertem Support. Für Teams, die konsequent auf Kubernetes setzen.',
-      license: 'LICENSED',
       ctaLabel: 'Mehr erfahren',
-      ctaLink: '/contact',
+      ctaLink: '/products/internal-secrets-operator',
     },
     {
-      name: 'Migration Toolkit',
+      slug: 'jinja-template-operator',
+      icon: '🧩',
+      name: 'Jinja Template Operator',
       description:
-        'Skripte und Anleitungen zur Containerisierung von Legacy-Anwendungen. Dockerfile-Generatoren, Helm-Scaffolding und Schritt-für-Schritt-Migrations-Playbooks.',
+        'Rendert ConfigMaps und Secrets deklarativ mit Jinja2-Templates direkt im Cluster. Reagiert automatisch auf Änderungen der Quelldaten — ohne Pipeline-Re-Run oder Helm-Release.',
       license: 'FREE',
-      ctaLabel: 'Auf GitHub ansehen',
-      ctaLink: 'https://github.com/guided-traffic/migration-toolkit',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/products/jinja-template-operator',
+    },
+    {
+      slug: 'openldap-operator',
+      icon: '👥',
+      name: 'OpenLDAP Operator',
+      description:
+        'Verwaltet Benutzer, Gruppen und Server-Verbindungen eines bestehenden externen OpenLDAP-Servers als native Kubernetes-Ressourcen. GitOps-fähige Identity-Verwaltung ohne Migration der bestehenden Directory-Infrastruktur.',
+      license: 'FREE',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/products/openldap-operator',
     },
   ];
 
