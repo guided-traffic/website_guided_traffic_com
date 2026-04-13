@@ -1,20 +1,71 @@
+// ─── Tasrieit-style gradient variables (local aliases) ───────────────────────
+$bg-dark:          #0c1633;   // --color-bg-dark
+$bg-deeper:        #0a1128;   // section gradient start
+$bg-mid:           #162147;   // section gradient end
+$accent:           #ff6a00;   // --color-secondary
+$accent-button:    #b84500;   // --color-secondary-button
+$accent-dark:      #c24000;   // --color-secondary-text
+$accent-light:     #ff8533;   // --color-secondary-light
+$surface-white-07: rgba(255, 255, 255, 0.07);
+$surface-white-02: rgba(255, 255, 255, 0.02);
+$surface-white-12: rgba(255, 255, 255, 0.12);
+$surface-white-04: rgba(255, 255, 255, 0.04);
+$border-white-08:  rgba(255, 255, 255, 0.08);
+$border-white-20:  rgba(255, 255, 255, 0.20);
+
+// ─── Shared dot-grid overlay — tasrieit subtle pattern ───────────────────────
+%dot-pattern-overlay {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 1) 1px, transparent 0);
+    background-size: 32px 32px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
 // ─── Hero ───────────────────────────────────────────────────────────────────
+// tasrieit hero: bg-gradient-to-br from-[#0c1633] via-[#0c1633] to-[#0c1633]
+// + decorative orange blobs at corners (opacity-5)
 .hero {
   position: relative;
   padding: var(--space-4xl) 0;
   text-align: center;
   overflow: hidden;
+  // Deep navy base — matches tasrieit hero-carousel section
+  background: linear-gradient(135deg, $bg-dark 0%, $bg-dark 100%);
 
-  // Subtle radial glow behind headline
+  // Decorative orange blob — top-left (tasrieit: absolute left-0 top-0 ... opacity-5)
   &::before {
     content: '';
     position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 400px;
-    background: radial-gradient(ellipse, rgba(30, 60, 140, 0.15) 0%, rgba(249, 115, 22, 0.06) 40%, transparent 70%);
+    top: 0;
+    left: 0;
+    width: 384px;
+    height: 384px;
+    border-radius: 50%;
+    background: $accent;
+    opacity: 0.05;
+    transform: translate(-50%, -30%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Decorative orange blob — bottom-right (tasrieit: absolute bottom-0 right-0 ... opacity-5)
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 384px;
+    height: 384px;
+    border-radius: 50%;
+    background: $accent;
+    opacity: 0.05;
+    transform: translate(50%, 30%);
     pointer-events: none;
     z-index: 0;
   }
@@ -30,17 +81,18 @@
     font-size: clamp(2.25rem, 5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.1;
-    color: var(--color-text-primary);
+    color: #ffffff;
     margin-bottom: var(--space-lg);
   }
 
+  // Accent highlight — tasrieit uses secondary color (#ff6a00) for headline emphasis
   &__highlight {
-    color: var(--color-accent);
+    color: $accent-light;
   }
 
   &__sub {
     font-size: 1.15rem;
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.75); // tasrieit text-gray-300
     line-height: 1.7;
     max-width: 640px;
     margin: 0 auto var(--space-2xl);
@@ -58,14 +110,16 @@
   padding: 0.875rem 2rem;
   font-size: 1rem;
   font-weight: 600;
+  border-radius: var(--radius-full);
 }
 
 // ─── Stats Row ──────────────────────────────────────────────────────────────
+// tasrieit: subtle separator band — fade from section-bg to transparent
 .stats {
   padding: var(--space-3xl) 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  background: linear-gradient(180deg, rgba(10, 17, 40, 0.5) 0%, transparent 100%);
+  border-top: 1px solid $border-white-08;
+  border-bottom: 1px solid $border-white-08;
+  background: linear-gradient(180deg, rgba(10, 17, 40, 0.60) 0%, transparent 100%);
 
   &__row {
     display: flex;
@@ -83,16 +137,17 @@
     text-align: center;
   }
 
+  // Numbers use the orange accent — matches tasrieit icon accent color
   &__number {
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: 700;
-    color: var(--color-accent);
+    color: $accent-light;
     line-height: 1;
   }
 
   &__label {
     font-size: 0.875rem;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.45);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 500;
@@ -101,18 +156,20 @@
   &__divider {
     width: 1px;
     height: 48px;
-    background: var(--color-border);
+    background: $border-white-08;
   }
 }
 
-// ─── Trust Section ──────────────────────────────────────────────────────────
+// ─── Trust / Tech logos ──────────────────────────────────────────────────────
+// tasrieit: bg-[color:var(--color-bg)] — plain dark bg with centered badge row
 .trust {
   text-align: center;
+  background: $bg-dark;
 
   &__heading {
     font-size: 1.125rem;
     font-weight: 500;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.45);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin-bottom: var(--space-xl);
@@ -125,31 +182,40 @@
     gap: var(--space-sm);
   }
 
+  // Badge styling — matches tasrieit tech/partner pill style
   &__badge {
     display: inline-flex;
     align-items: center;
     padding: 0.5rem 1.25rem;
-    border: 1px solid var(--color-border);
+    border: 1px solid $border-white-08;
     border-radius: var(--radius-full);
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--color-text-secondary);
-    background: transparent;
-    transition: border-color var(--transition-normal), color var(--transition-normal);
+    color: rgba(255, 255, 255, 0.65);
+    background: $surface-white-07;
+    backdrop-filter: blur(4px);
+    transition:
+      border-color var(--transition-normal),
+      color var(--transition-normal),
+      background var(--transition-normal);
 
     &:hover {
-      border-color: rgba(100, 150, 255, 0.2);
-      color: var(--color-text-primary);
+      border-color: rgba($accent, 0.35);
+      color: #ffffff;
+      background: rgba($accent, 0.08);
     }
   }
 }
 
 // ─── Differentiators ────────────────────────────────────────────────────────
+// tasrieit: bg-[surface] — plain surface with gradient cards
 .differentiators {
   text-align: center;
+  background: $bg-dark;
 
   &__heading {
     margin-bottom: var(--space-3xl);
+    color: #ffffff;
   }
 
   &__grid {
@@ -160,37 +226,131 @@
   }
 }
 
+// tasrieit card: bg-gradient-to-br from-surface/7 to-surface/2, border-white/8
+// hover: left accent bar (from-secondary to-secondary-button)
 .differentiator-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid $border-white-08;
+  background: linear-gradient(135deg, $surface-white-07 0%, $surface-white-02 100%);
+  transition:
+    border-color var(--transition-normal),
+    background var(--transition-normal),
+    box-shadow var(--transition-normal);
+  overflow: hidden;
 
+  // Left accent bar — hidden by default, revealed on hover
+  // matches tasrieit: absolute left-0 top-0 w-1 bg-gradient-to-b from-secondary to-secondary-button
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, $accent, $accent-button);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+
+  &:hover {
+    border-color: $border-white-20;
+    background: linear-gradient(135deg, $surface-white-12 0%, $surface-white-04 100%);
+    box-shadow: 0 8px 32px rgba($accent, 0.08);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  // Icon container — tasrieit: rounded-xl bg-gradient-to-br from-secondary to-secondary-button
   &__icon {
-    font-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, $accent, $accent-button);
+    font-size: 1.5rem;
     line-height: 1;
     margin-bottom: var(--space-xs);
+    box-shadow: 0 4px 12px rgba($accent, 0.30);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+
+    .differentiator-card:hover & {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba($accent, 0.45);
+    }
   }
 
   h3 {
     font-size: 1.25rem;
     font-weight: 600;
+    color: #ffffff;
   }
 
   p {
     font-size: 0.9375rem;
     line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
   }
 }
 
-// ─── How We Work ────────────────────────────────────────────────────────────
+// ─── How We Work ─────────────────────────────────────────────────────────────
+// tasrieit: bg-gradient-to-br from-[#0a1128] via-[#0c1633] to-[#162147]
+// This is the signature blue multi-stop diagonal gradient + dot-pattern + orbs
 .how-we-work {
+  @extend %dot-pattern-overlay;
+  position: relative;
   text-align: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, $bg-deeper 0%, $bg-dark 50%, $bg-mid 100%);
+
+  // Orange glow orb — top-right (tasrieit: absolute top-0 right-0 w-96 h-96 secondary/10 blur-3xl opacity-20)
+  &__orb-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 384px;
+    height: 384px;
+    border-radius: 50%;
+    background: rgba($accent, 0.10);
+    filter: blur(60px);
+    opacity: 0.20;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Blue glow orb — bottom-left (tasrieit: absolute bottom-0 left-0 blue-500/10 blur-3xl opacity-20)
+  &__orb-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 384px;
+    height: 384px;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.10);
+    filter: blur(60px);
+    opacity: 0.20;
+    pointer-events: none;
+    z-index: 0;
+  }
 
   &__heading {
+    position: relative;
+    z-index: 1;
     margin-bottom: var(--space-3xl);
+    color: #ffffff;
   }
 
   &__steps {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-xl);
@@ -198,46 +358,76 @@
   }
 }
 
+// Step card — tasrieit: rounded-2xl border-white/20 bg-white/5 backdrop-blur-sm hover
 .step {
   position: relative;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  transition:
+    border-color var(--transition-normal),
+    background var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-normal);
 
+  &:hover {
+    border-color: rgba($accent, 0.50);
+    background: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 8px 32px rgba($accent, 0.10);
+    transform: translateY(-4px);
+  }
+
+  // Step number badge — tasrieit: rounded-lg bg-secondary/90 text-white
   &__number {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-full);
-    background: var(--color-accent-subtle);
-    color: var(--color-accent);
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: rgba($accent, 0.90);
+    color: #ffffff;
     font-weight: 700;
     font-size: 1.125rem;
     margin-bottom: var(--space-md);
+    box-shadow: 0 4px 12px rgba($accent, 0.30);
+    transition: background var(--transition-normal), transform var(--transition-normal);
+
+    .step:hover & {
+      background: $accent;
+      transform: scale(1.1);
+    }
   }
 
   &__title {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: var(--space-sm);
+    color: #ffffff;
   }
 
   &__desc {
     font-size: 0.9375rem;
     line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
   }
 }
 
-// ─── Engagement Models ─────────────────────────────────────────────────────
+// ─── Engagement Models ───────────────────────────────────────────────────────
+// tasrieit: plain dark surface section with gradient cards
 .engagement {
   text-align: center;
-  background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+  background: $bg-dark;
 
   &__heading {
     margin-bottom: var(--space-md);
+    color: #ffffff;
   }
 
   &__sub {
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.65);
     font-size: 1.15rem;
     margin-bottom: var(--space-3xl);
   }
@@ -250,35 +440,42 @@
   }
 }
 
+// Engagement card — same glass gradient as differentiator cards
 .engagement-card {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  position: relative;
+  background: linear-gradient(135deg, $surface-white-07 0%, $surface-white-02 100%);
+  border: 1px solid $border-white-08;
+  border-radius: var(--radius-lg);
   padding: var(--space-xl);
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
   border-top: 3px solid transparent;
+  overflow: hidden;
   transition:
     background var(--transition-normal),
-    border-color var(--transition-normal);
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-normal);
 
   &:hover {
-    background: var(--color-bg-card-hover);
-    border-color: rgba(100, 150, 255, 0.16);
-    box-shadow: 0 0 20px rgba(60, 100, 220, 0.08);
+    background: linear-gradient(135deg, $surface-white-12 0%, $surface-white-04 100%);
+    border-color: $border-white-20;
+    box-shadow: 0 8px 32px rgba($accent, 0.08);
+    transform: translateY(-2px);
   }
 
+  // Top accent bar color per tier
   &--discovery {
-    border-top-color: var(--color-accent);
+    border-top-color: $accent;
   }
 
   &--migration {
-    border-top-color: var(--color-success);
+    border-top-color: #22c55e; // green success
   }
 
   &--partnership {
-    border-top-color: #a78bfa; // purple accent
+    border-top-color: #a78bfa; // purple
   }
 
   &__price {
@@ -286,19 +483,19 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.40);
   }
 
   &__title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: #ffffff;
   }
 
   &__desc {
     font-size: 0.9375rem;
     line-height: 1.7;
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.65);
   }
 
   &__bullets {
@@ -312,7 +509,7 @@
 
     li {
       font-size: 0.9rem;
-      color: var(--color-text-secondary);
+      color: rgba(255, 255, 255, 0.65);
       padding-left: 1.25rem;
       position: relative;
 
@@ -320,7 +517,7 @@
         content: '—';
         position: absolute;
         left: 0;
-        color: var(--color-text-muted);
+        color: rgba(255, 255, 255, 0.30);
       }
     }
   }

@@ -133,11 +133,30 @@
   // Services item
   &__services-item {
     &--desktop {
-      position: static;
+      position: relative;
       display: list-item;
+
+      // Invisible bridge that fills the gap between the trigger link and the
+      // fixed mega-menu panel. Without this, the mouse leaves the <li> hover
+      // area while crossing the gap and the menu closes.
+      // The nav is 64px tall and <li> is vertically centered, so there can
+      // be up to ~24px of dead space below the link text before the panel.
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -28px; // generously covers the full gap to the panel top
+        left: -1rem;
+        right: -1rem;
+        height: 28px;
+        background: transparent;
+      }
 
       @media (max-width: 768px) {
         display: none;
+
+        &::after {
+          display: none;
+        }
       }
     }
 
