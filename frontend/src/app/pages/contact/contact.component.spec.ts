@@ -61,7 +61,7 @@ describe('ContactComponent', () => {
     fixture.detectChanges();
     const email = fixture.nativeElement.querySelector('.contact__email');
     const location = fixture.nativeElement.querySelector('.contact__location');
-    expect(email.textContent).toContain('hello@guided-traffic.com');
+    expect(email.textContent).toContain('mail@guided-traffic.com');
     expect(location.textContent).toContain('Germany');
   });
 });
