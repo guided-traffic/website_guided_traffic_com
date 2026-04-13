@@ -1,38 +1,61 @@
 <footer class="footer" role="contentinfo">
   <div class="footer__inner">
     <div class="footer__grid">
+
+      <!-- Column 1: Brand -->
       <div class="footer__col footer__col--brand">
         <a routerLink="/" class="footer__logo">Guided Traffic</a>
         <p class="footer__tagline">Wir unterstützen Engineering-Teams bei der Migration auf moderne Kubernetes-Infrastruktur mit GitOps.</p>
       </div>
 
+      <!-- Column 2: Services — dynamically populated, fragment-routed like the header mega-menu -->
       <div class="footer__col">
-        <h4 class="footer__heading">Navigation</h4>
+        <h4 class="footer__heading">Services</h4>
         <ul class="footer__list">
-          <li><a routerLink="/">Startseite</a></li>
-          <li><a routerLink="/services">Leistungen</a></li>
-          <li><a routerLink="/products">Produkte</a></li>
-          <li><a routerLink="/contact">Kontakt</a></li>
+          @for (service of services; track service.title) {
+            <li>
+              <a [routerLink]="['/services']" [fragment]="getSlug(service.title)">{{ service.title }}</a>
+            </li>
+          }
         </ul>
       </div>
 
+      <!-- Column 3: Products — dynamically populated -->
       <div class="footer__col">
-        <h4 class="footer__heading">Leistungen</h4>
+        <h4 class="footer__heading">Produkte</h4>
         <ul class="footer__list">
-          <li><a routerLink="/services">GitOps &amp; FluxCD</a></li>
-          <li><a routerLink="/services">Kubernetes</a></li>
-          <li><a routerLink="/services">Cloud-Migration</a></li>
-          <li><a routerLink="/services">CI/CD Pipelines</a></li>
+          @for (product of products; track product.slug) {
+            <li>
+              <a [routerLink]="product.ctaLink">{{ product.name }}</a>
+            </li>
+          }
         </ul>
       </div>
 
+      <!-- Column 4: Contact -->
       <div class="footer__col">
         <h4 class="footer__heading">Kontakt</h4>
         <ul class="footer__list">
           <li>mail&#64;guided-traffic.com</li>
-          <li>Deutschland</li>
+          <li>
+            <span class="footer__location">
+              <!-- Inline SVG German flag: three horizontal stripes black / red / gold -->
+              <svg
+                class="footer__flag"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 12"
+              >
+                <rect width="16" height="4" y="0" fill="#000000" />
+                <rect width="16" height="4" y="4" fill="#DD0000" />
+                <rect width="16" height="4" y="8" fill="#FFCE00" />
+              </svg>
+              Deutschland
+            </span>
+          </li>
         </ul>
       </div>
+
     </div>
 
     <div class="footer__bottom">

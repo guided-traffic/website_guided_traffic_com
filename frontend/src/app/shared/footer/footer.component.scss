@@ -78,6 +78,21 @@
     }
   }
 
+  // Wrapper that aligns the flag SVG and the country name side by side.
+  &__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  // The inline SVG German flag.
+  &__flag {
+    width: 16px;
+    height: 12px;
+    flex-shrink: 0;
+    border-radius: 1px;
+  }
+
   &__bottom {
     display: flex;
     justify-content: space-between;
