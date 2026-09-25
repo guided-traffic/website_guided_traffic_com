@@ -16,6 +16,20 @@ jobs:
       issues: write
       pull-requests: write
     steps:
+      # GitHub App installation token (guided-traffic-automation), scoped to this
+      # repository; expires after 1 h and is revoked at the end of the job. Not
+      # GITHUB_TOKEN: a release created with it would not start the
+      # "Release — Docker + Helm" workflow.
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write       # tag and GitHub release
+          permission-issues: write         # @semantic-release/github comments, released labels, fail issue
+          permission-pull-requests: write  # @semantic-release/github comments and labels on released PRs
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -28,4 +42,4 @@ jobs:
       - name: Run semantic-release
         run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
