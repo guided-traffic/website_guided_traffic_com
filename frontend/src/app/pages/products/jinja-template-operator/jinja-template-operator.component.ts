@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './jinja-template-operator.component.html',
-  styleUrls: ['./jinja-template-operator.component.scss'],
+  styleUrls: ['../product-detail.scss'],
 })
 export class JinjaTemplateOperatorComponent {}

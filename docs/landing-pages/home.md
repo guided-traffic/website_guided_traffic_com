@@ -117,7 +117,7 @@ Planned questions:
 1. "Müssen wir alles auf einmal umstellen?" → Nein, wir fangen mit einem der drei Bereiche an.
 2. "Was passiert, wenn Sie ausfallen?" → Netzwerk vertrauenswürdiger Kollegen + GitOps-Dokumentation + Enablement-Ansatz.
 3. "Brauchen wir zwingend Public Cloud?" → Nein. OnPrem, Hybrid und Cloud sind alle möglich.
-4. "Was kostet das ungefähr?" → TBD, Pricing-Policy muss mit User geklärt werden.
+4. "Was kostet das ungefähr?" → No pricing model on the site (decided 2026-10-28, see strategy.md §7). Answer without naming Festpreis/Tagessatz/Retainer — point to a concrete offer after the Erstgespräch.
 
 ---
 

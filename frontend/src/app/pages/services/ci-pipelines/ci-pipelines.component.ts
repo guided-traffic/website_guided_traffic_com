@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './ci-pipelines.component.html',
-  styleUrls: ['./ci-pipelines.component.scss'],
+  styleUrls: ['../service-detail.scss'],
 })
 export class CiPipelinesComponent {}

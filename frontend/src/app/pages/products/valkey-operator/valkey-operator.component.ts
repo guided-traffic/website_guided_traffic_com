@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './valkey-operator.component.html',
-  styleUrls: ['./valkey-operator.component.scss'],
+  styleUrls: ['../product-detail.scss'],
 })
 export class ValkeyOperatorComponent {}

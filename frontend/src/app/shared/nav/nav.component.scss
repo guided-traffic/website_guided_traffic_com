@@ -1,54 +1,60 @@
+// Sticky bar of hairline-separated cells: logo | links | contact block
 .nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-bottom: 1px solid transparent;
-  padding: 0 var(--space-xl);
-  transition: background 0.35s ease, backdrop-filter 0.35s ease, border-bottom-color 0.35s ease;
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--color-line);
+  transition: background 0.35s ease;
 
   &--scrolled {
-    background: rgba(5, 10, 24, 0.92);
+    background: color-mix(in srgb, var(--color-paper) 88%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom-color: var(--color-border);
   }
 
   &__inner {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 64px;
+    align-items: stretch;
+    height: var(--nav-height);
   }
 
   &__logo {
-    font-family: var(--font-sans);
-    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    border-right: 1px solid var(--color-line);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
     font-weight: 700;
-    color: #fff;
+    font-stretch: 125%;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--color-ink);
     text-decoration: none;
-    cursor: pointer;
-    transition: opacity var(--transition-fast);
     flex-shrink: 0;
 
     &:hover {
-      opacity: 0.85;
-      color: #fff;
+      color: var(--color-ink);
+    }
+
+    // The toggle carries the only divider on phones
+    @media (max-width: 768px) {
+      border-right: none;
     }
   }
 
   &__toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
+    order: 4;
+    padding: 0 1.25rem;
     background: none;
     border: none;
+    border-left: 1px solid var(--color-line);
     cursor: pointer;
-    padding: 4px;
 
     @media (max-width: 768px) {
       display: flex;
@@ -57,31 +63,25 @@
 
   &__toggle-bar {
     display: block;
-    width: 24px;
-    height: 2px;
-    background: #fff;
-    border-radius: 2px;
-    transition: transform var(--transition-fast), opacity var(--transition-fast);
+    width: 20px;
+    height: 1.5px;
+    background: var(--color-ink);
   }
 
+  // Desktop: dissolves so links, theme toggle and contact order as bar cells.
+  // Phone: becomes the dropdown panel.
   &__right {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xl);
+    display: contents;
 
     @media (max-width: 768px) {
       display: none;
       flex-direction: column;
       position: absolute;
-      top: 64px;
+      top: var(--nav-height);
       left: 0;
       right: 0;
-      background: rgba(5, 10, 24, 0.98);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: var(--space-lg) var(--space-xl);
-      gap: var(--space-lg);
-      border-bottom: 1px solid var(--color-border);
+      background: var(--color-paper);
+      border-bottom: 1px solid var(--color-line);
 
       &--open {
         display: flex;
@@ -91,90 +91,91 @@
 
   &__links {
     display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    flex: 1;
+    order: 1;
     list-style: none;
-    gap: var(--space-lg);
-    margin: 0;
-    padding: 0;
+    padding: 0 1.25rem;
 
-    a {
+    > li {
+      display: flex;
+      align-items: center;
+    }
+
+    > li > a {
+      padding: 4px 8px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       color: var(--color-text-secondary);
       text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9375rem;
-      transition: color var(--transition-fast);
+      transition: color var(--transition-fast), background var(--transition-fast);
       cursor: pointer;
-      padding-bottom: 2px;
-      border-bottom: 2px solid transparent;
 
-      &:hover,
-      &:focus-visible {
-        color: var(--color-text-primary);
-      }
-
-      &:focus-visible {
-        outline: 2px solid var(--color-accent);
-        outline-offset: 4px;
-        border-radius: 2px;
+      &:hover {
+        color: var(--color-ink);
       }
     }
 
     @media (max-width: 768px) {
       flex-direction: column;
-      gap: var(--space-md);
-      width: 100%;
+      gap: 0;
+      padding: 0;
+
+      > li {
+        display: block;
+        border-bottom: 1px solid var(--color-line);
+      }
+
+      > li > a {
+        display: block;
+        padding: 1rem 1.25rem;
+      }
     }
   }
 
+  // Active route: ink block with paper text
   &__link--active {
-    color: var(--color-text-primary) !important;
-    border-bottom-color: var(--color-accent) !important;
+    background: var(--color-ink);
+    color: var(--color-paper) !important;
   }
 
-  // Services item
   &__services-item {
     &--desktop {
       position: relative;
-      display: list-item;
 
-      // Invisible bridge that fills the gap between the trigger link and the
-      // fixed mega-menu panel. Without this, the mouse leaves the <li> hover
-      // area while crossing the gap and the menu closes.
-      // The nav is 64px tall and <li> is vertically centered, so there can
-      // be up to ~24px of dead space below the link text before the panel.
+      // Bridge between the trigger and the fixed panel so hover survives the crossing
       &::after {
         content: '';
         position: absolute;
-        bottom: -28px; // generously covers the full gap to the panel top
-        left: -1rem;
-        right: -1rem;
-        height: 28px;
-        background: transparent;
+        bottom: -12px;
+        left: -0.5rem;
+        right: -0.5rem;
+        height: 12px;
       }
 
       @media (max-width: 768px) {
-        display: none;
-
-        &::after {
-          display: none;
-        }
+        display: none !important;
       }
     }
 
     &--mobile {
-      display: none;
+      display: none !important;
 
       @media (max-width: 768px) {
-        display: list-item;
+        display: block !important;
       }
     }
   }
 
   &__chevron {
     display: inline-block;
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin-left: 2px;
     transition: transform 0.25s ease;
-    vertical-align: middle;
 
     &--open {
       transform: rotate(180deg);
@@ -186,26 +187,21 @@
   }
 
   &__services-item--desktop:hover > a {
-    color: var(--color-text-primary);
-    border-bottom-color: var(--color-accent);
+    color: var(--color-ink);
   }
 
-  // Mega-menu
+  // Mega-menu panel
   &__mega {
     position: fixed;
-    top: 64px;
+    top: var(--nav-height);
     left: 0;
     right: 0;
-    background: rgba(5, 10, 24, 0.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    padding: 2rem var(--space-xl);
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-line);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
     pointer-events: none;
     z-index: 99;
 
@@ -216,20 +212,17 @@
       pointer-events: auto;
     }
 
-    // Force-close override: after a click inside the mega, suppress the hover
-    // panel until the cursor leaves the <li> and re-enters. Without this, the
-    // panel stays visible because the cursor is still over the clicked item.
+    // After a click inside the panel, keep it closed until the cursor leaves and re-enters
     .nav__services-item--desktop.nav__services-item--force-closed:hover & {
       opacity: 0;
       visibility: hidden;
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       pointer-events: none;
     }
   }
 
   &__services-item--desktop#{&}__services-item--force-closed:hover > a {
     color: var(--color-text-secondary);
-    border-bottom-color: transparent;
   }
 
   &__services-item--desktop#{&}__services-item--force-closed:hover &__chevron {
@@ -237,29 +230,32 @@
   }
 
   &__mega-inner {
-    max-width: 1200px;
+    max-width: var(--frame-max);
     margin: 0 auto;
+    border-left: 1px solid var(--color-line);
+    border-right: 1px solid var(--color-line);
   }
 
   &__mega-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem 2rem;
-    margin-bottom: 1.5rem;
   }
 
   &__mega-item {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-md);
+    gap: 1.25rem;
+    padding: 1.25rem var(--frame-pad);
+    border-bottom: 1px solid var(--color-line);
     text-decoration: none;
-    transition: background 0.15s ease;
-    position: relative;
+    transition: background var(--transition-fast);
+
+    &:nth-child(odd) {
+      border-right: 1px solid var(--color-line);
+    }
 
     &:hover {
-      background: var(--color-bg-card-hover);
+      background: var(--color-paper-deep);
 
       .nav__mega-item-arrow {
         opacity: 1;
@@ -268,109 +264,147 @@
     }
   }
 
-  &__mega-item-icon {
-    font-size: 1.4rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-accent-subtle);
-    border-radius: var(--radius-sm);
+  &__mega-item-num,
+  &__sub-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+  }
+
+  &__mega-item-num {
+    padding-top: 0.2rem;
     flex-shrink: 0;
   }
 
   &__mega-item-body {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.3rem;
     flex: 1;
   }
 
   &__mega-item-title {
-    color: var(--color-text-primary);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    line-height: 1.3;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 620;
+    font-stretch: 118%;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
   }
 
   &__mega-item-desc {
-    color: var(--color-text-muted);
-    font-size: 0.8rem;
-    line-height: 1.4;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
   }
 
   &__mega-item-arrow {
-    color: var(--color-accent);
-    font-size: 1rem;
+    color: var(--color-ink);
     opacity: 0;
     transform: translateX(-4px);
     transition: opacity 0.15s ease, transform 0.15s ease;
     align-self: center;
-    flex-shrink: 0;
   }
 
   &__mega-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border);
-    font-size: 0.875rem;
-
-    span {
-      color: var(--color-text-muted);
-    }
+    padding: 0.875rem var(--frame-pad);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
 
     a {
-      color: var(--color-accent);
+      color: var(--color-ink);
       text-decoration: none;
-      font-weight: 500;
-
-      &:hover {
-        color: var(--color-accent-hover);
-      }
     }
   }
 
   // Mobile accordion sub-list
   &__sub-list {
     list-style: none;
-    margin: 0;
-    padding: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
     opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
 
     &--open {
-      max-height: 400px;
+      max-height: 480px;
       opacity: 1;
     }
 
     li a {
       display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: 0.45rem 0 0.45rem var(--space-md);
-      color: var(--color-text-secondary);
+      gap: 0.75rem;
+      padding: 0.6rem 1.25rem 0.6rem 2rem;
       font-size: 0.875rem;
-      border-bottom: none;
+      color: var(--color-text-secondary);
+      text-decoration: none;
 
       &:hover {
-        color: var(--color-text-primary);
+        color: var(--color-ink);
       }
     }
   }
 
-  &__cta {
-    padding: 0.5rem 1.25rem;
-    font-size: 0.875rem;
-    white-space: nowrap;
+  // Theme toggle: a hairline-separated cell; on phones it stays in the bar next to the menu toggle
+  &__theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+    width: var(--nav-height);
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    border-left: 1px solid var(--color-line);
+    color: var(--color-ink);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+
+    &:hover {
+      background: var(--color-paper-deep);
+    }
 
     @media (max-width: 768px) {
-      width: 100%;
-      text-align: center;
+      margin-left: auto;
+    }
+  }
+
+  &__theme-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  // Contact: full-height signal-orange block at the right edge
+  &__cta {
+    display: flex;
+    align-items: center;
+    order: 3;
+    padding: 0 1.5rem;
+    background: var(--color-signal);
+    color: var(--color-on-signal);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background var(--transition-fast);
+
+    &:hover {
+      background: var(--color-signal-hover);
+      color: var(--color-on-signal);
+    }
+
+    @media (max-width: 768px) {
+      justify-content: center;
+      height: 48px;
     }
   }
 }

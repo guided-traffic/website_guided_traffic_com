@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './dex-operator.component.html',
-  styleUrls: ['./dex-operator.component.scss'],
+  styleUrls: ['../product-detail.scss'],
 })
 export class DexOperatorComponent {}

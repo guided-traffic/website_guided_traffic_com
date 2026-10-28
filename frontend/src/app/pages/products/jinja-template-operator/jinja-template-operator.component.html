@@ -1,31 +1,30 @@
 <!-- Hero Section -->
-<section class="jto-hero">
-  <div class="container">
-    <div class="jto-hero__content">
-      <div class="jto-hero__icon">🧩</div>
-      <h1 class="jto-hero__headline">Jinja Template Operator</h1>
-      <p class="jto-hero__sub">
+<section class="pd-hero">
+  <div class="frame pd-hero__frame">
+    <div class="pd-hero__content">
+      <h1 class="pd-hero__headline">Jinja Template <em>Operator</em></h1>
+      <p class="pd-hero__sub">
         Deklarativ, reaktiv, vertraut: Rendert ConfigMaps und Secrets direkt im Cluster
         mit Jinja2-Templates — ohne Helm-Release-Lifecycle, ohne Pipeline-Re-Run,
         ohne neue DSL.
       </p>
-      <div class="jto-hero__meta">
-        <span class="jto-hero__meta-item">
-          <span class="jto-hero__meta-label">Status</span>
-          <span class="jto-hero__meta-badge jto-hero__meta-badge--stable">Stable</span>
+      <div class="pd-hero__meta">
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Status</span>
+          <span class="pd-hero__meta-badge pd-hero__meta-badge--stable">Stable</span>
         </span>
-        <span class="jto-hero__meta-separator"></span>
-        <span class="jto-hero__meta-item">
-          <span class="jto-hero__meta-label">Lizenz</span>
-          <span class="jto-hero__meta-value">Apache 2.0</span>
+        <span class="pd-hero__meta-separator"></span>
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Lizenz</span>
+          <span class="pd-hero__meta-value">Apache 2.0</span>
         </span>
-        <span class="jto-hero__meta-separator"></span>
-        <span class="jto-hero__meta-item">
-          <span class="jto-hero__meta-label">Letztes Update</span>
-          <span class="jto-hero__meta-value">April 2026</span>
+        <span class="pd-hero__meta-separator"></span>
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Letztes Update</span>
+          <span class="pd-hero__meta-value">April 2026</span>
         </span>
       </div>
-      <div class="jto-hero__actions">
+      <div class="pd-hero__actions">
         <a routerLink="/contact" class="btn btn-primary">Beratungstermin buchen</a>
         <a
           href="https://github.com/guided-traffic/jinja-template-operator"
@@ -39,11 +38,15 @@
 </section>
 
 <!-- Problem Section -->
-<section class="jto-problem">
-  <div class="container">
-    <div class="jto-problem__content">
-      <h2 class="jto-problem__headline">Das Problem</h2>
-      <p class="jto-problem__text">
+<section class="pd-problem frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Problem</span></span>
+      <span class="label">jinja-template-operator</span>
+    </div>
+    <div class="pd-problem__content">
+      <h2 class="pd-problem__headline">Das Problem</h2>
+      <p class="pd-problem__text">
         Platform-Teams investieren unverhältnismäßig viel Aufwand darin, Helm-Chart-Values,
         Kustomize-Patches und Shell-Skripte zu einem Flickenteppich zusammenzusetzen, nur um
         umgebungsspezifische ConfigMaps und Secrets zu erzeugen. Diese Lösung ist weder
@@ -57,102 +60,96 @@
 </section>
 
 <!-- Features Section -->
-<section class="jto-features">
-  <div class="container">
-    <h2 class="jto-features__headline">Funktionsumfang</h2>
-    <div class="jto-features__grid">
+<section class="pd-features frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">02 /</span> <span class="frame-bar__title">Funktionen</span></span>
+      <span class="label">jinja-template-operator</span>
+    </div>
+    <h2 class="pd-features__headline">Funktionsumfang</h2>
+    <div class="pd-features__grid">
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">📝</span>
-        <h3 class="jto-feature-card__title">Jinja2-Templating mit Gonja</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Jinja2-Templating mit Gonja</h3>
+        <p class="pd-feature-card__desc">
           Vertraute Jinja2-Syntax: Filter, Schleifen, Bedingungen und Template-Vererbung —
           implementiert durch Gonja, den Go-Port von Jinja2. Wer Ansible oder Python kennt,
           ist sofort produktiv.
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">🔗</span>
-        <h3 class="jto-feature-card__title">Flexible Variablenquellen</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Flexible Variablenquellen</h3>
+        <p class="pd-feature-card__desc">
           Referenziert einzelne ConfigMap- oder Secret-Schlüssel direkt — oder bindet
           dynamisch alle Ressourcen ein, die einem Label-Selector entsprechen
           (Fan-in-Aggregation über mehrere Quellen).
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">⚡</span>
-        <h3 class="jto-feature-card__title">Reaktive Reconciliation</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Reaktive Reconciliation</h3>
+        <p class="pd-feature-card__desc">
           Der Operator beobachtet Quell-ConfigMaps und -Secrets. Jede Änderung löst
           automatisch ein Neu-Rendering aus — kein Pipeline-Re-Run, kein manuelles
           Eingreifen erforderlich.
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">📦</span>
-        <h3 class="jto-feature-card__title">Duale Output-Typen</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Duale Output-Typen</h3>
+        <p class="pd-feature-card__desc">
           Das gerenderte Ergebnis kann wahlweise als ConfigMap oder als Secret im
           Cluster gespeichert werden — je nach Vertraulichkeit der enthaltenen Daten.
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">🗂️</span>
-        <h3 class="jto-feature-card__title">Inline- und externe Templates</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Inline- und externe Templates</h3>
+        <p class="pd-feature-card__desc">
           Templates können direkt im <code>spec.template</code>-Feld der Custom Resource
           eingebettet oder in einer separaten ConfigMap abgelegt und über
           <code>spec.templateFrom</code> referenziert werden.
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">🔄</span>
-        <h3 class="jto-feature-card__title">Konfigurierbare Owner-References</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Konfigurierbare Owner-References</h3>
+        <p class="pd-feature-card__desc">
           Generierte Ressourcen können an den Lebenszyklus der Custom Resource gebunden
           werden (automatische Garbage Collection bei Löschung) oder unabhängig existieren —
           global oder pro CR konfigurierbar.
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">🌐</span>
-        <h3 class="jto-feature-card__title">Cluster-weiter Betrieb</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Cluster-weiter Betrieb</h3>
+        <p class="pd-feature-card__desc">
           Eine einzige Operator-Instanz überwacht alle Namespaces. Platform-Teams
           installieren den Operator einmalig und steuern alle Umgebungen zentral.
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">📊</span>
-        <h3 class="jto-feature-card__title">Natives Status- und Event-Reporting</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Natives Status- und Event-Reporting</h3>
+        <p class="pd-feature-card__desc">
           Ready-Condition und Kubernetes Events sind direkt per <code>kubectl describe</code>
           sichtbar — keine separaten Monitoring-Tools für Fehlerdiagnose erforderlich.
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">🏗️</span>
-        <h3 class="jto-feature-card__title">Hochverfügbarkeit</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Hochverfügbarkeit</h3>
+        <p class="pd-feature-card__desc">
           Leader-Election ist integriert, sodass mehrere Replikas gleichzeitig betrieben
           werden können. Der Operator bleibt funktionsfähig, auch wenn einzelne Pods
           neu starten.
         </p>
       </article>
 
-      <article class="jto-feature-card">
-        <span class="jto-feature-card__icon">🛡️</span>
-        <h3 class="jto-feature-card__title">Aggregierte RBAC-Rollen</h3>
-        <p class="jto-feature-card__desc">
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Aggregierte RBAC-Rollen</h3>
+        <p class="pd-feature-card__desc">
           Der Helm-Chart erstellt optional admin-, edit- und view-ClusterRoles, die sich
           nahtlos in bestehende RBAC-Strukturen einfügen und den Zugriff auf
           JinjaTemplate-Ressourcen granular steuern.
@@ -164,56 +161,56 @@
 </section>
 
 <!-- Sources & Output Section -->
-<section class="jto-sources">
-  <div class="container">
-    <h2 class="jto-sources__headline">Variablenquellen &amp; Ausgabe</h2>
-    <p class="jto-sources__intro">
+<section class="pd-sources frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">03 /</span> <span class="frame-bar__title">Quellen</span></span>
+      <span class="label">jinja-template-operator</span>
+    </div>
+    <h2 class="pd-sources__headline">Variablenquellen &amp; Ausgabe</h2>
+    <p class="pd-sources__intro">
       Der Operator unterstützt zwei Beschaffungsmodi für Template-Variablen und zwei
       Ausgabeformate — kombinierbar nach Bedarf.
     </p>
-    <div class="jto-sources__grid">
+    <div class="pd-sources__grid">
 
-      <div class="jto-sources__card">
-        <h3 class="jto-sources__card-title">
-          <span class="jto-sources__card-icon">🎯</span>
+      <div class="pd-sources__card">
+        <h3 class="pd-sources__card-title">
           Direkte Referenz
         </h3>
-        <p class="jto-sources__card-text">
+        <p class="pd-sources__card-text">
           Einzelne Schlüssel aus einer benannten ConfigMap oder einem benannten Secret
           werden explizit referenziert. Präzise, vorhersehbar und ideal für stabile
           Konfigurationen mit bekannten Quellen.
         </p>
       </div>
 
-      <div class="jto-sources__card">
-        <h3 class="jto-sources__card-title">
-          <span class="jto-sources__card-icon">🔍</span>
+      <div class="pd-sources__card">
+        <h3 class="pd-sources__card-title">
           Dynamische Discovery via Label-Selector
         </h3>
-        <p class="jto-sources__card-text">
+        <p class="pd-sources__card-text">
           Alle ConfigMaps oder Secrets, die einem Label-Selector entsprechen, werden
           automatisch als Variablenquellen eingebunden — auch neu erstellte Ressourcen.
           Ideal für Fan-in-Szenarien mit vielen unabhängigen Datenquellen.
         </p>
       </div>
 
-      <div class="jto-sources__card">
-        <h3 class="jto-sources__card-title">
-          <span class="jto-sources__card-icon">📄</span>
+      <div class="pd-sources__card">
+        <h3 class="pd-sources__card-title">
           Ausgabe: ConfigMap
         </h3>
-        <p class="jto-sources__card-text">
+        <p class="pd-sources__card-text">
           Das gerenderte Template wird als ConfigMap im Ziel-Namespace gespeichert —
           geeignet für nicht-sensible Konfigurationsdaten, die offen lesbar sein dürfen.
         </p>
       </div>
 
-      <div class="jto-sources__card">
-        <h3 class="jto-sources__card-title">
-          <span class="jto-sources__card-icon">🔐</span>
+      <div class="pd-sources__card">
+        <h3 class="pd-sources__card-title">
           Ausgabe: Secret
         </h3>
-        <p class="jto-sources__card-text">
+        <p class="pd-sources__card-text">
           Das Ergebnis wird als Kubernetes Secret gespeichert. Secret-Werte aus
           Quell-Ressourcen verlassen zu keinem Zeitpunkt den Cluster — vollständig
           in-cluster und RBAC-geschützt.
@@ -225,41 +222,45 @@
 </section>
 
 <!-- Comparison Section -->
-<section class="jto-compare">
-  <div class="container">
-    <h2 class="jto-compare__headline">Abgrenzung zu bestehenden Ansätzen</h2>
-    <div class="jto-compare__grid">
+<section class="pd-compare frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">04 /</span> <span class="frame-bar__title">Vergleich</span></span>
+      <span class="label">jinja-template-operator</span>
+    </div>
+    <h2 class="pd-compare__headline">Abgrenzung zu bestehenden Ansätzen</h2>
+    <div class="pd-compare__grid">
 
-      <div class="jto-compare__entry">
-        <h3 class="jto-compare__vs">vs. Helm</h3>
-        <p class="jto-compare__text">
+      <div class="pd-compare__entry">
+        <h3 class="pd-compare__vs">vs. Helm</h3>
+        <p class="pd-compare__text">
           Helm läuft zum Deploy-Zeitpunkt und benötigt einen eigenen Release-Lifecycle.
           Der jinja-template-operator ist dauerhaft aktiv und reagiert auf Laufzeit-Änderungen
           im Cluster — ohne erneutes Deployment.
         </p>
       </div>
 
-      <div class="jto-compare__entry">
-        <h3 class="jto-compare__vs">vs. Kustomize</h3>
-        <p class="jto-compare__text">
+      <div class="pd-compare__entry">
+        <h3 class="pd-compare__vs">vs. Kustomize</h3>
+        <p class="pd-compare__text">
           Kustomize ist ein statischer Pipeline-Transformer ohne echtes Templating.
           Er kennt nur Overlays und Patches, kann auf Live-Änderungen im Cluster nicht
           reagieren und bietet keine Variablenlogik.
         </p>
       </div>
 
-      <div class="jto-compare__entry">
-        <h3 class="jto-compare__vs">vs. Carvel ytt</h3>
-        <p class="jto-compare__text">
+      <div class="pd-compare__entry">
+        <h3 class="pd-compare__vs">vs. Carvel ytt</h3>
+        <p class="pd-compare__text">
           ytt ist mächtig, erfordert aber eine proprietäre DSL mit steiler Lernkurve.
           Jinja2 ist in Ansible- und Python-Teams bereits bekannt — keine neue Sprache,
           keine neue Syntax.
         </p>
       </div>
 
-      <div class="jto-compare__entry">
-        <h3 class="jto-compare__vs">vs. External Secrets Operator</h3>
-        <p class="jto-compare__text">
+      <div class="pd-compare__entry">
+        <h3 class="pd-compare__vs">vs. External Secrets Operator</h3>
+        <p class="pd-compare__text">
           ESO synchronisiert Secrets aus externen Stores wie Vault. Der
           jinja-template-operator konsumiert die bereits synchronisierten ConfigMaps und
           Secrets und rendert daraus zusammengesetzte Konfigurationen. Beide Werkzeuge
@@ -267,9 +268,9 @@
         </p>
       </div>
 
-      <div class="jto-compare__entry">
-        <h3 class="jto-compare__vs">vs. manuelle Skripte / Init-Container</h3>
-        <p class="jto-compare__text">
+      <div class="pd-compare__entry">
+        <h3 class="pd-compare__vs">vs. manuelle Skripte / Init-Container</h3>
+        <p class="pd-compare__text">
           Ad-hoc-Skripte sind nicht deklarativ, nicht auditierbar und nicht reconciled.
           Der Operator ersetzt individuelle Templating-Skripte durch eine standardisierte
           CRD mit vollständigem Status-Reporting.
@@ -277,7 +278,7 @@
       </div>
 
     </div>
-    <p class="jto-compare__summary">
+    <p class="pd-compare__summary">
       Die Kombination aus vertrauter Jinja2-Syntax, reaktiver In-Cluster-Reconciliation,
       Secret-bewusstem Output und null externen Abhängigkeiten macht den
       jinja-template-operator einzigartig in seinem Anwendungsbereich.
@@ -286,38 +287,46 @@
 </section>
 
 <!-- Tech Stack Section -->
-<section class="jto-stack">
-  <div class="container">
-    <h2 class="jto-stack__headline">Technischer Stack &amp; Integrationen</h2>
-    <p class="jto-stack__intro">
+<section class="pd-stack frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">05 /</span> <span class="frame-bar__title">Technik</span></span>
+      <span class="label">jinja-template-operator</span>
+    </div>
+    <h2 class="pd-stack__headline">Technischer Stack &amp; Integrationen</h2>
+    <p class="pd-stack__intro">
       Gebaut auf bewährten Open-Source-Komponenten — ohne proprietäre Abhängigkeiten
       und ohne externe Dienste.
     </p>
-    <div class="jto-stack__chips">
-      <span class="jto-stack__chip">Go 1.26</span>
-      <span class="jto-stack__chip">Kubernetes CRD (jto.gtrfc.com/v1)</span>
-      <span class="jto-stack__chip">Kubebuilder</span>
-      <span class="jto-stack__chip">controller-runtime</span>
-      <span class="jto-stack__chip">Gonja (Jinja2-Engine)</span>
-      <span class="jto-stack__chip">Helm-Chart</span>
-      <span class="jto-stack__chip">Docker Hub</span>
-      <span class="jto-stack__chip">FluxCD / ArgoCD</span>
-      <span class="jto-stack__chip">gosec</span>
-      <span class="jto-stack__chip">Apache 2.0</span>
+    <div class="pd-stack__chips">
+      <span class="pd-stack__chip">Go 1.26</span>
+      <span class="pd-stack__chip">Kubernetes CRD (jto.gtrfc.com/v1)</span>
+      <span class="pd-stack__chip">Kubebuilder</span>
+      <span class="pd-stack__chip">controller-runtime</span>
+      <span class="pd-stack__chip">Gonja (Jinja2-Engine)</span>
+      <span class="pd-stack__chip">Helm-Chart</span>
+      <span class="pd-stack__chip">Docker Hub</span>
+      <span class="pd-stack__chip">FluxCD / ArgoCD</span>
+      <span class="pd-stack__chip">gosec</span>
+      <span class="pd-stack__chip">Apache 2.0</span>
     </div>
   </div>
 </section>
 
 <!-- Final CTA Section -->
-<section class="jto-cta">
-  <div class="container">
-    <div class="jto-cta__content">
-      <h2 class="jto-cta__headline">Brauchen Sie Unterstützung bei der Einführung?</h2>
-      <p class="jto-cta__sub">
+<section class="pd-cta frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">06 /</span> <span class="frame-bar__title">Nächster Schritt</span></span>
+      <span class="label">jinja-template-operator</span>
+    </div>
+    <div class="pd-cta__content">
+      <h2 class="pd-cta__headline">Brauchen Sie Unterstützung bei der Einführung?</h2>
+      <p class="pd-cta__sub">
         Unser Team begleitet Sie von der initialen Evaluierung bis zum produktiven Einsatz —
         inklusive Template-Design, RBAC-Konzept und GitOps-Integration.
       </p>
-      <div class="jto-cta__actions">
+      <div class="pd-cta__actions">
         <a routerLink="/contact" class="btn btn-primary">Beratung anfragen</a>
         <a
           href="https://github.com/guided-traffic/jinja-template-operator"

@@ -1,18 +1,21 @@
 import { Component, HostListener, inject } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ServicesService, Service } from '../../services/services.service';
 import { ProductsService, Product } from '../../services/products.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, DecimalPipe],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
   private servicesService = inject(ServicesService);
   private productsService = inject(ProductsService);
+  private themeService = inject(ThemeService);
 
   menuOpen = false;
   scrolled = false;
@@ -21,19 +24,16 @@ export class NavComponent {
   megaForceClosed: 'services' | 'products' | null = null;
   services: Service[] = this.servicesService.getServices();
   products: Product[] = this.productsService.getProducts();
+  readonly theme = this.themeService.theme;
 
-  readonly serviceSlugs: Record<string, string> = {
-    'GitOps & FluxCD': 'gitops-fluxcd',
-    'Kubernetes Provisioning': 'kubernetes-provisioning',
-    'CI/CD Pipelines': 'cicd-pipelines',
-    'Legacy Migration': 'legacy-migration',
-    'Monitoring & Observability': 'monitoring-observability',
-    'Training & Enablement': 'training-enablement',
-  };
 
   @HostListener('window:scroll')
   onScroll(): void {
     this.scrolled = window.scrollY > 50;
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggle();
   }
 
   toggleMenu(): void {
@@ -67,9 +67,5 @@ export class NavComponent {
     event.preventDefault();
     event.stopPropagation();
     this.productsOpen = !this.productsOpen;
-  }
-
-  getSlug(title: string): string {
-    return this.serviceSlugs[title] ?? '';
   }
 }

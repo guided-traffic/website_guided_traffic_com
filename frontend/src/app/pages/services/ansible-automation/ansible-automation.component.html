@@ -1,9 +1,8 @@
 <!-- Hero -->
 <section class="svc-hero">
-  <div class="container">
+  <div class="frame svc-hero__frame">
     <div class="svc-hero__content">
-      <div class="svc-hero__icon">🔧</div>
-      <h1 class="svc-hero__headline">Schluss mit handgepflegten Servern.</h1>
+      <h1 class="svc-hero__headline">Schluss mit <em>handgepflegten</em> Servern.</h1>
       <p class="svc-hero__sub">
         Wir automatisieren Ihre bestehende On-Prem-Infrastruktur mit Ansible — Inventar,
         Baseline, Updates, Firewall-Regeln, Backups. Alles versioniert, alles reproduzierbar,
@@ -23,13 +22,16 @@
 </section>
 
 <!-- Pain Points -->
-<section class="svc-pain">
-  <div class="container">
-    <h2 class="svc-pain__headline">Kennen Sie das?</h2>
+<section class="svc-pain frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Ausgangslage</span></span>
+      <span class="label">ansible-automation</span>
+    </div>
+    <h2 class="svc-pain__headline">Kennen Sie <em>das?</em></h2>
     <div class="svc-pain__grid">
 
       <article class="svc-pain-card">
-        <span class="svc-pain-card__icon">❄️</span>
         <h3 class="svc-pain-card__title">Schneeflocken-Server</h3>
         <p class="svc-pain-card__desc">
           Jeder Server ist „irgendwie ein bisschen anders". Über Jahre gewachsen, per SSH
@@ -39,7 +41,6 @@
       </article>
 
       <article class="svc-pain-card">
-        <span class="svc-pain-card__icon">🚨</span>
         <h3 class="svc-pain-card__title">Bus-Faktor 1</h3>
         <p class="svc-pain-card__desc">
           Nur eine Person weiß, wie welcher Server wirklich konfiguriert ist — und warum.
@@ -48,7 +49,6 @@
       </article>
 
       <article class="svc-pain-card">
-        <span class="svc-pain-card__icon">📋</span>
         <h3 class="svc-pain-card__title">Keine Versionshistorie der Infrastruktur</h3>
         <p class="svc-pain-card__desc">
           Eine Sicherheitslücke taucht auf. Welche Server sind betroffen? Wer hat vor zwei
@@ -62,8 +62,12 @@
 </section>
 
 <!-- Before / After -->
-<section class="svc-compare">
-  <div class="container">
+<section class="svc-compare frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">02 /</span> <span class="frame-bar__title">Vorher / Nachher</span></span>
+      <span class="label">ansible-automation</span>
+    </div>
     <h2 class="svc-compare__headline">So sieht Ihre Server-Landschaft heute aus — und so sieht sie mit Ansible aus.</h2>
     <div class="svc-compare__table">
 
@@ -126,9 +130,13 @@
 </section>
 
 <!-- Approach -->
-<section id="so-loesen-wir-das" class="svc-approach">
-  <div class="container">
-    <h2 class="svc-approach__headline">So gehen wir vor</h2>
+<section id="so-loesen-wir-das" class="svc-approach frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">03 /</span> <span class="frame-bar__title">Vorgehen</span></span>
+      <span class="label">ansible-automation</span>
+    </div>
+    <h2 class="svc-approach__headline">So gehen <em>wir</em> vor</h2>
     <p class="svc-approach__intro">
       Kein Plattform-Umzug. Kein Cloud-Zwang. Wir arbeiten mit Ihrer
       bestehenden Infrastruktur — und machen sie reproduzierbar.
@@ -136,7 +144,7 @@
     <div class="svc-approach__steps">
 
       <article class="svc-step">
-        <span class="svc-step__number">1</span>
+        <span class="svc-step__number">01</span>
         <div class="svc-step__body">
           <h3 class="svc-step__title">Inventur</h3>
           <p class="svc-step__desc">
@@ -146,7 +154,7 @@
       </article>
 
       <article class="svc-step">
-        <span class="svc-step__number">2</span>
+        <span class="svc-step__number">02</span>
         <div class="svc-step__body">
           <h3 class="svc-step__title">Baseline-Definition</h3>
           <p class="svc-step__desc">
@@ -156,7 +164,7 @@
       </article>
 
       <article class="svc-step">
-        <span class="svc-step__number">3</span>
+        <span class="svc-step__number">03</span>
         <div class="svc-step__body">
           <h3 class="svc-step__title">Ansible-Collections</h3>
           <p class="svc-step__desc">
@@ -166,7 +174,7 @@
       </article>
 
       <article class="svc-step">
-        <span class="svc-step__number">4</span>
+        <span class="svc-step__number">04</span>
         <div class="svc-step__body">
           <h3 class="svc-step__title">Schrittweise „Ansibilisierung"</h3>
           <p class="svc-step__desc">
@@ -176,7 +184,7 @@
       </article>
 
       <article class="svc-step">
-        <span class="svc-step__number">5</span>
+        <span class="svc-step__number">05</span>
         <div class="svc-step__body">
           <h3 class="svc-step__title">Zentrale Verwaltung</h3>
           <p class="svc-step__desc">
@@ -186,7 +194,7 @@
       </article>
 
       <article class="svc-step">
-        <span class="svc-step__number">6</span>
+        <span class="svc-step__number">06</span>
         <div class="svc-step__body">
           <h3 class="svc-step__title">Enablement</h3>
           <p class="svc-step__desc">
@@ -200,9 +208,13 @@
 </section>
 
 <!-- Trust Stack -->
-<section class="svc-trust">
-  <div class="container">
-    <h2 class="svc-trust__headline">Warum uns</h2>
+<section class="svc-trust frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">04 /</span> <span class="frame-bar__title">Warum wir</span></span>
+      <span class="label">ansible-automation</span>
+    </div>
+    <h2 class="svc-trust__headline">Warum <em>uns</em></h2>
     <ul class="svc-trust__list">
       <li class="svc-trust__item">
         <strong>Terraform- und Ansible-basierte Virtual-Datacenter-Provisionierung bei einem öffentlichen IT-Dienstleister unter BSI-Grundschutz.</strong> Über drei Jahre Produktivbetrieb, mit automatisiertem Auf- und Abbau virtueller Rechenzentren pro Umgebung und Kunde.
@@ -224,9 +236,13 @@
 </section>
 
 <!-- FAQ -->
-<section class="svc-faq">
-  <div class="container">
-    <h2 class="svc-faq__headline">Häufige Fragen</h2>
+<section class="svc-faq frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">05 /</span> <span class="frame-bar__title">Fragen</span></span>
+      <span class="label">ansible-automation</span>
+    </div>
+    <h2 class="svc-faq__headline">Häufige <em>Fragen</em></h2>
     <div class="svc-faq__list">
 
       <article class="svc-faq-item">
@@ -276,8 +292,12 @@
 </section>
 
 <!-- Final CTA -->
-<section class="svc-cta">
-  <div class="container">
+<section class="svc-cta frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">06 /</span> <span class="frame-bar__title">Nächster Schritt</span></span>
+      <span class="label">ansible-automation</span>
+    </div>
     <div class="svc-cta__content">
       <h2 class="svc-cta__headline">Bereit, Ihre Server endlich reproduzierbar zu machen?</h2>
       <p class="svc-cta__sub">

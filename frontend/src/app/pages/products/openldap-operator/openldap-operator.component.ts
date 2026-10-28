@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './openldap-operator.component.html',
-  styleUrls: ['./openldap-operator.component.scss'],
+  styleUrls: ['../product-detail.scss'],
 })
 export class OpenldapOperatorComponent {}
