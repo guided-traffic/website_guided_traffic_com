@@ -9,60 +9,51 @@ describe('FooterComponent', () => {
     }).compileComponents();
   });
 
+  function render(): HTMLElement {
+    const fixture = TestBed.createComponent(FooterComponent);
+    fixture.detectChanges();
+    return fixture.nativeElement;
+  }
+
   it('should create', () => {
     const fixture = TestBed.createComponent(FooterComponent);
     expect(fixture.componentInstance).toBeTruthy();
   });
 
   it('should render the logo text', () => {
-    const fixture = TestBed.createComponent(FooterComponent);
-    fixture.detectChanges();
-    const logo = fixture.nativeElement.querySelector('.footer__logo');
-    expect(logo).toBeTruthy();
-    expect(logo.textContent).toContain('Guided Traffic');
+    const logo = render().querySelector('.footer__logo');
+    expect(logo?.textContent).toContain('Guided Traffic');
   });
 
   it('should render all four columns', () => {
-    const fixture = TestBed.createComponent(FooterComponent);
-    fixture.detectChanges();
-    const columns = fixture.nativeElement.querySelectorAll('.footer__col');
-    expect(columns.length).toBe(4);
+    expect(render().querySelectorAll('.footer__col').length).toBe(4);
   });
 
   it('should render column headings', () => {
-    const fixture = TestBed.createComponent(FooterComponent);
-    fixture.detectChanges();
-    const headings = fixture.nativeElement.querySelectorAll('.footer__heading');
-    const texts = Array.from(headings).map((h: any) => h.textContent.trim());
-    expect(texts).toContain('Quick Links');
-    expect(texts).toContain('Services');
-    expect(texts).toContain('Contact');
+    const headings = render().querySelectorAll('.footer__heading');
+    const texts = Array.from(headings).map(h => h.textContent?.trim());
+    expect(texts).toEqual(['Services', 'Produkte', 'Kontakt', 'Standort']);
+  });
+
+  it('should link services to their detail pages', () => {
+    const links = render().querySelectorAll('.footer__col:nth-child(2) a');
+    const hrefs = Array.from(links).map(a => a.getAttribute('href'));
+    expect(hrefs).toEqual([
+      '/services/ci-pipelines',
+      '/services/ansible-automation',
+      '/services/kubernetes-cluster',
+    ]);
   });
 
   it('should render copyright text with current year', () => {
-    const fixture = TestBed.createComponent(FooterComponent);
-    fixture.detectChanges();
-    const bottom = fixture.nativeElement.querySelector('.footer__bottom');
-    const year = new Date().getFullYear();
-    expect(bottom.textContent).toContain(`${year}`);
-    expect(bottom.textContent).toContain('Guided Traffic');
+    const bottom = render().querySelector('.footer__bottom');
+    expect(bottom?.textContent).toContain(`${new Date().getFullYear()}`);
+    expect(bottom?.textContent).toContain('Guided Traffic');
   });
 
-  it('should render quick links', () => {
-    const fixture = TestBed.createComponent(FooterComponent);
-    fixture.detectChanges();
-    const links = fixture.nativeElement.querySelectorAll('.footer__list a');
-    const hrefs = Array.from(links).map((a: any) => a.getAttribute('href'));
-    expect(hrefs).toContain('/');
-    expect(hrefs).toContain('/services');
-    expect(hrefs).toContain('/products');
-    expect(hrefs).toContain('/contact');
-  });
-
-  it('should render Built with Kubernetes text', () => {
-    const fixture = TestBed.createComponent(FooterComponent);
-    fixture.detectChanges();
-    const bottom = fixture.nativeElement.querySelector('.footer__bottom');
-    expect(bottom.textContent).toContain('Built with Kubernetes');
+  it('should render the imprint link and the Kubernetes note', () => {
+    const bottom = render().querySelector('.footer__bottom');
+    expect(bottom?.querySelector('a')?.getAttribute('href')).toBe('/impressum');
+    expect(bottom?.textContent).toContain('Entwickelt mit Kubernetes');
   });
 });

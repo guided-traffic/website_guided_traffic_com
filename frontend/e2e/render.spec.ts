@@ -21,9 +21,9 @@ test.describe('Homepage render test', () => {
 
     const nav = page.locator('nav').first();
     await expect(nav.getByText('Guided Traffic')).toBeVisible();
-    await expect(nav.getByRole('link', { name: /Home/ }).first()).toBeVisible();
-    await expect(nav.getByRole('link', { name: /Products/ }).first()).toBeVisible();
+    await expect(nav.getByRole('link', { name: /Start/ }).first()).toBeVisible();
     await expect(nav.getByRole('link', { name: /Services/ }).first()).toBeVisible();
+    await expect(nav.getByRole('link', { name: /Produkte/ }).first()).toBeVisible();
   });
 
   test('products page renders', async ({ page }) => {

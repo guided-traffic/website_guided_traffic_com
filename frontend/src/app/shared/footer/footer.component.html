@@ -1,5 +1,5 @@
-<footer class="footer" role="contentinfo">
-  <div class="footer__inner">
+<footer class="footer frame-rule" role="contentinfo">
+  <div class="frame footer__inner">
     <div class="footer__grid">
 
       <!-- Column 1: Brand -->
@@ -8,13 +8,13 @@
         <p class="footer__tagline">Wir unterstützen Engineering-Teams bei der Migration auf moderne Kubernetes-Infrastruktur mit GitOps.</p>
       </div>
 
-      <!-- Column 2: Services — dynamically populated, fragment-routed like the header mega-menu -->
+      <!-- Column 2: Services — dynamically populated, linked to the detail pages -->
       <div class="footer__col">
         <h4 class="footer__heading">Services</h4>
         <ul class="footer__list">
-          @for (service of services; track service.title) {
+          @for (service of services; track service.slug) {
             <li>
-              <a [routerLink]="['/services']" [fragment]="getSlug(service.title)">{{ service.title }}</a>
+              <a [routerLink]="service.ctaLink">{{ service.title }}</a>
             </li>
           }
         </ul>

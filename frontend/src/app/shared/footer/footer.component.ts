@@ -17,18 +17,4 @@ export class FooterComponent {
   currentYear = new Date().getFullYear();
   services: Service[] = this.servicesService.getServices();
   products: Product[] = this.productsService.getProducts();
-
-  // Mirror the slug map from nav so footer anchors resolve to the same IDs.
-  readonly serviceSlugs: Record<string, string> = {
-    'GitOps & FluxCD': 'gitops-fluxcd',
-    'Kubernetes Provisioning': 'kubernetes-provisioning',
-    'CI/CD Pipelines': 'cicd-pipelines',
-    'Legacy-Migration': 'legacy-migration',
-    'Monitoring & Observability': 'monitoring-observability',
-    'Training & Enablement': 'training-enablement',
-  };
-
-  getSlug(title: string): string {
-    return this.serviceSlugs[title] ?? '';
-  }
 }

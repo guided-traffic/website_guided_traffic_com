@@ -1,105 +1,138 @@
 # Design System: Guided Traffic
 
-> Generated via ui-ux-pro-max for: kubernetes devops b2b saas consulting dark mode
-> Color palette OVERRIDDEN with dark theme inspired by tasrieit.com
+> **Status:** approved 2026-10-28 as the site's design. Applied on branch `feat/paper-redesign` to
+> the home page, nav and footer. All other pages still carry hard-coded colors from the previous
+> dark (tasrieit-derived) theme and look mixed until they are migrated.
+>
+> **Reference:** design language modeled on getartcraft.com (paper palette, visible grid, type
+> pairing). Only the language is borrowed — no logo, hero composition, imagery or copy.
+
+The source of truth for every value below is [`frontend/src/styles.scss`](../frontend/src/styles.scss).
 
 ---
 
-## Pattern
-- **Name:** Bento Grid Showcase
-- **CTA Placement:** Floating sticky CTA + end-of-section CTAs
-- **Sections:** Hero > Services Bento Grid > How We Work > Products > Testimonials > CTA
-- **Color Strategy:** Dark base with subtle section alternation (primary/secondary bg)
+## Principles
 
-## Style
-- **Name:** Dark Premium Flat
-- **Keywords:** dark mode, minimalist, clean lines, subtle borders, card-based, premium, professional, near-black backgrounds, muted accents
-- **Best For:** B2B SaaS, DevOps tooling, infrastructure consulting, developer-facing products
-- **Performance:** Excellent | **Accessibility:** Ensure 4.5:1 contrast on dark backgrounds
+- **Drawing sheet, not dashboard.** A visible frame with hairline sides, section bars and
+  crosshair marks. Structure is shown, not hidden behind shadows and gradients.
+- **Ink on paper.** No brand hue on surfaces or text, with one exception: the nav "Kontakt"
+  CTA keeps the orange of the previous design. Otherwise contrast comes from ink blocks
+  (primary buttons, the active nav item) and the always-dark terminal panel.
+- **Numbers instead of icons.** Lists, cards and menu entries are numbered `01`, `02`, … in mono.
+  No emoji, no icon set.
+- **One serif word per heading.** The accent word is wrapped in `<em>` and set in Instrument Serif
+  italic; everything else in the heading is wide Archivo.
 
-## Colors — Dark Theme
+## Colors
 
-| Role              | Hex / Value                       | CSS Variable              |
-|-------------------|-----------------------------------|---------------------------|
-| BG Primary        | `#0a0a0b`                         | `--color-bg-primary`      |
-| BG Secondary      | `#111113`                         | `--color-bg-secondary`    |
-| BG Card           | `#161618`                         | `--color-bg-card`         |
-| BG Card Hover     | `#1c1c1f`                         | `--color-bg-card-hover`   |
-| Border            | `rgba(255, 255, 255, 0.08)`       | `--color-border`          |
-| Text Primary      | `#f5f5f7`                         | `--color-text-primary`    |
-| Text Secondary    | `#8b8b8e`                         | `--color-text-secondary`  |
-| Text Muted        | `#56565a`                         | `--color-text-muted`      |
-| Accent (CTA)      | `#3b82f6`                         | `--color-accent`          |
-| Accent Hover      | `#2563eb`                         | `--color-accent-hover`    |
-| Accent Subtle     | `rgba(59, 130, 246, 0.1)`         | `--color-accent-subtle`   |
-| Success           | `#22c55e`                         | `--color-success`         |
+Theme-dependent values (defined in the `theme-light` / `theme-dark` mixins):
 
-*Notes: Near-black backgrounds with vibrant blue CTA. Inspired by tasrieit.com dark theme. High contrast white text on dark surfaces.*
+| Role | Light | Dark | CSS variable |
+|---|---|---|---|
+| Paper (page background) | `#f2f1ee` | `#111114` | `--color-paper` |
+| Paper deep (hover, alt sections) | `#e9e8e4` | `#1b1b20` | `--color-paper-deep` |
+| Ink (text, primary surfaces) | `#101014` | `#f2f1ee` | `--color-ink` |
+| Ink soft (hover on ink) | `#2a2a30` | `#d9d8d3` | `--color-ink-soft` |
+| Line (hairlines) | ink at `.16` | ink at `.16` | `--color-line` |
+| Line strong (link underline, hover border) | ink at `.32` | ink at `.32` | `--color-line-strong` |
+| Mark (crosshairs) | ink at `.55` | ink at `.55` | `--color-mark` |
+| Text secondary | ink at `.70` — 6.8:1 | ink at `.70` — 9.2:1 | `--color-text-secondary` |
+| Text muted | ink at `.60` — 4.7:1 | ink at `.60` — 6.5:1 | `--color-text-muted` |
+
+Constant in both themes:
+
+| Role | Value | CSS variable |
+|---|---|---|
+| Signal — brand orange from the previous design; ticker dots, terminal arrow, nav "Kontakt" CTA | `#ff6a00` | `--color-signal` |
+| Signal hover | `#ea580c` | `--color-signal-hover` |
+| Text on signal — always dark: 6.6:1 (white would be 2.9:1) | `#101014` | `--color-on-signal` |
+| Terminal background / text — the illustration stays dark | `#0a0a0c` / `#f2f1ee` | `--color-terminal-bg`, `--color-terminal-text` |
+
+The previous semantic names (`--color-bg-primary`, `--color-text-primary`, `--color-accent`,
+`--gradient-*`, …) remain as aliases onto this palette so unmigrated pages keep compiling.
+Gradient tokens are flat and written as `linear-gradient(c, c)` so they stay valid in both
+`background` and `background-image`.
+
+*Deviation from the reference:* getartcraft uses `.42` alpha for muted text (≈2.7:1). We raise it
+to `.60` so small mono labels meet 4.5:1.
+
+## Themes
+
+- **Default follows the OS** via `prefers-color-scheme` — pure CSS, no script needed, no flash
+  with SSR.
+- **Explicit choice** via the half-circle toggle in the nav: [`ThemeService`](../frontend/src/app/services/theme.service.ts)
+  sets `data-theme="light|dark"` on `<html>` and stores it in `localStorage` under `gt-theme`.
+  A stored choice wins over the OS; without one the toggle label tracks OS changes live.
+- **No flash for stored choices:** [`public/theme-init.js`](../frontend/public/theme-init.js) runs
+  blocking in `<head>` and applies the stored value before first paint. Its key must match the
+  service.
+- If storage is blocked, the choice lasts for the current page view and the OS setting applies
+  on the next load.
 
 ## Typography
-- **Heading:** Inter
-- **Body:** Inter
-- **Mono:** JetBrains Mono (code snippets, technical content)
-- **Mood:** clean, technical, professional, modern, trustworthy
-- **Best For:** DevOps/infrastructure products, B2B SaaS, developer tools
-- **Google Fonts:** https://fonts.google.com/share?selection.family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500
-- **CSS Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-```
 
-## Key Effects
-- Subtle card borders (1px solid rgba(255, 255, 255, 0.08))
-- Hover elevation: background lightens slightly (#1c1c1f)
-- Clean transitions (150-250ms ease)
-- No heavy shadows — rely on border + bg contrast for depth
-- Accent glow on focused/active interactive elements
+| Role | Font | Settings | Variable |
+|---|---|---|---|
+| Headings `h1`–`h6` | Archivo (variable) | weight 620, `font-stretch: 118%`, letter-spacing −0.035em, line-height 1.02 | `--font-display` |
+| Accent word (`h* em`) | Instrument Serif italic | weight 400, normal width, letter-spacing −0.02em | `--font-serif` |
+| Body | Inter | 16px, line-height 1.6; lead paragraphs 18px | `--font-sans` |
+| Labels, nav, buttons | Geist Mono | 11px, weight 500 (buttons 700), uppercase, letter-spacing 0.15em (buttons 0.12em) | `--font-mono` |
 
-## Spacing Scale
-| Token  | Value   |
-|--------|---------|
-| xs     | 0.25rem |
-| sm     | 0.5rem  |
-| md     | 1rem    |
-| lg     | 1.5rem  |
-| xl     | 2rem    |
-| 2xl    | 3rem    |
-| 3xl    | 4rem    |
-| 4xl    | 6rem    |
+Sizes: `h1` `clamp(2.5rem, 5.6vw, 4.5rem)`, `h2` `clamp(2.25rem, 4.2vw, 3.75rem)`, `h3` 1.5rem
+(1.25rem ≤ 768px).
 
-## Border Radius
-| Token  | Value  |
-|--------|--------|
-| sm     | 6px    |
-| md     | 10px   |
-| lg     | 16px   |
-| full   | 9999px |
+All four fonts are loaded from Google Fonts in [`index.html`](../frontend/src/index.html), which
+sets `lang="de"`. German hyphenation is enabled for `h1`/`h2` only, and only for words of 12+
+characters (`hyphenate-limit-chars: 12 5 5`) so names like "Kubernetes" never split.
 
-## Buttons
-- **Primary:** `--color-accent` bg, white text, `--radius-md`, hover darkens to `--color-accent-hover`
-- **Secondary:** transparent bg, 1px `--color-border` border, `--color-text-primary` text, hover lightens bg
-- **Ghost:** no border, `--color-text-secondary` text, hover shows subtle bg
+## Layout primitives (global classes)
 
-## Cards
-- Background: `--color-bg-card`
-- Border: 1px solid `--color-border`
-- Radius: `--radius-md`
-- Hover: bg shifts to `--color-bg-card-hover`, transition 250ms ease
-- Padding: `--space-lg` to `--space-xl`
+| Class | What it is |
+|---|---|
+| `.frame` | Content column, `max-width: 1280px`, 1px hairline left and right |
+| `.frame-rule` | Full-width hairline at a section boundary — put it on the section element, not inside the frame |
+| `.frame-bar` | Section header row inside a frame, directly below a `.frame-rule`: `01 / Title` left, meta right, hairline below, crosshair marks where the rule meets the frame sides (hidden ≤ 768px) |
+| `.frame-bar__num`, `.frame-bar__title` | Muted number and ink title inside the bar |
+| `.label` | Mono 11px uppercase label |
+| `.btn` + `.btn-primary` / `.btn-secondary` | 48px tall, square, mono caps; primary = ink block, secondary = ink outline on paper |
+| `.card` | Flat, hairline border, square; hover fills paper-deep |
+| `.section-alt` | Paper-deep background |
 
-## Avoid (Anti-patterns)
-- Light mode (this is a dark-first design)
-- Heavy drop shadows (use border/bg contrast instead)
-- Emoji as icons (use SVG: Lucide or Heroicons)
-- Excessive animation or parallax
-- Bright/saturated backgrounds
+Inner padding of a frame is `--frame-pad` (40px, 20px ≤ 768px). Nav height is `--nav-height` (48px).
 
-## Pre-Delivery Checklist
-- [ ] No emojis as icons (use SVG)
-- [ ] cursor-pointer on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Dark mode: text contrast 4.5:1 minimum against dark bg
-- [ ] Focus states visible for keyboard nav (accent ring)
-- [ ] prefers-reduced-motion respected
-- [ ] Responsive breakpoints: 375px, 768px, 1024px, 1440px
-- [ ] Inter font loaded via Google Fonts with preconnect
+## Components (home page)
+
+- **Nav** — sticky bar of hairline-separated cells: wordmark | mono links | theme toggle |
+  full-height signal-orange "Kontakt" block. On phones the bar shows wordmark | theme toggle |
+  menu toggle. Active route = ink block with paper text. Mega-menus are framed two-column grids
+  with numbered entries.
+- **Hero** — dot-grid background (24px), headline, then a two-column row: lead text + CTAs + mono
+  meta line, and the terminal panel.
+- **Terminal panel** — always-dark block with a hairline frame and a mono "Beispiel" bar; replaces
+  photographic imagery with an illustration of the claim. Marked as an example, not a real log.
+- **Ticker** — mono band with signal-colored square dots, clipped to the frame (it does not run
+  past the frame sides); decorative, `aria-hidden`, stops under `prefers-reduced-motion`. Four
+  copies, each scrolling by its own width, so no gap appears at any point of the cycle.
+- **Numbered rows** — pain points as rows with a mono number column.
+- **Topic cards** — three cells separated by hairlines; a bar with the route slug and number, then
+  title, text and a mono CTA. The whole cell is the click target.
+- **Footer** — framed four-column grid with mono headings and a mono bottom bar.
+
+## Avoid
+
+- Rounded corners, drop shadows, glass/blur effects (the scrolled nav is the one exception)
+- Brand hue on text or large surfaces — the signal color is for dots, markers and the contact CTA
+- Emoji or icon sets as list markers — number instead
+- More than one serif accent word per heading
+- Hard-coded colors in component styles — use the tokens (they are what makes dark mode work)
+
+## Pre-delivery checklist
+
+- [ ] Checked in both themes (Playwright `colorScheme: 'light' | 'dark'`)
+- [ ] Text contrast ≥ 4.5:1 on paper (secondary and muted tokens already comply)
+- [ ] Headings checked at 390px for overflow (`scrollWidth > clientWidth`)
+- [ ] Hover and visible focus states (`:focus-visible` = 2px ink outline)
+- [ ] `prefers-reduced-motion` respected (ticker stops)
+- [ ] Responsive at 390px, 768px, 1024px, 1440px and a wide viewport (≥ 2560px), no horizontal page scroll
+- [ ] Animations checked over their full cycle, not only at t=0
+- [ ] Component styles under the 10kB error budget in `angular.json`

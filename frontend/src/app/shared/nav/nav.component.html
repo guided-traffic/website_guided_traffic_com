@@ -17,7 +17,7 @@
       <ul class="nav__links">
         <li><a routerLink="/" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Start</a></li>
 
-        <!-- Desktop: mega-menu -->
+        <!-- Desktop: services mega-menu -->
         <li
           class="nav__services-item nav__services-item--desktop"
           [class.nav__services-item--force-closed]="megaForceClosed === 'services'"
@@ -29,9 +29,9 @@
           <div class="nav__mega">
             <div class="nav__mega-inner">
               <div class="nav__mega-grid">
-                @for (service of services; track service.title) {
-                  <a class="nav__mega-item" [routerLink]="['/services']" [fragment]="getSlug(service.title)" (click)="closeMega('services')">
-                    <span class="nav__mega-item-icon">{{ service.icon }}</span>
+                @for (service of services; track service.slug; let i = $index) {
+                  <a class="nav__mega-item" [routerLink]="service.ctaLink" (click)="closeMega('services')">
+                    <span class="nav__mega-item-num">{{ i + 1 | number: '2.0' }}</span>
                     <span class="nav__mega-item-body">
                       <span class="nav__mega-item-title">{{ service.title }}</span>
                       <span class="nav__mega-item-desc">{{ service.description }}</span>
@@ -48,16 +48,16 @@
           </div>
         </li>
 
-        <!-- Mobile: accordion toggle -->
+        <!-- Mobile: services accordion toggle -->
         <li class="nav__services-item nav__services-item--mobile">
           <a href="#" (click)="toggleServices($event)" [class.nav__link--active-parent]="servicesOpen">
             Services <span class="nav__chevron" [class.nav__chevron--open]="servicesOpen">&#9662;</span>
           </a>
           <ul class="nav__sub-list" [class.nav__sub-list--open]="servicesOpen">
-            @for (service of services; track service.title) {
+            @for (service of services; track service.slug; let i = $index) {
               <li>
-                <a [routerLink]="['/services']" [fragment]="getSlug(service.title)" (click)="closeMenu()">
-                  <span class="nav__dropdown-icon">{{ service.icon }}</span>
+                <a [routerLink]="service.ctaLink" (click)="closeMenu()">
+                  <span class="nav__sub-num">{{ i + 1 | number: '2.0' }}</span>
                   {{ service.title }}
                 </a>
               </li>
@@ -77,9 +77,9 @@
           <div class="nav__mega">
             <div class="nav__mega-inner">
               <div class="nav__mega-grid">
-                @for (product of products; track product.slug) {
+                @for (product of products; track product.slug; let i = $index) {
                   <a class="nav__mega-item" [routerLink]="product.ctaLink" (click)="closeMega('products')">
-                    <span class="nav__mega-item-icon">{{ product.icon }}</span>
+                    <span class="nav__mega-item-num">{{ i + 1 | number: '2.0' }}</span>
                     <span class="nav__mega-item-body">
                       <span class="nav__mega-item-title">{{ product.name }}</span>
                       <span class="nav__mega-item-desc">{{ product.description }}</span>
@@ -102,10 +102,10 @@
             Produkte <span class="nav__chevron" [class.nav__chevron--open]="productsOpen">&#9662;</span>
           </a>
           <ul class="nav__sub-list" [class.nav__sub-list--open]="productsOpen">
-            @for (product of products; track product.slug) {
+            @for (product of products; track product.slug; let i = $index) {
               <li>
                 <a [routerLink]="product.ctaLink" (click)="closeMenu()">
-                  <span class="nav__dropdown-icon">{{ product.icon }}</span>
+                  <span class="nav__sub-num">{{ i + 1 | number: '2.0' }}</span>
                   {{ product.name }}
                 </a>
               </li>
@@ -114,7 +114,20 @@
         </li>
 
       </ul>
-      <a routerLink="/contact" class="nav__cta btn btn-primary" (click)="closeMenu()">Kontakt</a>
+      <a routerLink="/contact" class="nav__cta" (click)="closeMenu()">Kontakt</a>
     </div>
+
+    <button
+      type="button"
+      class="nav__theme"
+      (click)="toggleTheme()"
+      [attr.aria-label]="theme() === 'dark' ? 'Zu hellem Design wechseln' : 'Zu dunklem Design wechseln'"
+      [attr.title]="theme() === 'dark' ? 'Helles Design' : 'Dunkles Design'"
+    >
+      <svg class="nav__theme-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor" />
+      </svg>
+    </button>
   </div>
 </nav>

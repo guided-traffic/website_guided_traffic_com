@@ -1,40 +1,83 @@
-<!-- Hero Section -->
+<!-- Hero -->
 <section class="hero">
-  <div class="container">
-    <div class="hero__content">
-      <h1 class="hero__headline">
-        Deployments per Merge. <span class="hero__highlight">Nicht per Nachtschicht.</span>
-      </h1>
-      <p class="hero__sub">
-        Wir helfen mittelständischen IT-Teams, von handgepflegten Servern und
-        Ein-Personen-Deployments zu automatisierter Infrastruktur zu kommen.
-        Pragmatisch, ohne Vendor-Lock-In — und so, dass Ihr Team am Ende alles
-        selbst betreiben kann.
-      </p>
-      <div class="hero__ctas">
-        <a
-          href="https://cal.eu/hans-fischer/kennenlernen"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary btn-lg"
-        >Kennenlernen</a>
-        <a href="#wo-anfangen" class="btn btn-secondary btn-lg">So arbeiten wir</a>
+  <div class="frame hero__frame">
+    <h1 class="hero__headline">
+      Deployments per Merge. Nicht per <em>Nachtschicht.</em>
+    </h1>
+    <div class="hero__body">
+      <div class="hero__copy">
+        <p class="hero__sub">
+          Wir helfen mittelständischen IT-Teams, von handgepflegten Servern und
+          Ein-Personen-Deployments zu automatisierter Infrastruktur zu kommen.
+          Pragmatisch, ohne Vendor-Lock-In — und so, dass Ihr Team am Ende alles
+          selbst betreiben kann.
+        </p>
+        <div class="hero__ctas">
+          <a
+            href="https://cal.eu/hans-fischer/kennenlernen"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >Kennenlernen</a>
+          <a href="#wo-anfangen" class="btn btn-secondary">So arbeiten wir</a>
+        </div>
+        <p class="label hero__meta"><span>On-Prem</span> · <span>Cloud</span> · <span>Hybrid</span> · <span>Ohne Vendor-Lock-In</span></p>
       </div>
+
+      <!-- Illustration, not a real log: what "Deployment per Merge" looks like -->
+      <figure class="terminal" aria-label="Beispiel: ein Deployment per Merge">
+        <figcaption class="terminal__bar">
+          <span class="label">Beispiel</span>
+          <span class="label">main</span>
+        </figcaption>
+        <pre class="terminal__body"><code><span class="terminal__prompt">$</span> git merge feature/checkout
+  <span class="terminal__ok">✓</span> Merge in main
+
+<span class="terminal__muted">pipeline #1842</span>
+  <span class="terminal__ok">✓</span> test            0:48
+  <span class="terminal__ok">✓</span> security-scan   1:12
+  <span class="terminal__ok">✓</span> build image     0:56
+
+<span class="terminal__muted">gitops sync</span>
+  <span class="terminal__ok">✓</span> staging         healthy
+  <span class="terminal__ok">✓</span> production      healthy
+
+<span class="terminal__signal">→</span> v2.14.0 live · 3:41 min</code></pre>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- Pain Teaser -->
-<section class="pain-teaser">
-  <div class="container">
-    <h2 class="pain-teaser__headline">Kennen Sie das?</h2>
-    <ul class="pain-teaser__list">
-      <li>Deployments laufen noch per Hand — und nur einer weiß wirklich wie.</li>
-      <li>Jedes Team hat seine eigene CI/CD-Pipeline. Teamwechsel werden zum Onboarding-Marathon.</li>
-      <li>Jeder Server ist „irgendwie ein bisschen anders". Updates sind ein Herzinfarkt-Event.</li>
-      <li>Rollback heißt: nächtliches Backup zurückspielen.</li>
-      <li>Kubernetes steht seit zwei Jahren auf der Roadmap — aber niemand traut sich ran.</li>
-    </ul>
+<!-- Ticker: decorative repeat of terms from the service pages, clipped to the frame -->
+<div class="frame ticker" aria-hidden="true">
+  <div class="ticker__track">
+    @for (copy of tickerCopies; track copy) {
+      <ul class="ticker__list">
+        @for (term of tickerTerms; track term) {
+          <li class="ticker__item">{{ term }}</li>
+        }
+      </ul>
+    }
+  </div>
+</div>
+
+<!-- 01 Pain Teaser -->
+<section class="block frame-rule pain-teaser" aria-labelledby="pain-title">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Ausgangslage</span></span>
+      <span class="label">Aus Kundengesprächen</span>
+    </div>
+    <div class="block__intro">
+      <h2 id="pain-title" class="pain-teaser__headline">Kennen Sie <em>das?</em></h2>
+    </div>
+    <ol class="pain-teaser__list">
+      <li class="pain-teaser__item"><span class="label">01</span><p>Deployments laufen noch per Hand — und nur einer weiß wirklich wie.</p></li>
+      <li class="pain-teaser__item"><span class="label">02</span><p>Jedes Team hat seine eigene CI/CD-Pipeline. Teamwechsel werden zum Onboarding-Marathon.</p></li>
+      <li class="pain-teaser__item"><span class="label">03</span><p>Jeder Server ist „irgendwie ein bisschen anders". Updates sind ein Herzinfarkt-Event.</p></li>
+      <li class="pain-teaser__item"><span class="label">04</span><p>Rollback heißt: nächtliches Backup zurückspielen.</p></li>
+      <li class="pain-teaser__item"><span class="label">05</span><p>Kubernetes steht seit zwei Jahren auf der Roadmap — aber niemand traut sich ran.</p></li>
+    </ol>
     <p class="pain-teaser__hook">
       Wenn Sie mehr als einen Punkt genickt haben — wir haben für jedes dieser
       Probleme eine konkrete Antwort.
@@ -42,24 +85,33 @@
   </div>
 </section>
 
-<!-- Topic Router -->
-<section id="wo-anfangen" class="topic-router">
-  <div class="container">
-    <h2 class="topic-router__headline">Wo fangen wir bei Ihnen an?</h2>
-    <p class="topic-router__intro">
-      Drei Bereiche, in denen wir Mittelstandsinfrastruktur pragmatisch modernisieren.
-      Jeder Bereich ist eine eigenständige Leistung — Sie können mit einem anfangen,
-      ohne alles auf einmal umstellen zu müssen.
-    </p>
+<!-- 02 Topic Router -->
+<section id="wo-anfangen" class="block frame-rule topic-router" aria-labelledby="router-title">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">02 /</span> <span class="frame-bar__title">Leistungen</span></span>
+      <span class="label">Drei Bereiche</span>
+    </div>
+    <div class="block__intro">
+      <h2 id="router-title" class="topic-router__headline">Wo fangen wir bei <em>Ihnen</em> an?</h2>
+      <p class="topic-router__intro">
+        Drei Bereiche, in denen wir Mittelstandsinfrastruktur pragmatisch modernisieren.
+        Jeder Bereich ist eine eigenständige Leistung — Sie können mit einem anfangen,
+        ohne alles auf einmal umstellen zu müssen.
+      </p>
+    </div>
     <div class="topic-router__grid">
-      @for (service of services; track service.slug) {
+      @for (service of services; track service.slug; let i = $index) {
         <article class="topic-card">
-          <span class="topic-card__icon">{{ service.icon }}</span>
-          <h3 class="topic-card__title">{{ service.title }}</h3>
-          <p class="topic-card__desc">{{ service.description }}</p>
-          <a [routerLink]="service.ctaLink" class="topic-card__cta">
-            Mehr erfahren →
-          </a>
+          <div class="topic-card__bar">
+            <span class="label">{{ service.slug }}</span>
+            <span class="label">{{ i + 1 | number: '2.0' }}</span>
+          </div>
+          <div class="topic-card__body">
+            <h3 class="topic-card__title">{{ service.title }}</h3>
+            <p class="topic-card__desc">{{ service.description }}</p>
+            <a [routerLink]="service.ctaLink" class="topic-card__cta">Mehr erfahren →</a>
+          </div>
         </article>
       }
     </div>
