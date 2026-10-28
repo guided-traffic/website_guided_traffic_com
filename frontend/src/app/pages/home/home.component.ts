@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ServicesService, Service } from '../../services/services.service';
+import { HelmWheelComponent } from './helm-wheel/helm-wheel.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, DecimalPipe],
+  imports: [RouterLink, DecimalPipe, HelmWheelComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

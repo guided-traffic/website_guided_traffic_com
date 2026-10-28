@@ -1,0 +1,106 @@
+// A ship's wheel as a technical drawing: hairlines on paper, the king spoke
+// marked in the signal color. The host is a square; size and position come
+// from the page that places it.
+:host {
+  --helm-stroke: var(--color-mark);
+  --helm-tick: var(--color-line-strong);
+
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+.helm__scale,
+.helm__swell,
+.helm__trim,
+.helm__wheel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// ─── Fixed scale ─────────────────────────────────────────────────────────────
+.helm__ring {
+  fill: none;
+  stroke: var(--helm-tick);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+// Ticks are the dashes of a wide circle stroke; pathLength="360" makes the
+// dash pattern count in degrees. The offset centers a dash on 000.
+.helm__ticks {
+  fill: none;
+  stroke: var(--helm-tick);
+  transform: rotate(-90deg);
+
+  &--minor {
+    stroke-width: 12;
+    stroke-dasharray: 0.12 1.88;
+    stroke-dashoffset: 0.06;
+  }
+
+  &--major {
+    stroke-width: 22;
+    stroke-dasharray: 0.24 9.76;
+    stroke-dashoffset: 0.12;
+    stroke: var(--helm-stroke);
+  }
+}
+
+// The lubber line marks the course; the king spoke swings around it
+.helm__lubber {
+  fill: var(--color-ink);
+}
+
+// ─── Wheel ───────────────────────────────────────────────────────────────────
+// Parts are filled with paper so they cover the dot grid and each other
+.helm__part,
+.helm__line {
+  stroke: var(--helm-stroke);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.helm__part {
+  fill: var(--color-paper);
+}
+
+.helm__line {
+  fill: none;
+}
+
+.helm__collar--king {
+  fill: var(--color-signal);
+}
+
+// ─── Sway ────────────────────────────────────────────────────────────────────
+// Swell and trim have unrelated periods (11.2s and 6.6s per round trip), so the
+// sum only repeats after about six minutes and never exceeds ±5°. Each layer
+// turns as a whole on the compositor; nothing is repainted.
+.helm__swell {
+  animation: helm-swell 5.6s ease-in-out infinite alternate;
+}
+
+.helm__trim {
+  animation: helm-trim 3.3s ease-in-out -1.4s infinite alternate;
+}
+
+@keyframes helm-swell {
+  from { transform: rotate(-3.5deg); }
+  to { transform: rotate(3.5deg); }
+}
+
+@keyframes helm-trim {
+  from { transform: rotate(-1.5deg); }
+  to { transform: rotate(1.5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .helm__swell,
+  .helm__trim {
+    animation: none;
+  }
+}

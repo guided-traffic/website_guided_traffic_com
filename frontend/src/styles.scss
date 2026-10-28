@@ -12,6 +12,8 @@
   --color-text-secondary: rgba(16, 16, 20, 0.7);  // 6.8:1 on paper
   --color-text-muted: rgba(16, 16, 20, 0.6);      // 4.7:1 on paper — floor for small mono labels
   --color-accent-subtle: rgba(16, 16, 20, 0.06);
+  --color-signal: #ea580c;        // 3.2:1 on paper — #ff6a00 is 2.5:1, under the 3:1 floor for large text and marks
+  --color-signal-hover: #ff6a00;  // lightens: dark text on a darker orange would drop under 4.5:1
   --color-success: #15803d;
 }
 
@@ -27,16 +29,17 @@
   --color-text-secondary: rgba(242, 241, 238, 0.7);  // 9.2:1 on dark paper
   --color-text-muted: rgba(242, 241, 238, 0.6);      // 6.5:1 on dark paper
   --color-accent-subtle: rgba(242, 241, 238, 0.06);
+  --color-signal: #ff6a00;        // 6.6:1 on dark paper
+  --color-signal-hover: #ea580c;
   --color-success: #4ade80;
 }
 
 :root {
   @include theme-light;
 
-  // Signal — the brand orange kept from the previous design. Used for small
-  // marks and the contact CTA; text on it is always dark (6.6:1; white would be 2.9:1).
-  --color-signal: #ff6a00;
-  --color-signal-hover: #ea580c;
+  // Signal (the brand orange, per theme above): marks, accent words in headings
+  // and the contact CTA. Text on it is always dark: 5.3:1 light, 6.6:1 dark;
+  // white would be 3.6:1 and 2.9:1.
   --color-on-signal: #101014;
 
   // The terminal illustration stays dark in both themes
@@ -70,7 +73,6 @@
 
   // Typography
   --font-display: 'Archivo', system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
@@ -139,7 +141,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Typography — wide Archivo for headings, one serif italic word per heading via <em>
+// Typography — wide Archivo for headings, one signal-colored accent word per heading via <em>
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 620;
@@ -149,11 +151,8 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-primary);
 
   em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-stretch: normal;
-    letter-spacing: -0.02em;
+    font-style: normal;
+    color: var(--color-signal);
   }
 }
 

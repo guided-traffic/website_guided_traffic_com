@@ -7,10 +7,62 @@
 }
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
+// The hero fills the first screen down to the ticker, like a stage
 .hero {
+  // Ticker below the hero: 2 × 0.625rem padding + 11px × 1.6 line height + 1px rule
+  --ticker-height: 2.4375rem;
+  --stage-height: calc(100svh - var(--nav-height) - var(--ticker-height));
+
+  // Own stacking context: the wheel (z-index -1) paints above the dot grid and
+  // below the content; overflow clips it to the frame. Content stays at the
+  // top, so on tall screens the wheel fills the space below it.
   &__frame {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    min-height: var(--stage-height);
+    overflow: hidden;
     padding: var(--space-4xl) var(--frame-pad) var(--space-3xl);
     @include dot-grid;
+  }
+
+  // Lines break around lettering, as on a drawing or a chart: a solid paper
+  // halo (unblurred shadows in eight directions) keeps the text readable
+  // wherever the wheel runs behind it
+  &__headline,
+  &__sub,
+  &__meta {
+    --halo: 3px;
+    --halo-d: 2px;
+    text-shadow:
+      var(--halo) 0 var(--color-paper),
+      calc(var(--halo) * -1) 0 var(--color-paper),
+      0 var(--halo) var(--color-paper),
+      0 calc(var(--halo) * -1) var(--color-paper),
+      var(--halo-d) var(--halo-d) var(--color-paper),
+      calc(var(--halo-d) * -1) var(--halo-d) var(--color-paper),
+      var(--halo-d) calc(var(--halo-d) * -1) var(--color-paper),
+      calc(var(--halo-d) * -1) calc(var(--halo-d) * -1) var(--color-paper),
+      0 0 10px var(--color-paper);
+  }
+
+  &__headline {
+    --halo: 6px;
+    --halo-d: 4px;
+  }
+
+  // Seen from the helm: the hub sits on the bottom edge and the upper half
+  // rises behind the content, centered on the column gap so the king spoke
+  // stands between text and terminal. Sized from the stage height so the
+  // lubber line lands just below the headline.
+  &__helm {
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 100%;
+    width: max(1000px, calc(var(--stage-height) * 1.5));
+    transform: translate(-50%, -50%);
   }
 
   &__headline {
@@ -291,6 +343,27 @@
     grid-template-columns: 1fr;
   }
 
+  // One column leaves no gap for the king spoke, so the wheel moves into the
+  // flow below the terminal: same picture, upper half rising from the bottom
+  // edge. The negative margin hides the lower half; a wider-than-frame box is
+  // centered by align-self and clipped by the frame.
+  .hero__frame {
+    padding-bottom: 0;
+  }
+
+  .hero__helm {
+    --helm-width: min(190%, 1000px);
+
+    position: relative;
+    order: 1;
+    align-self: center;
+    top: auto;
+    left: auto;
+    width: var(--helm-width);
+    margin: var(--space-xl) 0 calc(var(--helm-width) * -0.5);
+    transform: none;
+  }
+
   .topic-router__grid {
     grid-template-columns: 1fr;
   }
@@ -302,7 +375,11 @@
 }
 
 @media (max-width: 768px) {
-  .hero__frame,
+  // The hero keeps padding-bottom 0: the wheel ends it (see 1024px)
+  .hero__frame {
+    padding-top: var(--space-3xl);
+  }
+
   .block__intro {
     padding-top: var(--space-3xl);
     padding-bottom: var(--space-2xl);
