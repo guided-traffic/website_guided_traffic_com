@@ -21,7 +21,7 @@ describe('ProductsComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render the hero headline with its serif accent word', () => {
+  it('should render the hero headline with its accent word', () => {
     const headline = render().querySelector('.products-hero__headline');
     expect(headline?.textContent).toContain('Werkzeuge aus der');
     expect(headline?.querySelector('em')?.textContent).toBe('Praxis');

@@ -1,0 +1,49 @@
+<!-- Both drawings share one viewBox centered on the hub, so they stay aligned -->
+
+<!-- Fixed scale: it does not turn, so the wheel's sway reads against it -->
+<svg class="helm__scale" viewBox="-580 -580 1160 1160">
+  <circle class="helm__ring" r="530" />
+  <circle class="helm__ring" r="566" />
+  <circle class="helm__ticks helm__ticks--minor" r="536" pathLength="360" />
+  <circle class="helm__ticks helm__ticks--major" r="541" pathLength="360" />
+  <path class="helm__lubber" d="M -9 -508 L 9 -508 L 0 -522 Z" />
+</svg>
+
+<!-- Two nested sways with unrelated periods add up to an irregular motion:
+     the swell pushing the bow, and the helmsman's corrections against it -->
+<div class="helm__swell">
+  <div class="helm__trim">
+    <svg class="helm__wheel" viewBox="-580 -580 1160 1160">
+      <!-- Spokes and turned handles, drawn pointing up and rotated into place;
+           rim and hub are drawn on top and hide the joints -->
+      @for (deg of spokes; track deg; let king = $first) {
+        <g [attr.transform]="'rotate(' + deg + ')'">
+          <path class="helm__part" d="M -12 -40 L -7 -310 L 7 -310 L 12 -40 Z" />
+          <path
+            class="helm__part"
+            d="M -8 -310 V -372 C -7 -392 -19 -398 -19 -418 C -19 -440 -8 -446 -7 -460 V -472
+               H 7 V -460 C 8 -446 19 -440 19 -418 C 19 -398 7 -392 8 -372 V -310 Z"
+          />
+          <rect class="helm__part" [class.helm__collar--king]="king" x="-13" y="-358" width="26" height="18" />
+          <circle class="helm__part" cy="-484" r="16" />
+        </g>
+      }
+
+      <path
+        class="helm__part"
+        fill-rule="evenodd"
+        d="M 0 -330 A 330 330 0 1 1 0 330 A 330 330 0 1 1 0 -330 Z
+           M 0 -290 A 290 290 0 1 0 0 290 A 290 290 0 1 0 0 -290 Z"
+      />
+      <circle class="helm__line" r="318" />
+
+      <circle class="helm__part" r="64" />
+      <circle class="helm__line" r="46" />
+      @for (deg of bolts; track deg) {
+        <circle class="helm__line" r="3.5" [attr.transform]="'rotate(' + deg + ') translate(0 -55)'" />
+      }
+      <circle class="helm__line" r="14" />
+      <path class="helm__line" d="M -24 0 H 24 M 0 -24 V 24" />
+    </svg>
+  </div>
+</div>

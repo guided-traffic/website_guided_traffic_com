@@ -13,13 +13,15 @@ The source of truth for every value below is [`frontend/src/styles.scss`](../fro
 
 - **Drawing sheet, not dashboard.** A visible frame with hairline sides, section bars and
   crosshair marks. Structure is shown, not hidden behind shadows and gradients.
-- **Ink on paper.** No brand hue on surfaces or text, with one exception: the nav "Kontakt"
-  CTA keeps the orange of the previous design. Otherwise contrast comes from ink blocks
-  (primary buttons, the active nav item) and the always-dark terminal panel.
+- **Ink on paper.** No brand hue on surfaces or text, with two exceptions: the nav "Kontakt"
+  CTA keeps the orange of the previous design, and one accent word per heading is set in it.
+  Otherwise contrast comes from ink blocks (primary buttons, the active nav item) and the
+  always-dark terminal panel.
 - **Numbers instead of icons.** Lists, cards and menu entries are numbered `01`, `02`, … in mono.
   No emoji, no icon set.
-- **One serif word per heading.** The accent word is wrapped in `<em>` and set in Instrument Serif
-  italic; everything else in the heading is wide Archivo.
+- **One orange word per heading.** The accent word is wrapped in `<em>` and keeps the heading's
+  wide Archivo, upright, in `--color-signal`. Color is the only difference — no second face,
+  no italic.
 
 ## Colors
 
@@ -36,14 +38,14 @@ Theme-dependent values (defined in the `theme-light` / `theme-dark` mixins):
 | Mark (crosshairs) | ink at `.55` | ink at `.55` | `--color-mark` |
 | Text secondary | ink at `.70` — 6.8:1 | ink at `.70` — 9.2:1 | `--color-text-secondary` |
 | Text muted | ink at `.60` — 4.7:1 | ink at `.60` — 6.5:1 | `--color-text-muted` |
+| Signal — brand orange from the previous design; ticker dots, terminal arrow, king spoke of the hero wheel, accent word in headings, nav "Kontakt" CTA | `#ea580c` — 3.2:1 | `#ff6a00` — 6.6:1 | `--color-signal` |
+| Signal hover (nav "Kontakt" CTA) | `#ff6a00` | `#ea580c` | `--color-signal-hover` |
 
 Constant in both themes:
 
 | Role | Value | CSS variable |
 |---|---|---|
-| Signal — brand orange from the previous design; ticker dots, terminal arrow, nav "Kontakt" CTA | `#ff6a00` | `--color-signal` |
-| Signal hover | `#ea580c` | `--color-signal-hover` |
-| Text on signal — always dark: 6.6:1 (white would be 2.9:1) | `#101014` | `--color-on-signal` |
+| Text on signal — always dark: 5.3:1 light, 6.6:1 dark (white would be 3.6:1 and 2.9:1) | `#101014` | `--color-on-signal` |
 | Terminal background / text — the illustration stays dark | `#0a0a0c` / `#f2f1ee` | `--color-terminal-bg`, `--color-terminal-text` |
 
 The previous semantic names (`--color-bg-primary`, `--color-text-primary`, `--color-accent`,
@@ -53,6 +55,13 @@ Gradient tokens are flat and written as `linear-gradient(c, c)` so they stay val
 
 *Deviation from the reference:* getartcraft uses `.42` alpha for muted text (≈2.7:1). We raise it
 to `.60` so small mono labels meet 4.5:1.
+
+*Signal per theme:* `#ff6a00` reaches only 2.5:1 on light paper, under the 3:1 floor for large text
+and for marks. Light mode therefore uses the darker `#ea580c` (3.2:1) for every signal use; dark mode
+keeps `#ff6a00`. Accent words sit in `h1` and `h2` only (≥ 36px), so the large-text floor applies.
+Body-size text on paper never takes the signal; at `h5` size (18px) the 3:1 floor would no longer
+hold. The CTA hover lightens in light mode (`#ff6a00`): a darker orange such as `#c2410c` would
+leave its 11px label at 3.7:1.
 
 ## Themes
 
@@ -72,14 +81,14 @@ to `.60` so small mono labels meet 4.5:1.
 | Role | Font | Settings | Variable |
 |---|---|---|---|
 | Headings `h1`–`h6` | Archivo (variable) | weight 620, `font-stretch: 118%`, letter-spacing −0.035em, line-height 1.02 | `--font-display` |
-| Accent word (`h* em`) | Instrument Serif italic | weight 400, normal width, letter-spacing −0.02em | `--font-serif` |
+| Accent word (`h* em`) | Archivo, as the heading | upright, color `--color-signal` | — |
 | Body | Inter | 16px, line-height 1.6; lead paragraphs 18px | `--font-sans` |
 | Labels, nav, buttons | Geist Mono | 11px, weight 500 (buttons 700), uppercase, letter-spacing 0.15em (buttons 0.12em) | `--font-mono` |
 
 Sizes: `h1` `clamp(2.5rem, 5.6vw, 4.5rem)`, `h2` `clamp(2.25rem, 4.2vw, 3.75rem)`, `h3` 1.5rem
 (1.25rem ≤ 768px).
 
-All four fonts are loaded from Google Fonts in [`index.html`](../frontend/src/index.html), which
+All three fonts are loaded from Google Fonts in [`index.html`](../frontend/src/index.html), which
 sets `lang="de"`. German hyphenation is enabled for `h1`/`h2` only, only on phones (≤ 768px), and
 only for words of 12+ characters (`hyphenate-limit-chars: 12 5 5`) so names like "Kubernetes" never
 split. Wider screens fit every word, and Chrome would otherwise hyphenate eagerly.
@@ -146,8 +155,20 @@ Shared stylesheets instead of per-page copies:
   full-height signal-orange "Kontakt" block. On phones the bar shows wordmark | theme toggle |
   menu toggle. Active route = ink block with paper text. Mega-menus are framed two-column grids
   with numbered entries.
-- **Hero** — dot-grid background (24px), headline, then a two-column row: lead text + CTAs + mono
-  meta line, and the terminal panel.
+- **Hero** — a stage that fills the first screen down to the ticker: dot-grid background (24px),
+  headline, then a two-column row: lead text + CTAs + mono meta line, and the terminal panel.
+  Content sits at the top; the helm wheel runs behind it. Headline, lead and meta line carry a
+  solid paper halo (unblurred `text-shadow` in eight directions), so the wheel's lines break around
+  the lettering as they would on a drawing.
+- **Helm wheel** — [`HelmWheelComponent`](../frontend/src/app/pages/home/helm-wheel/helm-wheel.component.ts):
+  a ship's wheel drawn as hairlines on paper with eight turned handles; only the king spoke's
+  collar is signal orange. A fixed tick scale with a lubber line stays still, so the sway reads as
+  holding a course. Two nested CSS rotations with unrelated periods (swell ±3.5° over 11.2s,
+  trim ±1.5° over 6.6s) add up to an irregular ±5° motion that repeats only after about six
+  minutes; both layers turn on the compositor without repaints. Placed with its hub on the hero's
+  bottom edge, centered on the column gap so the king spoke stands between text and terminal, and
+  sized from the stage height. At ≤ 1024px (one column) it moves into the flow below the terminal,
+  upper half visible. Decorative, `aria-hidden`, still under `prefers-reduced-motion`.
 - **Terminal panel** — always-dark block with a hairline frame and a mono "Beispiel" bar; replaces
   photographic imagery with an illustration of the claim. Marked as an example, not a real log.
 - **Ticker** — mono band with signal-colored square dots, clipped to the frame (it does not run
@@ -161,9 +182,10 @@ Shared stylesheets instead of per-page copies:
 ## Avoid
 
 - Rounded corners, drop shadows, glass/blur effects (the scrolled nav is the one exception)
-- Brand hue on text or large surfaces — the signal color is for dots, markers and the contact CTA
+- Brand hue on text or large surfaces — the signal color is for dots, markers, the contact CTA and
+  the one accent word per heading
 - Emoji or icon sets as list markers — number instead
-- More than one serif accent word per heading
+- More than one accent word per heading; italic or a second typeface for accents
 - Hard-coded colors in component styles — use the tokens (they are what makes dark mode work)
 
 ## Pre-delivery checklist
@@ -172,7 +194,7 @@ Shared stylesheets instead of per-page copies:
 - [ ] Text contrast ≥ 4.5:1 on paper (secondary and muted tokens already comply)
 - [ ] Headings checked at 390px for overflow (`scrollWidth > clientWidth`)
 - [ ] Hover and visible focus states (`:focus-visible` = 2px ink outline)
-- [ ] `prefers-reduced-motion` respected (ticker stops)
+- [ ] `prefers-reduced-motion` respected (ticker and helm wheel stop)
 - [ ] Responsive at 390px, 768px, 1024px, 1440px and a wide viewport (≥ 2560px), no horizontal page scroll
 - [ ] Animations checked over their full cycle, not only at t=0
 - [ ] Component styles under the 10kB error budget in `angular.json`

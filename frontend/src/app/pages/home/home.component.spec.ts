@@ -20,7 +20,7 @@ describe('HomeComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render the hero headline with its serif accent word', () => {
+  it('should render the hero headline with its accent word', () => {
     const h1 = render().querySelector('.hero__headline');
     expect(h1?.textContent).toContain('Deployments per Merge.');
     expect(h1?.querySelector('em')?.textContent).toContain('Nachtschicht');
