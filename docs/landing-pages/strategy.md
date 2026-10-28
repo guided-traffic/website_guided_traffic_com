@@ -69,5 +69,5 @@ The **services overview page** (`services-overview.md`) is a lighter version —
 - **Routing decided 2026-04-13:** services use the same pattern as products — `/services` (overview) and `/services/<slug>` (detail). Slugs: `kubernetes-cluster`, `ci-pipelines`, `ansible-automation`.
 - **Legacy-Migration scope decided 2026-04-13:** containerization of existing apps is a sub-step inside the Kubernetes service, not a separate detail page. If customer feedback later shows strong standalone demand, it can be split out into a 4th service without rewriting the other pages.
 - **"BSI-Standards"** — may we claim this directly on the Kubernetes page (3.5 years of real experience), or soften to "orientiert an BSI-Grundschutz-Prinzipien"?
-- **Pricing model mention** — do we name a model (Festpreis vs. Tagessatz vs. Retainer) in the FAQ, or stay silent and force a call?
+- **Pricing decided 2026-10-28:** no pricing model (Festpreis, Tagessatz, Retainer) and no figures anywhere on the site. Cost questions are answered by pointing to a concrete offer after the Erstgespräch.
 - **Navigation:** header menu already has a "Services" entry (existing `/services` route). Do sub-items need to appear (e.g., dropdown), or is the overview page enough as a routing hub?
