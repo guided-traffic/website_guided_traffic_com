@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './s3-encryption-proxy.component.html',
-  styleUrls: ['./s3-encryption-proxy.component.scss'],
+  styleUrls: ['../product-detail.scss'],
 })
 export class S3EncryptionProxyComponent {}

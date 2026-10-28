@@ -1,6 +1,7 @@
+<!-- Hero -->
 <section class="services-hero">
-  <div class="services-hero__content">
-    <h1 class="services-hero__headline">Unsere Leistungen</h1>
+  <div class="frame services-hero__frame">
+    <h1 class="services-hero__headline">Unsere <em>Leistungen</em></h1>
     <p class="services-hero__sub">
       Drei spezialisierte Bereiche, in denen wir mittelständische IT-Infrastruktur
       pragmatisch modernisieren. Jeder Bereich ist eine eigenständige Leistung —
@@ -9,17 +10,27 @@
   </div>
 </section>
 
-<section class="services container">
-  <div class="services__grid">
-    @for (service of services; track service.slug) {
-      <article class="service-card">
-        <span class="service-card__icon">{{ service.icon }}</span>
-        <h2 class="service-card__title">{{ service.title }}</h2>
-        <p class="service-card__description">{{ service.description }}</p>
-        <a [routerLink]="service.ctaLink" class="service-card__cta">
-          {{ service.ctaLabel }} →
-        </a>
-      </article>
-    }
+<!-- 01 Services -->
+<section class="services frame-rule" aria-label="Leistungen">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Leistungen</span></span>
+      <span class="label">Drei Bereiche</span>
+    </div>
+    <div class="services__grid">
+      @for (service of services; track service.slug; let i = $index) {
+        <article class="service-card">
+          <div class="service-card__bar">
+            <span class="label">{{ service.slug }}</span>
+            <span class="label">{{ i + 1 | number: '2.0' }}</span>
+          </div>
+          <div class="service-card__body">
+            <h2 class="service-card__title">{{ service.title }}</h2>
+            <p class="service-card__description">{{ service.description }}</p>
+            <a [routerLink]="service.ctaLink" class="service-card__cta">{{ service.ctaLabel }} →</a>
+          </div>
+        </article>
+      }
+    </div>
   </div>
 </section>

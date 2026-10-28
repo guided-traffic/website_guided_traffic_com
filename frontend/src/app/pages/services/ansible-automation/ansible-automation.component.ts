@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './ansible-automation.component.html',
-  styleUrls: ['./ansible-automation.component.scss'],
+  styleUrls: ['../service-detail.scss'],
 })
 export class AnsibleAutomationComponent {}

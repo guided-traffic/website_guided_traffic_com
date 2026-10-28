@@ -1,122 +1,53 @@
-// ─── Hero Mini-Section ──────────────────────────────────────────────────────
+@use '../../../styles/patterns' as *;
+
+section {
+  padding: 0;
+}
+
 .services-hero {
-  position: relative;
-  padding: var(--space-4xl) 0 var(--space-2xl);
-  text-align: center;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 400px;
-    background: radial-gradient(ellipse, rgba(30, 60, 140, 0.15) 0%, rgba(249, 115, 22, 0.06) 40%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  &__content {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 var(--space-xl);
+  &__frame {
+    @include page-hero;
   }
 
   &__headline {
-    font-size: clamp(2.25rem, 5vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--color-text-primary);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
   }
 
   &__sub {
-    font-size: 1.15rem;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 62ch;
+    font-size: 1.125rem;
   }
 }
 
-// ─── Services Grid ─────────────────────────────────────────────────────────
-.services {
-  padding-top: var(--space-3xl);
-  padding-bottom: var(--space-4xl);
-
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-xl);
-  }
+.services__grid {
+  @include cell-grid(300px);
 }
 
-// ─── Service Card ──────────────────────────────────────────────────────────
 .service-card {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  transition:
-    background var(--transition-normal),
-    border-color var(--transition-normal);
+  border-top: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line);
+  @include route-card;
 
-  &:hover {
-    background: var(--color-bg-card-hover);
-    border-color: rgba(100, 150, 255, 0.16);
-    box-shadow: 0 0 20px rgba(60, 100, 220, 0.08);
+  &__bar {
+    @include route-card-bar;
   }
 
-  &__icon {
-    font-size: 2rem;
-    line-height: 1;
-    margin-bottom: var(--space-xs);
+  &__body {
+    @include route-card-body;
   }
 
   &__title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
   }
 
   &__description {
-    font-size: 0.9375rem;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
     flex: 1;
+    font-size: 0.9375rem;
   }
 
   &__cta {
-    display: inline-block;
-    margin-top: var(--space-md);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--color-accent-light);
-    text-decoration: none;
-    transition: color var(--transition-normal);
-
-    &:hover {
-      color: var(--color-text-primary);
-    }
-  }
-}
-
-// ─── Responsive ────────────────────────────────────────────────────────────
-@media (max-width: 768px) {
-  .services__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .services__grid {
-    grid-template-columns: repeat(2, 1fr);
+    @include route-card-cta;
   }
 }

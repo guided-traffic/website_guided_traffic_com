@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './kubernetes-cluster.component.html',
-  styleUrls: ['./kubernetes-cluster.component.scss'],
+  styleUrls: ['../service-detail.scss'],
 })
 export class KubernetesClusterComponent {}

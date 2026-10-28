@@ -1,0 +1,319 @@
+@use '../../../styles/patterns' as *;
+
+// Shared by all product detail pages. Pages share the `pd-` class prefix and
+// the common sections (hero, problem, features, compare, stack, CTA); their own
+// sections map onto the same patterns: cell grids, chip groups, chip blocks.
+
+section {
+  padding: 0;
+}
+
+// ─── Hero ────────────────────────────────────────────────────────────────────
+.pd-hero {
+  &__frame {
+    @include page-hero;
+  }
+
+  &__headline {
+    max-width: 18ch;
+    margin-bottom: var(--space-xl);
+  }
+
+  &__sub {
+    max-width: 62ch;
+    font-size: 1.125rem;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin: var(--space-xl) 0;
+  }
+
+  &__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__meta-label {
+    @include label;
+  }
+
+  &__meta-value {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-ink);
+  }
+
+  &__meta-badge {
+    @include badge;
+
+    &--beta {
+      border-style: dashed;
+    }
+  }
+
+  // Spacing already separates the items
+  &__meta-separator {
+    display: none;
+  }
+
+  &__actions {
+    @include actions;
+  }
+
+  &__tagline {
+    margin-top: var(--space-xl);
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-ink);
+  }
+}
+
+// ─── Section heads ───────────────────────────────────────────────────────────
+h2[class$='__headline']:not(.pd-cta__headline) {
+  @include section-headline;
+}
+
+p[class$='__intro'],
+.pd-problem__text,
+.pd-license__text,
+.pd-crds__api-group {
+  @include section-intro;
+}
+
+// Sections that end on text get their closing space here
+.pd-problem__content,
+.pd-license__content {
+  padding-bottom: var(--space-3xl);
+}
+
+// ─── Cell grids ──────────────────────────────────────────────────────────────
+.pd-features__grid,
+.pd-crds__grid,
+.pd-supply-chain__grid,
+.pd-sources__grid,
+.pd-providers__grid,
+.pd-modes__grid,
+.pd-compare__grid,
+.pd-algorithms__groups,
+.pd-flow__steps,
+.pd-license__grid {
+  @include cell-grid;
+  @include section-body;
+}
+
+.pd-feature-card,
+.pd-crd-card,
+.pd-sc-card,
+.pd-sources__card,
+.pd-provider-card,
+.pd-mode-card,
+.pd-algorithms__group,
+.pd-license__item {
+  @include cell;
+}
+
+// Compare entries and flow steps carry their own heading or number
+.pd-compare__entry,
+.pd-step {
+  @include cell(false);
+}
+
+// Hairlines already connect the flow steps
+.pd-step--arrow {
+  display: none;
+}
+
+.pd-step__number {
+  margin-bottom: var(--space-md);
+  @include label;
+}
+
+// Cell titles
+.pd-feature-card__title,
+.pd-crd-card__title,
+.pd-sc-card__title,
+.pd-sources__card-title,
+.pd-provider-card__title,
+.pd-mode-card__title,
+.pd-algorithms__group-title,
+.pd-compare__vs,
+.pd-step__title {
+  margin-bottom: var(--space-sm);
+  font-size: 1.25rem;
+}
+
+// Cell text
+.pd-feature-card__desc,
+.pd-crd-card__desc,
+.pd-sc-card__desc,
+.pd-sources__card-text,
+.pd-provider-card__desc,
+.pd-mode-card__desc,
+.pd-compare__text,
+.pd-step__desc,
+.pd-algorithms__item {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+}
+
+.pd-algorithms__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+}
+
+.pd-license__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.pd-license__item-label {
+  @include label;
+}
+
+.pd-license__item-value {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 620;
+  font-stretch: 118%;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.pd-crd-card__count,
+.pd-algorithms__pq-badge,
+.pd-provider-card__badge {
+  @include badge;
+  margin-left: 0.4em;
+  font-stretch: normal;
+}
+
+.pd-provider-card__badge {
+  margin: 0 0 var(--space-sm);
+}
+
+// ─── Notes after a grid or inside a cell ─────────────────────────────────────
+.pd-compare__cadence,
+.pd-compare__summary,
+.pd-catalog__footnote,
+.pd-providers__note,
+.pd-license__note {
+  padding: var(--space-lg) var(--frame-pad);
+  border-top: 1px solid var(--color-line);
+  font-size: 0.875rem;
+}
+
+.pd-algorithms__pq-note,
+.pd-catalog-group__note {
+  margin-top: var(--space-sm);
+  font-size: 0.875rem;
+}
+
+.pd-license__content > .btn {
+  margin: var(--space-lg) var(--frame-pad) 0;
+}
+
+// ─── Chip groups: a title column and its chips ───────────────────────────────
+.pd-catalog__groups,
+.pd-connectors__groups {
+  @include section-body;
+}
+
+.pd-catalog-group,
+.pd-connector-group {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: var(--space-xs) var(--space-xl);
+  align-items: baseline;
+  padding: var(--space-lg) var(--frame-pad);
+  border-top: 1px solid var(--color-line);
+}
+
+.pd-catalog-group__title,
+.pd-connector-group__title {
+  @include label;
+  font-family: var(--font-mono);
+  font-stretch: normal;
+}
+
+.pd-catalog-group__note {
+  grid-column: 2;
+}
+
+// ─── Chip blocks ─────────────────────────────────────────────────────────────
+.pd-stack__chips,
+.pd-integrations__chips,
+.pd-usecases__chips,
+.pd-governance__badges {
+  @include chips;
+  padding: var(--space-2xl) var(--frame-pad) var(--space-3xl);
+}
+
+.pd-catalog-group__chips,
+.pd-connector-group__chips,
+.pd-sc-card__tags {
+  @include chips;
+}
+
+.pd-sc-card__tags {
+  margin-top: var(--space-md);
+}
+
+.pd-chip,
+.pd-stack__chip,
+.pd-integrations__chip,
+.pd-usecases__chip,
+.pd-governance__badge {
+  @include chip;
+}
+
+// ─── Inline code ─────────────────────────────────────────────────────────────
+.pd-catalog__prefix,
+.pd-connectors__api-group {
+  font-size: 0.9em;
+}
+
+// ─── CTA ─────────────────────────────────────────────────────────────────────
+.pd-cta {
+  &__content {
+    @include closing-cta;
+  }
+
+  &__headline {
+    max-width: 20ch;
+  }
+
+  &__sub {
+    max-width: 60ch;
+    margin: var(--space-lg) 0 var(--space-xl);
+    font-size: 1.125rem;
+  }
+
+  &__actions {
+    @include actions;
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .pd-catalog-group,
+  .pd-connector-group {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-catalog-group__note {
+    grid-column: 1;
+  }
+}

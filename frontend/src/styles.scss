@@ -158,10 +158,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Large headings may meet German compounds on phones: hyphenate words of 12+
-// chars only, so product names like "Kubernetes" stay whole
-h1, h2 {
-  hyphens: auto;
-  hyphenate-limit-chars: 12 5 5;
+// chars only, so product names like "Kubernetes" stay whole. Not on wider
+// screens — every word fits there, and Chrome hyphenates eagerly even when the
+// whole word would fit on the next line.
+@media (max-width: 768px) {
+  h1, h2 {
+    hyphens: auto;
+    hyphenate-limit-chars: 12 5 5;
+  }
 }
 
 h1 { font-size: clamp(2.5rem, 5.6vw, 4.5rem); }

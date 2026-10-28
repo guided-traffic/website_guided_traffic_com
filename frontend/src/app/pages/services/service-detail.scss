@@ -1,0 +1,208 @@
+@use '../../../styles/patterns' as *;
+
+// Shared by the three service detail pages, which have identical structure
+
+section {
+  padding: 0;
+}
+
+// ─── Hero ────────────────────────────────────────────────────────────────────
+.svc-hero {
+  &__frame {
+    @include page-hero;
+  }
+
+  &__headline {
+    max-width: 16ch;
+    margin-bottom: var(--space-xl);
+  }
+
+  &__sub {
+    max-width: 60ch;
+    margin-bottom: var(--space-xl);
+    font-size: 1.125rem;
+  }
+
+  &__actions {
+    @include actions;
+  }
+}
+
+// ─── Section heads ───────────────────────────────────────────────────────────
+.svc-pain__headline,
+.svc-compare__headline,
+.svc-approach__headline,
+.svc-trust__headline,
+.svc-faq__headline {
+  @include section-headline;
+}
+
+.svc-approach__intro,
+.svc-trust__intro {
+  @include section-intro;
+}
+
+// ─── Pain cards ──────────────────────────────────────────────────────────────
+.svc-pain__grid {
+  @include cell-grid(300px);
+  @include section-body;
+}
+
+.svc-pain-card {
+  @include cell;
+
+  &__title {
+    margin-bottom: var(--space-sm);
+  }
+
+  &__desc {
+    font-size: 0.9375rem;
+  }
+}
+
+// ─── Before / after ──────────────────────────────────────────────────────────
+.svc-compare__table {
+  @include section-body;
+}
+
+.svc-compare__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--color-line);
+}
+
+.svc-compare__cell {
+  padding: var(--space-lg) var(--frame-pad);
+
+  &::before {
+    display: block;
+    margin-bottom: var(--space-sm);
+    @include label;
+  }
+
+  &--before {
+    color: var(--color-text-secondary);
+
+    &::before {
+      content: 'Heute';
+    }
+  }
+
+  &--after {
+    border-left: 1px solid var(--color-line);
+    color: var(--color-ink);
+
+    &::before {
+      content: 'Nachher';
+    }
+  }
+}
+
+// Column labels once on wide screens; per cell once the columns stack
+@media (min-width: 769px) {
+  .svc-compare__row:not(:first-child) .svc-compare__cell::before {
+    display: none;
+  }
+}
+
+// ─── Approach steps ──────────────────────────────────────────────────────────
+.svc-approach__steps {
+  @include section-body;
+}
+
+.svc-step {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  align-items: baseline;
+  padding: var(--space-lg) var(--frame-pad);
+  border-top: 1px solid var(--color-line);
+
+  &__number {
+    @include label;
+  }
+
+  &__title {
+    margin-bottom: var(--space-xs);
+    font-size: 1.25rem;
+  }
+}
+
+// ─── Trust ───────────────────────────────────────────────────────────────────
+.svc-trust__list {
+  @include rows;
+  @include section-body;
+}
+
+.svc-trust__item {
+  color: var(--color-text-secondary);
+  @include row;
+
+  strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+}
+
+.svc-trust__link {
+  margin-left: 0.5em;
+  white-space: nowrap;
+}
+
+// ─── FAQ ─────────────────────────────────────────────────────────────────────
+.svc-faq__list {
+  @include section-body;
+}
+
+.svc-faq-item {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--frame-pad);
+  border-top: 1px solid var(--color-line);
+
+  &__q {
+    font-size: 1.25rem;
+  }
+}
+
+// ─── CTA ─────────────────────────────────────────────────────────────────────
+.svc-cta {
+  &__content {
+    @include closing-cta;
+  }
+
+  &__headline {
+    max-width: 20ch;
+  }
+
+  &__sub {
+    max-width: 60ch;
+    margin: var(--space-lg) 0 var(--space-xl);
+    font-size: 1.125rem;
+  }
+
+  &__actions {
+    @include actions;
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .svc-compare__row {
+    grid-template-columns: 1fr;
+  }
+
+  .svc-compare__cell--after {
+    border-left: none;
+    border-top: 1px dashed var(--color-line);
+  }
+
+  .svc-step {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .svc-faq-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+}

@@ -1,8 +1,6 @@
 # Design System: Guided Traffic
 
-> **Status:** approved 2026-10-28 as the site's design. Applied on branch `feat/paper-redesign` to
-> the home page, nav and footer. All other pages still carry hard-coded colors from the previous
-> dark (tasrieit-derived) theme and look mixed until they are migrated.
+> **Status:** approved 2026-10-28 as the site's design and applied to every page.
 >
 > **Reference:** design language modeled on getartcraft.com (paper palette, visible grid, type
 > pairing). Only the language is borrowed — no logo, hero composition, imagery or copy.
@@ -82,8 +80,9 @@ Sizes: `h1` `clamp(2.5rem, 5.6vw, 4.5rem)`, `h2` `clamp(2.25rem, 4.2vw, 3.75rem)
 (1.25rem ≤ 768px).
 
 All four fonts are loaded from Google Fonts in [`index.html`](../frontend/src/index.html), which
-sets `lang="de"`. German hyphenation is enabled for `h1`/`h2` only, and only for words of 12+
-characters (`hyphenate-limit-chars: 12 5 5`) so names like "Kubernetes" never split.
+sets `lang="de"`. German hyphenation is enabled for `h1`/`h2` only, only on phones (≤ 768px), and
+only for words of 12+ characters (`hyphenate-limit-chars: 12 5 5`) so names like "Kubernetes" never
+split. Wider screens fit every word, and Chrome would otherwise hyphenate eagerly.
 
 ## Layout primitives (global classes)
 
@@ -99,6 +98,47 @@ characters (`hyphenate-limit-chars: 12 5 5`) so names like "Kubernetes" never sp
 | `.section-alt` | Paper-deep background |
 
 Inner padding of a frame is `--frame-pad` (40px, 20px ≤ 768px). Nav height is `--nav-height` (48px).
+
+## Page structure
+
+Every page is a hero followed by framed sections:
+
+```html
+<section class="x-hero"><div class="frame x-hero__frame">…</div></section>
+<section class="x-section frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Titel</span></span>
+      <span class="label">meta</span>
+    </div>
+    …
+  </div>
+</section>
+```
+
+The bar title names the section in one or two words; the meta label repeats a fact from the page
+(a page slug, "Drei Bereiche", "Apache-2.0"), never new marketing copy.
+
+Layout inside the frame comes from the mixins in
+[`frontend/src/styles/_patterns.scss`](../frontend/src/styles/_patterns.scss):
+
+| Mixin | Use |
+|---|---|
+| `page-hero`, `dot-grid` | Hero frame padding on the dot grid |
+| `section-headline`, `section-intro`, `section-body` | Headline, lead text and the block after them |
+| `cell-grid` + `cell` | Hairline-separated cells, auto-numbered `01, 02, …` with a CSS counter |
+| `rows` + `row` | Hairline rows with a number column (works with mixed inline content) |
+| `chips` + `chip`, `badge` | Mono tags and status badges |
+| `route-card*` | Cards that link to a detail page: slug bar, title, text, whole card clickable |
+| `closing-cta`, `actions` | Final call to action and button rows |
+
+Shared stylesheets instead of per-page copies:
+
+- [`pages/services/service-detail.scss`](../frontend/src/app/pages/services/service-detail.scss) —
+  the three service detail pages (identical structure)
+- [`pages/products/product-detail.scss`](../frontend/src/app/pages/products/product-detail.scss) —
+  all product detail pages. They use one class prefix, `pd-`; product-specific sections map onto
+  the cell-grid, chip-group and chip-block patterns in that file.
 
 ## Components (home page)
 

@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './internal-secrets-operator.component.html',
-  styleUrls: ['./internal-secrets-operator.component.scss'],
+  styleUrls: ['../product-detail.scss'],
 })
 export class InternalSecretsOperatorComponent {}

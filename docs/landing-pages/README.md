@@ -29,11 +29,12 @@ Each service detail page is its own specialized landing page targeting a single 
 
 ## Angular implementation notes
 
-Mirrors the existing `/products` structure:
-- Route definitions: `frontend/src/app/app.routes.ts` — add `services/<slug>` entries, analogous to existing `products/<slug>` routes
-- Service data: `frontend/src/app/services/services.service.ts` — extend with `slug`, `ctaLink`, etc. (currently has only `icon`, `title`, `description`; compare to `products.service.ts` which already has the richer schema)
-- Overview page: `frontend/src/app/pages/services/services.component.*` — already exists, will be updated to match the new copy and link to detail pages
-- Detail pages: new components at `frontend/src/app/pages/services/<slug>/<slug>.component.*` — one per service
+Mirrors the `/products` structure:
+- Route definitions: `frontend/src/app/app.routes.ts` — one `services/<slug>` entry per detail page
+- Service data: `frontend/src/app/services/services.service.ts` — `slug`, `title`, `description`, `ctaLabel`, `ctaLink`; nav, footer, home and the overview page render from it
+- Overview page: `frontend/src/app/pages/services/services.component.*`
+- Detail pages: `frontend/src/app/pages/services/<slug>/<slug>.component.{html,ts}`; all three share `pages/services/service-detail.scss` because their structure is identical. A new detail page reuses that stylesheet and its section structure.
+- Layout follows `design-system/MASTER.md` — framed sections with numbered bars; building blocks in `frontend/src/styles/_patterns.scss`
 - Per CLAUDE.md: HTML, SCSS, TypeScript in separate files
 
 ## How to use this folder

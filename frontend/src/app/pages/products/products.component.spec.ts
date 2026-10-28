@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ProductsComponent } from './products.component';
 import { RouterModule } from '@angular/router';
+import { ProductsService } from '../../services/products.service';
 
 describe('ProductsComponent', () => {
   beforeEach(async () => {
@@ -9,64 +10,41 @@ describe('ProductsComponent', () => {
     }).compileComponents();
   });
 
+  function render(): HTMLElement {
+    const fixture = TestBed.createComponent(ProductsComponent);
+    fixture.detectChanges();
+    return fixture.nativeElement;
+  }
+
   it('should create', () => {
     const fixture = TestBed.createComponent(ProductsComponent);
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render the correct number of product cards', () => {
-    const fixture = TestBed.createComponent(ProductsComponent);
-    fixture.detectChanges();
-    const cards = fixture.nativeElement.querySelectorAll('.product-card');
-    expect(cards.length).toBe(5);
+  it('should render the hero headline with its serif accent word', () => {
+    const headline = render().querySelector('.products-hero__headline');
+    expect(headline?.textContent).toContain('Werkzeuge aus der');
+    expect(headline?.querySelector('em')?.textContent).toBe('Praxis');
   });
 
-  it('should show FREE badges correctly', () => {
-    const fixture = TestBed.createComponent(ProductsComponent);
-    fixture.detectChanges();
-    const freeBadges = fixture.nativeElement.querySelectorAll('.product-card__badge--free');
-    expect(freeBadges.length).toBe(4);
-    freeBadges.forEach((badge: HTMLElement) => {
-      expect(badge.textContent?.trim()).toBe('FREE');
-    });
+  it('should render one card per product', () => {
+    const products = TestBed.inject(ProductsService).getProducts();
+    expect(render().querySelectorAll('.product-card').length).toBe(products.length);
   });
 
-  it('should show LICENSED badges correctly', () => {
-    const fixture = TestBed.createComponent(ProductsComponent);
-    fixture.detectChanges();
-    const licensedBadges = fixture.nativeElement.querySelectorAll('.product-card__badge--licensed');
-    expect(licensedBadges.length).toBe(1);
-    expect(licensedBadges[0].textContent?.trim()).toBe('LICENSED');
+  it('should split products into open-source and commercial sections by license', () => {
+    const products = TestBed.inject(ProductsService).getProducts();
+    const sections = render().querySelectorAll('section.products');
+    expect(sections.length).toBe(2);
+    expect(sections[0].querySelectorAll('.product-card__badge--free').length).toBe(products.filter(p => p.license === 'FREE').length);
+    expect(sections[1].querySelectorAll('.product-card__badge--licensed').length).toBe(products.filter(p => p.license === 'LICENSED').length);
   });
 
-  it('should render product names and descriptions', () => {
-    const fixture = TestBed.createComponent(ProductsComponent);
-    fixture.detectChanges();
-    const names = fixture.nativeElement.querySelectorAll('.product-card__name');
-    expect(names.length).toBe(5);
-    expect(names[0].textContent).toContain('Internal Secrets Operator');
-  });
-
-  it('should render CTA buttons for each product', () => {
-    const fixture = TestBed.createComponent(ProductsComponent);
-    fixture.detectChanges();
-    const ctas = fixture.nativeElement.querySelectorAll('.product-card__cta');
-    expect(ctas.length).toBe(5);
-  });
-
-  it('should render hero section with correct heading', () => {
-    const fixture = TestBed.createComponent(ProductsComponent);
-    fixture.detectChanges();
-    const headline = fixture.nativeElement.querySelector('.products-hero__headline');
-    expect(headline.textContent).toContain('Open Source Tools');
-  });
-
-  it('should use btn-secondary for GitHub links and btn-primary for internal links', () => {
-    const fixture = TestBed.createComponent(ProductsComponent);
-    fixture.detectChanges();
-    const secondaryCtas = fixture.nativeElement.querySelectorAll('.product-card__cta.btn-secondary');
-    const primaryCtas = fixture.nativeElement.querySelectorAll('.product-card__cta.btn-primary');
-    expect(secondaryCtas.length).toBe(4);
-    expect(primaryCtas.length).toBe(1);
+  it('should render product names and link internal CTAs to the detail pages', () => {
+    const el = render();
+    expect(el.querySelector('.product-card__name')?.textContent).toContain('Internal Secrets Operator');
+    const internal = Array.from(el.querySelectorAll('.product-card__cta.btn-primary')).map(a => a.getAttribute('href'));
+    expect(internal).toContain('/products/internal-secrets-operator');
+    expect(internal).toContain('/products/s3-encryption-proxy');
   });
 });
