@@ -61,4 +61,20 @@ describe('HomeComponent', () => {
     expect(ticker?.getAttribute('aria-hidden')).toBe('true');
     expect(el.querySelectorAll('.ticker__list').length).toBe(4);
   });
+  it('should render four trust cells and link the open-source cell to the products page', () => {
+    const el = render();
+    expect(el.querySelectorAll('.trust__cell').length).toBe(4);
+    expect(el.querySelector('.trust__link')?.getAttribute('href')).toBe('/products');
+  });
+
+  it('should render the general FAQ', () => {
+    expect(render().querySelectorAll('.faq__item').length).toBe(5);
+  });
+
+  it('should offer the booking call and the contact page in the closing CTA', () => {
+    const ctas = render().querySelectorAll('.closing__actions .btn');
+    expect(ctas.length).toBe(2);
+    expect(ctas[0].getAttribute('href')).toBe('https://cal.eu/hans-fischer/kennenlernen');
+    expect(ctas[1].getAttribute('href')).toBe('/contact');
+  });
 });

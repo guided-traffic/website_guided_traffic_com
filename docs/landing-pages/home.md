@@ -95,36 +95,106 @@ ohne alles auf einmal umstellen zu müssen.
 
 ## Section 4 — Warum wir (Trust Stack, kurze Version)
 
-**Status:** `TODO`
+**Status:** `DRAFT` (built, awaiting fine-tuning)
 
-Short version only — the topic pages carry their own detailed trust anchors. Draft once strategy.md trust stack is locked with user.
+Short version only — the topic pages carry their own detailed trust anchors. Every fact is taken from strategy.md §3 or from the products data; customer references stay anonymized.
 
-Planned content:
-- CKS (einziges Sicherheitszertifikat für Kubernetes)
-- Erfahrung mit Banken unter BaFin-Aufsicht und Behörden unter BSI-Grundschutz
-- 7 eigene Open-Source-Kubernetes-Operators (Link zu /products)
-- 10+ Jahre Infrastructure
+```
+03 / Warum wir                                                    10+ Jahre
+
+## Warum *uns*
+
+Wir betreiben Infrastruktur in Umgebungen, in denen Aufsicht und Auditoren
+mitlesen. Die Werkzeuge, die dabei entstehen, veröffentlichen wir als Open Source.
+
+01  Regulierte Umgebungen
+    Hybrid-Kubernetes für eine deutsche Privatbank unter BaFin-Aufsicht. Über
+    drei Jahre Plattformbetrieb bei einem öffentlichen IT-Dienstleister unter
+    BSI-Grundschutz.
+
+02  Zertifizierte Security
+    Certified Kubernetes Security Specialist (CKS) der Linux Foundation.
+    Network Policies, Pod Security und Secret-Handling planen wir vom ersten
+    Tag an mit.
+
+03  Open Source
+    Fünf eigene Kubernetes-Operators und gehärtete Container-Images,
+    Apache-2.0-lizenziert. Sie können den Code lesen, bevor Sie mit uns sprechen.
+    [Zu den Produkten →] (/products)
+
+04  Über zehn Jahre Praxis
+    Infrastruktur und DevOps in einer Privatbank, im öffentlichen Sektor und
+    bei E-Commerce-Plattformen mit Millionen Kunden.
+```
+
+**Notes:**
+- Card 03 states the count from `products.service.ts` (five operators + container images). The Kubernetes detail page and strategy.md §3 still say "sieben Operators" — needs a decision which wording is meant.
+- "BSI-Grundschutz" describes experience under its requirements, not a certification claim — same wording as the Kubernetes detail page.
 
 ---
 
 ## Section 5 — FAQ (General Questions Only)
 
-**Status:** `TODO`
+**Status:** `DRAFT` (built, awaiting fine-tuning)
 
 Only general questions here — topic-specific FAQs live on the topic pages.
 
-Planned questions:
-1. "Müssen wir alles auf einmal umstellen?" → Nein, wir fangen mit einem der drei Bereiche an.
-2. "Was passiert, wenn Sie ausfallen?" → Netzwerk vertrauenswürdiger Kollegen + GitOps-Dokumentation + Enablement-Ansatz.
-3. "Brauchen wir zwingend Public Cloud?" → Nein. OnPrem, Hybrid und Cloud sind alle möglich.
-4. "Was kostet das ungefähr?" → No pricing model on the site (decided 2026-10-28, see strategy.md §7). Answer without naming Festpreis/Tagessatz/Retainer — point to a concrete offer after the Erstgespräch.
+```
+04 / Fragen                                                       Allgemein
+
+## Häufige *Fragen*
+
+„Müssen wir alles auf einmal umstellen?"
+Nein. Wir fangen mit einem der drei Bereiche an, meist dort, wo es heute am
+meisten wehtut. Jeder Bereich bringt für sich einen Nutzen; die anderen können
+folgen, müssen aber nicht.
+
+„Was passiert, wenn Sie ausfallen?"
+Dafür gibt es drei Absicherungen: Alles, was wir bauen, liegt dokumentiert in
+Ihrem Git-Repository. Ihr Team baut von Anfang an mit und kann den Betrieb
+übernehmen. Und wir arbeiten mit einem Netzwerk erfahrener Kollegen, die bei
+Bedarf einspringen.
+
+„Brauchen wir zwingend eine Public Cloud?"
+Nein. Wir bauen auf Ihrer eigenen Hardware, in der Cloud oder hybrid. Was passt,
+entscheiden Datenschutz, Latenz und Budget.
+
+„Arbeiten Sie mit unserem Team oder liefern Sie nur ab?"
+Mit Ihrem Team. Wir bauen gemeinsam, erklären jede Entscheidung und übergeben
+so, dass Ihr Team den Betrieb selbst übernehmen kann.
+
+„Was kostet das?"
+Das hängt vom Ausgangszustand ab: wie viele Server, wie viele Teams, was schon
+existiert. Nach dem Erstgespräch und einem kurzen Blick auf Ihr Setup bekommen
+Sie ein konkretes, schriftliches Angebot mit klar umrissenem Umfang.
+```
+
+**Notes:**
+- Pricing: no model named, per strategy.md §7 (decided 2026-10-28).
+- Question 4 (enablement) is added to the four planned ones because enablement is the cross-cutting promise in strategy.md §6.
 
 ---
 
 ## Section 6 — Final CTA
 
-**Status:** `TODO`
+**Status:** `DRAFT` (built, awaiting fine-tuning)
 
-Two-stage:
-- Primary: 30-Min-Erstgespräch via cal.com
-- Secondary: Niederschwellige Alternative (TBD mit User — z.B. "Unverbindliche Infrastruktur-Analyse per E-Mail")
+Two-stage, reusing the CTA pair of the service detail pages:
+
+```
+05 / Nächster Schritt                                             30 Minuten
+
+## Erzählen Sie uns, wo es *hakt*.
+
+Im 30-minütigen Kennenlerngespräch schauen wir gemeinsam auf Ihre Ausgangslage
+und sagen Ihnen ehrlich, ob und wo wir helfen können. Unverbindlich und ohne
+PowerPoint.
+
+[Kennenlerngespräch buchen]  [E-Mail schreiben]
+ANTWORT PER E-MAIL INNERHALB EINES WERKTAGS
+```
+
+**Notes:**
+- Primary → `https://cal.eu/hans-fischer/kennenlernen`; secondary → `/contact` (low-commitment alternative, as on the service pages).
+- "Innerhalb eines Werktags" repeats the promise from the contact page.
+- The contact form does not send messages yet (`onSubmit()` is a TODO) — the secondary CTA leads there, so this must be fixed before go-live.
