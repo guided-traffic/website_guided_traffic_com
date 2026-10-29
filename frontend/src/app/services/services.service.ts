@@ -10,7 +10,24 @@ export interface Service {
 
 @Injectable({ providedIn: 'root' })
 export class ServicesService {
+  // Order is the order on every page: home, /services, nav and footer
   private readonly services: Service[] = [
+    {
+      slug: 'kubernetes-cluster',
+      title: 'Production-ready Kubernetes Cluster',
+      description:
+        'Produktionsreife Cluster, die Ihr Team wirklich versteht und selbst betreiben kann. RBAC, Monitoring, Backup, Security nach BSI-Grundschutz-Prinzipien. On-Prem, Cloud oder hybrid.',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/services/kubernetes-cluster',
+    },
+    {
+      slug: 'agentic-programming',
+      title: 'Agentic Programming',
+      description:
+        'Individualsoftware, entwickelt mit KI-Agenten: schnell, geprüft und auf Ihre Abläufe zugeschnitten. Auch als eigene Lösung anstelle von Standardsoftware, die nur zu 80 % passt.',
+      ctaLabel: 'Mehr erfahren',
+      ctaLink: '/services/agentic-programming',
+    },
     {
       slug: 'ci-pipelines',
       title: 'CI-Pipelines & Templates',
@@ -26,14 +43,6 @@ export class ServicesService {
         'Ihre bestehenden Server werden automatisiert, dokumentiert und reproduzierbar. Keine Schneeflocken-Server mehr, keine Angst vor Updates. Ohne Cloud-Zwang.',
       ctaLabel: 'Mehr erfahren',
       ctaLink: '/services/ansible-automation',
-    },
-    {
-      slug: 'kubernetes-cluster',
-      title: 'Production-ready Kubernetes Cluster',
-      description:
-        'Produktionsreife Cluster, die Ihr Team wirklich versteht und selbst betreiben kann. RBAC, Monitoring, Backup, Security nach BSI-Grundschutz-Prinzipien. On-Prem, Cloud oder hybrid.',
-      ctaLabel: 'Mehr erfahren',
-      ctaLink: '/services/kubernetes-cluster',
     },
   ];
 

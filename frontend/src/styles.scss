@@ -79,7 +79,11 @@
   // Layout
   --frame-max: 1280px;
   --frame-pad: 40px;
-  --nav-height: 48px;
+  // One knob for the whole bar: height, wordmark, links, contact block and icons
+  // scale together, so the wordmark keeps its proportion to the bar. It steps
+  // down with the width (below) so the bar never overflows: 64 / 56 / 48px.
+  --nav-scale: calc(4 / 3);
+  --nav-height: calc(48px * var(--nav-scale));
 
   // Spacing scale
   --space-xs: 0.25rem;
@@ -359,9 +363,16 @@ section {
   }
 }
 
+@media (max-width: 1024px) {
+  :root {
+    --nav-scale: calc(7 / 6);
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --frame-pad: 20px;
+    --nav-scale: 1;
   }
 
   h3 { font-size: 1.25rem; }

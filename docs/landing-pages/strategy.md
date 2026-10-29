@@ -67,6 +67,7 @@ The **services overview page** (`services-overview.md`) is a lighter version —
 ## 7. Open questions (affects all pages)
 
 - **Routing decided 2026-04-13:** services use the same pattern as products — `/services` (overview) and `/services/<slug>` (detail). Slugs: `kubernetes-cluster`, `ci-pipelines`, `ansible-automation`.
+- **Service lineup changed 2026-10-29:** Agentic Programming is added as the second service. Order on every page: Kubernetes → Agentic Programming → CI-Pipelines → Ansible. Offering: fast and secure development of custom software with AI agents, including an own, tailored solution in place of commercial standard software. Detail page: [service-agentic-programming.md](service-agentic-programming.md); its pains are drafted, not yet from customer conversations, so they are not in the pool.
 - **Legacy-Migration scope decided 2026-04-13:** containerization of existing apps is a sub-step inside the Kubernetes service, not a separate detail page. If customer feedback later shows strong standalone demand, it can be split out into a 4th service without rewriting the other pages.
 - **"BSI-Standards"** — may we claim this directly on the Kubernetes page (3.5 years of real experience), or soften to "orientiert an BSI-Grundschutz-Prinzipien"?
 - **Pricing decided 2026-10-28:** no pricing model (Festpreis, Tagessatz, Retainer) and no figures anywhere on the site. Cost questions are answered by pointing to a concrete offer after the Erstgespräch.

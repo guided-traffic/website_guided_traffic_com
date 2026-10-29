@@ -44,14 +44,16 @@ describe('HomeComponent', () => {
     const titles = Array.from(el.querySelectorAll('.topic-card__title')).map(t => t.textContent?.trim());
     const hrefs = Array.from(el.querySelectorAll('.topic-card__cta')).map(a => a.getAttribute('href'));
     expect(titles).toEqual([
+      'Production-ready Kubernetes Cluster',
+      'Agentic Programming',
       'CI-Pipelines & Templates',
       'OnPrem Provisionierung mit Ansible',
-      'Production-ready Kubernetes Cluster',
     ]);
     expect(hrefs).toEqual([
+      '/services/kubernetes-cluster',
+      '/services/agentic-programming',
       '/services/ci-pipelines',
       '/services/ansible-automation',
-      '/services/kubernetes-cluster',
     ]);
   });
 

@@ -113,7 +113,7 @@ Ihr Team bekommt die Templates nicht nur ausgehändigt — es lernt, sie selbst 
 **Status:** `DRAFT`
 
 ```
-## Warum uns
+## Warum wir
 ```
 
 - **DevSecOps-Plattform für eine deutsche Privatbank unter BaFin-Aufsicht.** GitLab Enterprise mit SAST, DAST, Dependency-Scanning, Container-Scanning, Nessus-Integration, automatisierten Compliance-Reports und PAM-Integration für privilegierte CI/CD-Zugriffe.

@@ -39,9 +39,10 @@ describe('FooterComponent', () => {
     const links = render().querySelectorAll('.footer__col:nth-child(2) a');
     const hrefs = Array.from(links).map(a => a.getAttribute('href'));
     expect(hrefs).toEqual([
+      '/services/kubernetes-cluster',
+      '/services/agentic-programming',
       '/services/ci-pipelines',
       '/services/ansible-automation',
-      '/services/kubernetes-cluster',
     ]);
   });
 

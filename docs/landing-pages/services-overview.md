@@ -21,7 +21,7 @@ No pain points, no deep trust stack, no FAQ here. This page is **pure routing** 
 ```
 # Unsere Leistungen
 
-Drei spezialisierte Bereiche, in denen wir mittelständische IT-Infrastruktur
+Vier spezialisierte Bereiche, in denen wir die IT mittelständischer Unternehmen
 pragmatisch modernisieren. Jeder Bereich ist eine eigenständige Leistung —
 Sie können mit einem anfangen, ohne alles auf einmal umstellen zu müssen.
 ```
@@ -36,28 +36,34 @@ Sie können mit einem anfangen, ohne alles auf einmal umstellen zu müssen.
 
 **Status:** `DRAFT`
 
-Three cards in the same visual style as the existing services grid (see current `services.component.html` — uses `@for` over `services` array). Each card carries an icon, a title, a one-paragraph description, and a CTA button linking to the detail page.
+Four cards (2 × 2; order decided 2026-10-29) in the same visual style as the existing services grid (see current `services.component.html` — uses `@for` over `services` array). Each card carries an icon, a title, a one-paragraph description, and a CTA button linking to the detail page.
 
-### Card 1 — CI-Pipelines & Templates
+### Card 1 — Production-ready Kubernetes Cluster
+- **Slug:** `kubernetes-cluster`
+- **Icon:** ☸️
+- **Title:** Production-ready Kubernetes Cluster
+- **Description:** Produktionsreife Cluster, die Ihr Team wirklich versteht und selbst betreiben kann. RBAC, Monitoring, Backup, Security nach BSI-Grundschutz-Prinzipien. On-Prem, Cloud oder hybrid.
+- **CTA:** "Mehr erfahren →" → `/services/kubernetes-cluster`
+
+### Card 2 — Agentic Programming
+- **Slug:** `agentic-programming`
+- **Title:** Agentic Programming
+- **Description:** Individualsoftware, entwickelt mit KI-Agenten: schnell, geprüft und auf Ihre Abläufe zugeschnitten. Auch als eigene Lösung anstelle von Standardsoftware, die nur zu 80 % passt. *(draft)*
+- **CTA:** "Mehr erfahren →" → `/services/agentic-programming`
+
+### Card 3 — CI-Pipelines & Templates
 - **Slug:** `ci-pipelines`
 - **Icon:** 🚀
 - **Title:** CI-Pipelines & Templates
 - **Description:** Einheitliche Pipelines und wiederverwendbare Templates für alle Teams. Mit Tests, Security-Scans und Quality-Gates. Wechselt ein Entwickler das Team, ist er am ersten Tag produktiv.
 - **CTA:** "Mehr erfahren →" → `/services/ci-pipelines`
 
-### Card 2 — OnPrem Provisionierung mit Ansible
+### Card 4 — OnPrem Provisionierung mit Ansible
 - **Slug:** `ansible-automation`
 - **Icon:** 🔧
 - **Title:** OnPrem Provisionierung mit Ansible
 - **Description:** Ihre bestehenden Server werden automatisiert, dokumentiert und reproduzierbar. Keine Schneeflocken-Server mehr, keine Angst vor Updates. Ohne Cloud-Zwang.
 - **CTA:** "Mehr erfahren →" → `/services/ansible-automation`
-
-### Card 3 — Production-ready Kubernetes Cluster
-- **Slug:** `kubernetes-cluster`
-- **Icon:** ☸️
-- **Title:** Production-ready Kubernetes Cluster
-- **Description:** Produktionsreife Cluster, die Ihr Team wirklich versteht und selbst betreiben kann. RBAC, Monitoring, Backup, Security nach BSI-Grundschutz-Prinzipien. On-Prem, Cloud oder hybrid.
-- **CTA:** "Mehr erfahren →" → `/services/kubernetes-cluster`
 
 ---
 

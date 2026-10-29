@@ -106,7 +106,10 @@ split. Wider screens fit every word, and Chrome would otherwise hyphenate eagerl
 | `.card` | Flat, hairline border, square; hover fills paper-deep |
 | `.section-alt` | Paper-deep background |
 
-Inner padding of a frame is `--frame-pad` (40px, 20px ≤ 768px). Nav height is `--nav-height` (48px).
+Inner padding of a frame is `--frame-pad` (40px, 20px ≤ 768px). Nav height is `--nav-height`:
+48px × `--nav-scale`, which steps with the width — 4/3 (64px) above 1024px, 7/6 (56px) up to 1024px,
+1 (48px) on phones — so the bar never overflows. Every size inside the bar is a base value times
+the same factor.
 
 ## Page structure
 
@@ -126,7 +129,7 @@ Every page is a hero followed by framed sections:
 ```
 
 The bar title names the section in one or two words; the meta label repeats a fact from the page
-(a page slug, "Drei Bereiche", "Apache-2.0"), never new marketing copy.
+(a page slug, "Vier Bereiche", "Apache-2.0"), never new marketing copy.
 
 Layout inside the frame comes from the mixins in
 [`frontend/src/styles/_patterns.scss`](../frontend/src/styles/_patterns.scss):
@@ -144,7 +147,7 @@ Layout inside the frame comes from the mixins in
 Shared stylesheets instead of per-page copies:
 
 - [`pages/services/service-detail.scss`](../frontend/src/app/pages/services/service-detail.scss) —
-  the three service detail pages (identical structure)
+  all service detail pages (identical structure)
 - [`pages/products/product-detail.scss`](../frontend/src/app/pages/products/product-detail.scss) —
   all product detail pages. They use one class prefix, `pd-`; product-specific sections map onto
   the cell-grid, chip-group and chip-block patterns in that file.
@@ -152,11 +155,16 @@ Shared stylesheets instead of per-page copies:
 ## Components (home page)
 
 - **Nav** — sticky bar of hairline-separated cells: wordmark | mono links | theme toggle |
-  full-height signal-orange "Kontakt" block. On phones the bar shows wordmark | theme toggle |
+  full-height signal-orange "Kontakt" block.
+- **Wordmark** — "Guided Traffic" in Archivo, weight 700, width 125%, letter-spacing −0.01em,
+  uppercase, ink; 15px × `--nav-scale`. Fixed: face and style do not change, it only scales
+  together with the bar. On phones the bar shows wordmark | theme toggle |
   menu toggle. Active route = ink block with paper text. Mega-menus are framed two-column grids
   with numbered entries.
 - **Hero** — a stage that fills the first screen down to the ticker: dot-grid background (24px),
-  headline, then a two-column row: lead text + CTAs + mono meta line, and the terminal panel.
+  headline, then a two-column row: lead text + CTAs + mono meta line at the top, and the terminal
+  panel anchored to the bottom, 30px above the ticker on every screen height (one column: the
+  terminal follows the copy).
   Content sits at the top; the helm wheel runs behind it. Headline, lead and meta line carry a
   solid paper halo (unblurred `text-shadow` in eight directions), so the wheel's lines break around
   the lettering as they would on a drawing.
@@ -175,7 +183,7 @@ Shared stylesheets instead of per-page copies:
   past the frame sides); decorative, `aria-hidden`, stops under `prefers-reduced-motion`. Four
   copies, each scrolling by its own width, so no gap appears at any point of the cycle.
 - **Numbered rows** — pain points as rows with a mono number column.
-- **Topic cards** — three cells separated by hairlines; a bar with the route slug and number, then
+- **Topic cards** — four cells as 2 × 2 (one column on phones), separated by hairlines; a bar with the route slug and number, then
   title, text and a mono CTA. The whole cell is the click target.
 - **Footer** — framed four-column grid with mono headings and a mono bottom bar.
 

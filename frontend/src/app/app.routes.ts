@@ -22,6 +22,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/services/kubernetes-cluster/kubernetes-cluster.component').then(m => m.KubernetesClusterComponent),
   },
   {
+    path: 'services/agentic-programming',
+    loadComponent: () => import('./pages/services/agentic-programming/agentic-programming.component').then(m => m.AgenticProgrammingComponent),
+  },
+  {
     path: 'products',
     loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent),
   },

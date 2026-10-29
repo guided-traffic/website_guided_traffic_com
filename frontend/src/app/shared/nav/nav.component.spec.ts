@@ -41,12 +41,14 @@ describe('NavComponent', () => {
 
   it('should link services in the mega-menu to their detail pages', () => {
     const items = render().querySelectorAll('.nav__mega-item');
-    const hrefs = Array.from(items).map(a => a.getAttribute('href'));
-    expect(hrefs).toEqual(expect.arrayContaining([
+    // The services panel comes first; the products panel follows
+    const hrefs = Array.from(items).map(a => a.getAttribute('href')).slice(0, 4);
+    expect(hrefs).toEqual([
+      '/services/kubernetes-cluster',
+      '/services/agentic-programming',
       '/services/ci-pipelines',
       '/services/ansible-automation',
-      '/services/kubernetes-cluster',
-    ]));
+    ]);
   });
 
   it('should number mega-menu entries instead of using icons', () => {

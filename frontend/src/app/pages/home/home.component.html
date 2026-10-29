@@ -92,12 +92,12 @@
   <div class="frame">
     <div class="frame-bar">
       <span class="label"><span class="frame-bar__num">02 /</span> <span class="frame-bar__title">Leistungen</span></span>
-      <span class="label">Drei Bereiche</span>
+      <span class="label">Vier Bereiche</span>
     </div>
     <div class="block__intro">
       <h2 id="router-title" class="topic-router__headline">Wo fangen wir bei <em>Ihnen</em> an?</h2>
       <p class="topic-router__intro">
-        Drei Bereiche, in denen wir Mittelstandsinfrastruktur pragmatisch modernisieren.
+        Vier Bereiche, in denen wir die IT im Mittelstand pragmatisch modernisieren.
         Jeder Bereich ist eine eigenständige Leistung — Sie können mit einem anfangen,
         ohne alles auf einmal umstellen zu müssen.
       </p>
@@ -112,7 +112,7 @@
           <div class="topic-card__body">
             <h3 class="topic-card__title">{{ service.title }}</h3>
             <p class="topic-card__desc">{{ service.description }}</p>
-            <a [routerLink]="service.ctaLink" class="topic-card__cta">Mehr erfahren →</a>
+            <a [routerLink]="service.ctaLink" class="topic-card__cta">{{ service.ctaLabel }} →</a>
           </div>
         </article>
       }
@@ -128,7 +128,7 @@
       <span class="label">10+ Jahre</span>
     </div>
     <div class="block__intro">
-      <h2 id="trust-title">Warum <em>uns</em></h2>
+      <h2 id="trust-title">Warum <em>wir</em></h2>
       <p>
         Wir betreiben Infrastruktur in Umgebungen, in denen Aufsicht und Auditoren
         mitlesen. Die Werkzeuge, die dabei entstehen, veröffentlichen wir als Open Source.
@@ -182,7 +182,7 @@
       <article class="faq__item">
         <h3 class="faq__q">„Müssen wir alles auf einmal umstellen?"</h3>
         <p class="faq__a">
-          Nein. Wir fangen mit einem der drei Bereiche an, meist dort, wo es heute am
+          Nein. Wir fangen mit einem der vier Bereiche an, meist dort, wo es heute am
           meisten wehtut. Jeder Bereich bringt für sich einen Nutzen; die anderen können
           folgen, müssen aber nicht.
         </p>

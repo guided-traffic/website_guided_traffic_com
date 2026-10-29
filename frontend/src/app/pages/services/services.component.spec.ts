@@ -35,16 +35,17 @@ describe('ServicesComponent', () => {
   it('should link each card to its detail page', () => {
     const hrefs = Array.from(render().querySelectorAll('.service-card__cta')).map(a => a.getAttribute('href'));
     expect(hrefs).toEqual([
+      '/services/kubernetes-cluster',
+      '/services/agentic-programming',
       '/services/ci-pipelines',
       '/services/ansible-automation',
-      '/services/kubernetes-cluster',
     ]);
   });
 
   it('should number the cards instead of using icons', () => {
     const el = render();
     const numbers = Array.from(el.querySelectorAll('.service-card__bar .label:last-child')).map(n => n.textContent?.trim());
-    expect(numbers).toEqual(['01', '02', '03']);
+    expect(numbers).toEqual(['01', '02', '03', '04']);
     expect(el.querySelector('[class*="icon"]')).toBeNull();
   });
 });
