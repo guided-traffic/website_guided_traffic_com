@@ -1,0 +1,13 @@
+<!-- One viewBox around the principal point; the base sits near the bottom edge. Construction
+     lines and the horizon run beyond the viewBox, so the drawing does not end at its box. -->
+<svg class="ptower" viewBox="-800 -500 1600 1000" preserveAspectRatio="xMidYMax meet">
+  <path class="ptower__construction" [attr.d]="frame.construction" />
+  <path class="ptower__horizon" [attr.d]="frame.horizon" />
+  <path class="ptower__vp" [attr.d]="frame.vanishingPoint" />
+
+  <!-- Crossbar faces first, then the stem's: painted over in that order, they hide what lies behind -->
+  @for (face of frame.faces; track $index) {
+    <path class="ptower__face" [attr.d]="face.outline" />
+    <path class="ptower__facade" [attr.d]="face.facade" />
+  }
+</svg>

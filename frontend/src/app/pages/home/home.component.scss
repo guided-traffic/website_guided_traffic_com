@@ -23,33 +23,19 @@
     flex-direction: column;
     min-height: var(--stage-height);
     overflow: hidden;
-    padding: var(--space-4xl) var(--frame-pad) var(--space-3xl);
+    // The bottom padding is the terminal's distance to the ticker
+    padding: var(--space-4xl) var(--frame-pad) 30px;
     @include dot-grid;
   }
 
-  // Lines break around lettering, as on a drawing or a chart: a solid paper
-  // halo (unblurred shadows in eight directions) keeps the text readable
-  // wherever the wheel runs behind it
-  &__headline,
+  // The wheel runs behind the text: paper halo around the lettering
   &__sub,
   &__meta {
-    --halo: 3px;
-    --halo-d: 2px;
-    text-shadow:
-      var(--halo) 0 var(--color-paper),
-      calc(var(--halo) * -1) 0 var(--color-paper),
-      0 var(--halo) var(--color-paper),
-      0 calc(var(--halo) * -1) var(--color-paper),
-      var(--halo-d) var(--halo-d) var(--color-paper),
-      calc(var(--halo-d) * -1) var(--halo-d) var(--color-paper),
-      var(--halo-d) calc(var(--halo-d) * -1) var(--color-paper),
-      calc(var(--halo-d) * -1) calc(var(--halo-d) * -1) var(--color-paper),
-      0 0 10px var(--color-paper);
+    @include paper-halo;
   }
 
   &__headline {
-    --halo: 6px;
-    --halo-d: 4px;
+    @include paper-halo(6px, 4px);
   }
 
   // Seen from the helm: the hub sits on the bottom edge and the upper half
@@ -70,11 +56,19 @@
     margin-bottom: var(--space-3xl);
   }
 
+  // Fills the stage below the headline, so the terminal can sit on its bottom edge
   &__body {
+    flex: 1;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--space-3xl);
     align-items: start;
+  }
+
+  // Anchored to the bottom: 30px above the ticker on every screen height; the
+  // lead text stays at the top
+  &__body .terminal {
+    align-self: end;
   }
 
   &__sub {
@@ -230,20 +224,20 @@
 }
 
 // ─── 02 Topic Router ─────────────────────────────────────────────────────────
+// Four services as 2 × 2: each card carries its top and left rule, the first
+// column's left rule sits on the frame side
 .topic-router {
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-top: 1px solid var(--color-line);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-left: -1px;
   }
 }
 
 .topic-card {
+  border-top: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line);
   @include route-card;
-
-  & + & {
-    border-left: 1px solid var(--color-line);
-  }
 
   &__bar {
     @include route-card-bar;
@@ -339,8 +333,15 @@
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 @media (max-width: 1024px) {
+  // One column: the terminal follows the copy, the grid gap spaces it, and
+  // the wheel follows directly below
   .hero__body {
+    flex-grow: 0;
     grid-template-columns: 1fr;
+  }
+
+  .hero__body .terminal {
+    align-self: start;
   }
 
   // One column leaves no gap for the king spoke, so the wheel moves into the
@@ -364,14 +365,6 @@
     transform: none;
   }
 
-  .topic-router__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .topic-card + .topic-card {
-    border-left: none;
-    border-top: 1px solid var(--color-line);
-  }
 }
 
 @media (max-width: 768px) {
@@ -387,6 +380,10 @@
 
   .hero__headline {
     margin-bottom: var(--space-xl);
+  }
+
+  .topic-router__grid {
+    grid-template-columns: 1fr;
   }
 
   .pain-teaser__item {

@@ -114,7 +114,7 @@ Ihr Team schreibt und pflegt Playbooks nach der Übergabe selbst. Wir schulen, b
 **Status:** `DRAFT`
 
 ```
-## Warum uns
+## Warum wir
 ```
 
 - **Terraform- und Ansible-basierte Virtual-Datacenter-Provisionierung bei einem öffentlichen IT-Dienstleister unter BSI-Grundschutz.** Über drei Jahre Produktivbetrieb, mit automatisiertem Auf- und Abbau virtueller Rechenzentren pro Umgebung und Kunde.

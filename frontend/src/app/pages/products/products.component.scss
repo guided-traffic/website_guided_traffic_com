@@ -36,8 +36,11 @@ section {
     @include section-intro;
   }
 
+  // Same card width in every category: auto-fill keeps empty tracks, so a
+  // category with one or two products does not stretch them across the frame
   &__grid {
-    @include cell-grid(300px);
+    @include cell-grid(360px);
+    grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr));
     @include section-body;
   }
 }
@@ -59,13 +62,23 @@ section {
     font-size: 1.25rem;
   }
 
+  &__badges {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--space-xs);
+  }
+
   &__badge {
     @include badge;
-    flex-shrink: 0;
 
     &--licensed {
       background: var(--color-ink);
       color: var(--color-paper);
+    }
+
+    // Not released yet: dashed, like the pre-release badges on the detail pages
+    &--status {
+      border-style: dashed;
     }
   }
 

@@ -10,6 +10,7 @@ The site uses **one home page + one services overview page + one detail page per
 /                               → home.md                         (home hub, routes to services)
 /services                       → services-overview.md            (services landing / overview)
 /services/kubernetes-cluster    → service-kubernetes-cluster.md
+/services/agentic-programming   → service-agentic-programming.md
 /services/ci-pipelines          → service-ci-pipelines.md
 /services/ansible-automation    → service-ansible-automation.md
 ```
@@ -22,8 +23,9 @@ Each service detail page is its own specialized landing page targeting a single 
 |---|---|---|---|
 | [strategy.md](strategy.md) | — | Shared foundation: audience, voice, trust assets, pain-point pool, service template | `FINAL` |
 | [home.md](home.md) | `/` | Home hub — brief pitch + routing to services overview | `IN PROGRESS` |
-| [services-overview.md](services-overview.md) | `/services` | Services overview — lists the 3 services with teasers | `TODO` |
+| [services-overview.md](services-overview.md) | `/services` | Services overview — lists the 4 services with teasers | `TODO` |
 | [service-kubernetes-cluster.md](service-kubernetes-cluster.md) | `/services/kubernetes-cluster` | Detail page — Production-ready Kubernetes Cluster (incl. app containerization / legacy migration) | `DRAFT` |
+| [service-agentic-programming.md](service-agentic-programming.md) | `/services/agentic-programming` | Detail page — Agentic Programming (custom software with AI agents, incl. replacing standard software) | `DRAFT` |
 | [service-ci-pipelines.md](service-ci-pipelines.md) | `/services/ci-pipelines` | Detail page — CI-Pipelines & Templates | `DRAFT` |
 | [service-ansible-automation.md](service-ansible-automation.md) | `/services/ansible-automation` | Detail page — OnPrem Provisioning mit Ansible | `DRAFT` |
 
@@ -31,9 +33,9 @@ Each service detail page is its own specialized landing page targeting a single 
 
 Mirrors the `/products` structure:
 - Route definitions: `frontend/src/app/app.routes.ts` — one `services/<slug>` entry per detail page
-- Service data: `frontend/src/app/services/services.service.ts` — `slug`, `title`, `description`, `ctaLabel`, `ctaLink`; nav, footer, home and the overview page render from it
+- Service data: `frontend/src/app/services/services.service.ts` — `slug`, `title`, `description`, `ctaLabel`, `ctaLink`; nav, footer, home and the overview page render from it, in the array's order
 - Overview page: `frontend/src/app/pages/services/services.component.*`
-- Detail pages: `frontend/src/app/pages/services/<slug>/<slug>.component.{html,ts}`; all three share `pages/services/service-detail.scss` because their structure is identical. A new detail page reuses that stylesheet and its section structure.
+- Detail pages: `frontend/src/app/pages/services/<slug>/<slug>.component.{html,ts}`; all of them share `pages/services/service-detail.scss` because their structure is identical. A new detail page reuses that stylesheet and its section structure.
 - Layout follows `design-system/MASTER.md` — framed sections with numbered bars; building blocks in `frontend/src/styles/_patterns.scss`
 - Per CLAUDE.md: HTML, SCSS, TypeScript in separate files
 

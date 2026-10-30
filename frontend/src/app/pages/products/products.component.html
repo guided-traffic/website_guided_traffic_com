@@ -13,87 +13,49 @@
     <p class="products-hero__sub">
       Diese Produkte sind die direkte Antwort darauf. Jedes Tool löst ein
       konkretes Problem, das wir im Betrieb produktiver Kubernetes-Cluster
-      selbst getroffen haben. Die Open-Source-Werkzeuge stehen unter der Apache-2.0-Lizenz; kommerziell lizenzierte Produkte sind gesondert ausgewiesen.
+      selbst getroffen haben. Alle Werkzeuge stehen unter der Apache-2.0-Lizenz.
     </p>
   </div>
 </section>
 
-<!-- 01 Open-Source Products -->
-<section class="products frame-rule" aria-labelledby="open-source-title">
-  <div class="frame">
-    <div class="frame-bar">
-      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Open Source</span></span>
-      <span class="label">Apache-2.0</span>
-    </div>
-    <h2 id="open-source-title" class="products__section-title">Open-Source-Tools</h2>
-    <p class="products__section-intro">Apache-2.0 lizenziert, frei nutzbar und auf GitHub verfügbar.</p>
-    <div class="products__grid">
-      @for (product of openSourceProducts; track product.name) {
-        <article class="product-card" [id]="product.slug">
-          <div class="product-card__header">
-            <h3 class="product-card__name">{{ product.name }}</h3>
-            <span
-              class="product-card__badge"
-              [class.product-card__badge--free]="product.license === 'FREE'"
-              [class.product-card__badge--licensed]="product.license === 'LICENSED'"
-            >
-              {{ product.license }}
-            </span>
-          </div>
-          <p class="product-card__description">{{ product.description }}</p>
-          @if (product.ctaLink.startsWith('http')) {
-            <a [href]="product.ctaLink" target="_blank" rel="noopener noreferrer" class="btn btn-secondary product-card__cta">
-              {{ product.ctaLabel }}
-            </a>
-          } @else {
+<!-- One section per category -->
+@for (section of sections; track section.key; let i = $index) {
+  <section class="products frame-rule" [attr.aria-labelledby]="section.key + '-title'">
+    <div class="frame">
+      <div class="frame-bar">
+        <span class="label">
+          <span class="frame-bar__num">{{ i + 1 | number: '2.0' }} /</span>
+          <span class="frame-bar__title">{{ section.title }}</span>
+        </span>
+        <span class="label">{{ section.products.length }} {{ section.products.length === 1 ? 'Produkt' : 'Produkte' }}</span>
+      </div>
+      <h2 [id]="section.key + '-title'" class="products__section-title">{{ section.title }}</h2>
+      <p class="products__section-intro">{{ section.intro }}</p>
+      <div class="products__grid">
+        @for (product of section.products; track product.slug) {
+          <article class="product-card" [id]="product.slug">
+            <div class="product-card__header">
+              <h3 class="product-card__name">{{ product.name }}</h3>
+              <span class="product-card__badges">
+                @if (product.status === 'in-development') {
+                  <span class="product-card__badge product-card__badge--status">In Entwicklung</span>
+                }
+                <span
+                  class="product-card__badge"
+                  [class.product-card__badge--free]="product.license === 'FREE'"
+                  [class.product-card__badge--licensed]="product.license === 'LICENSED'"
+                >
+                  {{ product.license }}
+                </span>
+              </span>
+            </div>
+            <p class="product-card__description">{{ product.description }}</p>
             <a [routerLink]="product.ctaLink" class="btn btn-primary product-card__cta">
               {{ product.ctaLabel }}
             </a>
-          }
-        </article>
-      }
+          </article>
+        }
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- 02 Commercial Products -->
-<section class="products frame-rule" aria-labelledby="commercial-title">
-  <div class="frame">
-    <div class="frame-bar">
-      <span class="label"><span class="frame-bar__num">02 /</span> <span class="frame-bar__title">Kommerziell</span></span>
-      <span class="label">Lizenziert</span>
-    </div>
-    <h2 id="commercial-title" class="products__section-title">Kommerzielle Produkte</h2>
-    <p class="products__section-intro">
-      Neben unseren Open-Source-Werkzeugen entwickeln wir kommerziell lizenzierte Produkte
-      für spezialisierte Anforderungen. Kontaktieren Sie uns für Details zu Einsatzszenario,
-      Lizenzmodell und Early-Access-Programmen.
-    </p>
-    <div class="products__grid">
-      @for (product of commercialProducts; track product.name) {
-        <article class="product-card" [id]="product.slug">
-          <div class="product-card__header">
-            <h3 class="product-card__name">{{ product.name }}</h3>
-            <span
-              class="product-card__badge"
-              [class.product-card__badge--free]="product.license === 'FREE'"
-              [class.product-card__badge--licensed]="product.license === 'LICENSED'"
-            >
-              {{ product.license }}
-            </span>
-          </div>
-          <p class="product-card__description">{{ product.description }}</p>
-          @if (product.ctaLink.startsWith('http')) {
-            <a [href]="product.ctaLink" target="_blank" rel="noopener noreferrer" class="btn btn-secondary product-card__cta">
-              {{ product.ctaLabel }}
-            </a>
-          } @else {
-            <a [routerLink]="product.ctaLink" class="btn btn-primary product-card__cta">
-              {{ product.ctaLabel }}
-            </a>
-          }
-        </article>
-      }
-    </div>
-  </div>
-</section>
+  </section>
+}

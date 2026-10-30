@@ -112,7 +112,7 @@ Alles, was auf dem Cluster läuft, steht in Git. Kein Wissen in einzelnen Köpfe
 **Status:** `DRAFT`
 
 ```
-## Warum uns
+## Warum wir
 
 Wir reden nicht nur über Kubernetes. Wir betreiben es seit Jahren in
 regulierten Umgebungen — und wir bauen selbst Werkzeuge dafür.

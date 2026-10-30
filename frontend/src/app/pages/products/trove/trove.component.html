@@ -1,0 +1,294 @@
+<!-- Hero Section: a stage with the tower behind the content -->
+<section class="pd-hero">
+  <div class="frame pd-hero__frame trove-hero__frame">
+    <!-- Decorative: a T-shaped tower seen from its foot -->
+    <app-perspective-t class="trove-hero__tower" />
+    <div class="pd-hero__content">
+      <h1 class="pd-hero__headline"><em>trove</em></h1>
+      <p class="pd-hero__sub">
+        Ein selbst gehosteter, hochverfügbarer Paket-Server für Ihre eigenen Pakete und für
+        öffentliche Registries — hinter einer URL pro Ökosystem. Anmeldung über Ihren
+        OIDC-Provider, Zugriff standardmäßig verweigert, jede Aktion im Audit-Log.
+      </p>
+      <div class="pd-hero__meta">
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Status</span>
+          <span class="pd-hero__meta-badge pd-hero__meta-badge--alpha">In Entwicklung</span>
+        </span>
+        <span class="pd-hero__meta-separator"></span>
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Lizenz</span>
+          <span class="pd-hero__meta-value">Apache 2.0</span>
+        </span>
+        <span class="pd-hero__meta-separator"></span>
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Betrieb</span>
+          <span class="pd-hero__meta-value">Kubernetes / Helm</span>
+        </span>
+        <span class="pd-hero__meta-separator"></span>
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Version</span>
+          <span class="pd-hero__meta-value">v0.3.1 (Oktober 2026)</span>
+        </span>
+      </div>
+      <div class="pd-hero__actions">
+        <a
+          href="https://github.com/guided-traffic/trove"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >Auf GitHub ansehen</a>
+        <a href="#stand" class="btn btn-secondary">Stand der Entwicklung</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="pd-problem frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Problem</span></span>
+      <span class="label">trove</span>
+    </div>
+    <div class="pd-problem__content">
+      <h2 class="pd-problem__headline">Das Problem</h2>
+      <p class="pd-problem__text">
+        Interne Pakete liegen verstreut in den Registries einzelner Teams, öffentliche Pakete
+        kommen ungeprüft und ungecacht direkt in jeden Build. Fällt eine öffentliche Registry
+        aus, steht die Pipeline. CI-Jobs brauchen gespeicherte Zugangsdaten, und wer was
+        hochladen oder herunterladen darf, ist selten an einer Stelle geregelt.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Built Section -->
+<section class="pd-features frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">02 /</span> <span class="frame-bar__title">Funktionen</span></span>
+      <span class="label">trove</span>
+    </div>
+    <h2 class="pd-features__headline">Was heute schon gebaut ist</h2>
+    <div class="pd-features__grid">
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Anmeldung über OIDC</h3>
+        <p class="pd-feature-card__desc">
+          Anmeldung über Ihren OpenID-Connect-Provider mit PKCE, eine Sitzung pro Browser und
+          CSRF-Schutz. Für den Notfall ein lokaler Administrator, dessen Passwort aus einer
+          Datei kommt.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Zugriff standardmäßig verweigert</h3>
+        <p class="pd-feature-card__desc">
+          Berechtigungen entstehen nur durch Allow-Regeln, bis hinunter auf Muster von
+          Paketnamen. Dazu fünf Systemrollen und Rollenbindungen.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Eigene Tokens</h3>
+        <p class="pd-feature-card__desc">
+          Persönliche und Service-Account-Tokens mit Laufzeit, Rotation und Widerruf, und eine
+          Drosselung fehlgeschlagener Anmeldungen pro Adresse.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Generische Repositories</h3>
+        <p class="pd-feature-card__desc">
+          Dateien hoch- und herunterladen per <code>PUT</code>, <code>GET</code> (auch in
+          Teilen), <code>HEAD</code> und <code>DELETE</code>, mit Ordnern und einer API für
+          Einträge.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Audit-Trail</h3>
+        <p class="pd-feature-card__desc">
+          Jede relevante Aktion landet in einem Journal in PostgreSQL, mit Aufbewahrungsfrist,
+          Abfrage und Export.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">TLS auf jeder Verbindung</h3>
+        <p class="pd-feature-card__desc">
+          Eingehend und ausgehend, auch zu PostgreSQL, Valkey und dem Objektspeicher.
+          Zertifikate werden ohne Neustart neu geladen.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Hochverfügbar gebaut</h3>
+        <p class="pd-feature-card__desc">
+          Ein Go-Binary in zwei Rollen, Web und Worker; keine Replica hält Zustand zwischen
+          Anfragen. PostgreSQL ist das System of Record, Valkey mit Sentinel hält geteilten
+          Zustand.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Schutz für ausgehende Verbindungen</h3>
+        <p class="pd-feature-card__desc">
+          Ausgehende Verbindungen zu Loopback-, Link-Local- und Metadaten-Adressen lehnt trove
+          ab, geprüft nach der DNS-Auflösung.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Admin-Oberfläche</h3>
+        <p class="pd-feature-card__desc">
+          Im Binary eingebettet: Dateibaum, Repositories, Benutzer, Gruppen, Service-Accounts,
+          Tokens, Richtlinien, Endpunkte, Audit und Systemstatus.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap Section -->
+<section class="pd-features frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">03 /</span> <span class="frame-bar__title">Roadmap</span></span>
+      <span class="label">trove</span>
+    </div>
+    <h2 class="pd-features__headline">Was noch kommt</h2>
+    <div class="pd-features__grid">
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">npm und NuGet</h3>
+        <p class="pd-feature-card__desc">
+          Die ersten beiden Paketformate, mit lokalen, Remote- und virtuellen Repositories.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Pull-through-Proxy</h3>
+        <p class="pd-feature-card__desc">
+          Öffentliche Registries bei Bedarf spiegeln und zwischenspeichern, hinter derselben
+          URL wie Ihre eigenen Pakete.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">CI ohne gespeicherte Secrets</h3>
+        <p class="pd-feature-card__desc">
+          Ein GitLab-CI-Job tauscht sein von GitLab ausgestelltes ID-Token gegen ein
+          kurzlebiges trove-Token.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Backup und Restore</h3>
+        <p class="pd-feature-card__desc">
+          Ein konfigurierbarer Job schreibt ein konsistentes Backup in einen S3-Speicher.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="pd-stack frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">04 /</span> <span class="frame-bar__title">Technik</span></span>
+      <span class="label">trove</span>
+    </div>
+    <h2 class="pd-stack__headline">Technischer Stack und Integrationen</h2>
+    <p class="pd-stack__intro">
+      Läuft auf dem Stack, den wir selbst betreiben: Der
+      <a routerLink="/products/valkey-operator">Valkey Operator</a>, der
+      <a routerLink="/products/internal-secrets-operator">Internal Secrets Operator</a> und der
+      <a routerLink="/products/dex-operator">Dex Operator</a> liefern Valkey, Schlüssel und den
+      OIDC-Client.
+    </p>
+    <div class="pd-stack__chips">
+      <span class="pd-stack__chip">Go</span>
+      <span class="pd-stack__chip">Angular</span>
+      <span class="pd-stack__chip">PostgreSQL 16</span>
+      <span class="pd-stack__chip">CloudNativePG</span>
+      <span class="pd-stack__chip">Valkey mit Sentinel</span>
+      <span class="pd-stack__chip">S3-kompatibler Speicher</span>
+      <span class="pd-stack__chip">Kubernetes</span>
+      <span class="pd-stack__chip">Helm</span>
+      <span class="pd-stack__chip">HAProxy Ingress</span>
+      <span class="pd-stack__chip">cert-manager</span>
+      <span class="pd-stack__chip">OpenID Connect</span>
+      <span class="pd-stack__chip">OpenAPI 3.1</span>
+      <span class="pd-stack__chip">Apache 2.0</span>
+    </div>
+  </div>
+</section>
+
+<!-- License & Status Section -->
+<section id="stand" class="pd-license frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">05 /</span> <span class="frame-bar__title">Stand</span></span>
+      <span class="label">trove</span>
+    </div>
+    <div class="pd-license__content">
+      <h2 class="pd-license__headline">Lizenz &amp; Status</h2>
+      <div class="pd-license__grid">
+        <div class="pd-license__item">
+          <span class="pd-license__item-label">Status</span>
+          <span class="pd-license__item-value">
+            <strong>In Entwicklung</strong> — Pre-Release v0.3.1. Plattform und Zugriffskern
+            sind gebaut und getestet; die Paketformate folgen.
+          </span>
+        </div>
+        <div class="pd-license__item">
+          <span class="pd-license__item-label">Lizenz</span>
+          <span class="pd-license__item-value">
+            <strong>Apache 2.0</strong> — frei nutzbar, auch kommerziell.
+          </span>
+        </div>
+      </div>
+      <p class="pd-license__note">
+        Die Entwicklung läuft öffentlich auf GitHub, mit Spezifikation, Architekturentscheidungen
+        und Sicherheitsarchitektur im Repository.
+      </p>
+      <a
+        href="https://github.com/guided-traffic/trove"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary"
+      >Auf GitHub ansehen</a>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="pd-cta frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">06 /</span> <span class="frame-bar__title">Nächster Schritt</span></span>
+      <span class="label">trove</span>
+    </div>
+    <div class="pd-cta__content">
+      <h2 class="pd-cta__headline">Sie betreiben einen Paket-Server oder brauchen einen?</h2>
+      <p class="pd-cta__sub">
+        Erzählen Sie uns, welche Formate und Registries Sie nutzen und wie Ihre Teams heute an
+        ihre Pakete kommen — wir sagen Ihnen ehrlich, ob trove dafür passt.
+      </p>
+      <div class="pd-cta__actions">
+        <a routerLink="/contact" class="btn btn-primary">Gespräch vereinbaren</a>
+        <a
+          href="https://github.com/guided-traffic/trove"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Repository ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>

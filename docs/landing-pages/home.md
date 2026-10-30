@@ -62,33 +62,38 @@ Unlike the original full "Kennen Sie das?" with 5 detailed paragraphs, the hub v
 
 **Status:** `DRAFT`
 
-This is the actual hub mechanism. Three cards, each linking to a topic page.
+This is the actual hub mechanism. Four cards (2 × 2), each linking to a topic page.
 
 ```
 ## Wo fangen wir bei Ihnen an?
 
-Drei Bereiche, in denen wir Mittelstandsinfrastruktur pragmatisch modernisieren.
+Vier Bereiche, in denen wir die IT im Mittelstand pragmatisch modernisieren.
 Jeder Bereich ist eine eigenständige Leistung — Sie können mit einem anfangen,
 ohne alles auf einmal umstellen zu müssen.
 ```
 
-### Card 1 — CI-Pipelines & Templates
-> **Schluss mit Pipeline-Chaos.**
-> Einheitliche CI-Pipelines und wiederverwendbare Templates, die jedes Team in Ihrem Unternehmen ohne Umlernen nutzen kann. Mit Tests, Security-Scans und Quality-Gates — standardmäßig.
-> **[Mehr erfahren →]** (`/services/ci-pipelines`)
-
-### Card 2 — OnPrem Provisionierung mit Ansible
-> **Schluss mit handgepflegten Servern.**
-> Ihre bestehenden Server werden automatisiert, dokumentiert und reproduzierbar. Keine Schneeflocken mehr, keine Angst vor Updates. Ansible-basiert, ohne Cloud-Zwang.
-> **[Mehr erfahren →]** (`/services/ansible-automation`)
-
-### Card 3 — Production-ready Kubernetes Cluster
+### Card 1 — Production-ready Kubernetes Cluster
 > **Kubernetes ohne Black Box.**
 > Produktionsreife Cluster, die Ihr Team wirklich versteht und selbst betreiben kann. RBAC, Monitoring, Backup, Security nach BSI-Grundschutz-Prinzipien. On-Prem, Cloud oder hybrid.
 > **[Mehr erfahren →]** (`/services/kubernetes-cluster`)
 
+### Card 2 — Agentic Programming
+> Individualsoftware, entwickelt mit KI-Agenten: schnell, geprüft und auf Ihre Abläufe zugeschnitten. Auch als eigene Lösung anstelle von Standardsoftware, die nur zu 80 % passt.
+> **[Mehr erfahren →]** (`/services/agentic-programming`)
+
+### Card 3 — CI-Pipelines & Templates
+> **Schluss mit Pipeline-Chaos.**
+> Einheitliche CI-Pipelines und wiederverwendbare Templates, die jedes Team in Ihrem Unternehmen ohne Umlernen nutzen kann. Mit Tests, Security-Scans und Quality-Gates — standardmäßig.
+> **[Mehr erfahren →]** (`/services/ci-pipelines`)
+
+### Card 4 — OnPrem Provisionierung mit Ansible
+> **Schluss mit handgepflegten Servern.**
+> Ihre bestehenden Server werden automatisiert, dokumentiert und reproduzierbar. Keine Schneeflocken mehr, keine Angst vor Updates. Ansible-basiert, ohne Cloud-Zwang.
+> **[Mehr erfahren →]** (`/services/ansible-automation`)
+
 **Open questions:**
-- Reihenfolge der Karten: CI/CD → Ansible → Kubernetes (einfach → komplex), oder Kubernetes zuerst (stärkstes Differenzierungsmerkmal)?
+- ~~Reihenfolge der Karten~~ — decided 2026-10-29: Kubernetes → Agentic Programming → CI-Pipelines → Ansible.
+- Agentic Programming card text is a draft; the detail page is [service-agentic-programming.md](service-agentic-programming.md).
 - Icons: Behalten wir die Emoji-Icons (☸️🚀📦) wie im bestehenden services.service.ts, oder nutzen wir neutrale SVG-Icons?
 
 ---
@@ -102,7 +107,7 @@ Short version only — the topic pages carry their own detailed trust anchors. E
 ```
 03 / Warum wir                                                    10+ Jahre
 
-## Warum *uns*
+## Warum *wir*
 
 Wir betreiben Infrastruktur in Umgebungen, in denen Aufsicht und Auditoren
 mitlesen. Die Werkzeuge, die dabei entstehen, veröffentlichen wir als Open Source.
@@ -118,8 +123,8 @@ mitlesen. Die Werkzeuge, die dabei entstehen, veröffentlichen wir als Open Sour
     Tag an mit.
 
 03  Open Source
-    Fünf eigene Kubernetes-Operators und gehärtete Container-Images,
-    Apache-2.0-lizenziert. Sie können den Code lesen, bevor Sie mit uns sprechen.
+    Eine Kubernetes-IDE für den Desktop, fünf Kubernetes-Operators, gehärtete
+    Container-Images und ein S3-Verschlüsselungs-Proxy, Apache-2.0-lizenziert. Sie können den Code lesen, bevor Sie mit uns sprechen.
     [Zu den Produkten →] (/products)
 
 04  Über zehn Jahre Praxis
@@ -128,7 +133,7 @@ mitlesen. Die Werkzeuge, die dabei entstehen, veröffentlichen wir als Open Sour
 ```
 
 **Notes:**
-- Card 03 states the count from `products.service.ts` (five operators + container images). The Kubernetes detail page and strategy.md §3 still say "sieben Operators" — needs a decision which wording is meant.
+- Card 03 states the count from `products.service.ts` (Cogpit, five operators, container images and the S3 Encryption Proxy, Apache-2.0 since 2026-10-29). The Kubernetes detail page and strategy.md §3 still say "sieben Operators" — needs a decision which wording is meant.
 - "BSI-Grundschutz" describes experience under its requirements, not a certification claim — same wording as the Kubernetes detail page.
 
 ---
@@ -145,7 +150,7 @@ Only general questions here — topic-specific FAQs live on the topic pages.
 ## Häufige *Fragen*
 
 „Müssen wir alles auf einmal umstellen?"
-Nein. Wir fangen mit einem der drei Bereiche an, meist dort, wo es heute am
+Nein. Wir fangen mit einem der vier Bereiche an, meist dort, wo es heute am
 meisten wehtut. Jeder Bereich bringt für sich einen Nutzen; die anderen können
 folgen, müssen aber nicht.
 

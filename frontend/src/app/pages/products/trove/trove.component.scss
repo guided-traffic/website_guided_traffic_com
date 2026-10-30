@@ -1,0 +1,59 @@
+@use '../../../../styles/patterns' as *;
+
+// ─── Hero as a stage ─────────────────────────────────────────────────────────
+// Like the home page: the hero fills the first screen, the tower rises behind the content and
+// the frame clips it. Own stacking context: the tower (z-index -1) paints above the dot grid
+// and below the text.
+.trove-hero__frame {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - var(--nav-height));
+  overflow: hidden;
+}
+
+.trove-hero__frame .pd-hero__sub,
+.trove-hero__frame .pd-hero__meta {
+  @include paper-halo;
+}
+
+.trove-hero__frame .pd-hero__headline {
+  @include paper-halo(6px, 4px);
+}
+
+// Right of the text column, nearly as tall as the stage; the base stands on a strip of ground
+// between the horizon and the bottom edge
+.trove-hero__tower {
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 71%;
+  height: calc(100% - var(--space-2xl));
+  transform: translateX(-50%);
+}
+
+// One column: the tower follows the text, wider than the frame and centered, its base on the
+// frame's bottom edge
+@media (max-width: 1024px) {
+  .trove-hero__frame {
+    padding-bottom: 0;
+  }
+
+  .trove-hero__tower {
+    position: relative;
+    order: 1;
+    align-self: center;
+    left: auto;
+    width: 150%;
+    height: auto;
+    margin-top: var(--space-xl);
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .trove-hero__tower {
+    width: 240%;
+  }
+}

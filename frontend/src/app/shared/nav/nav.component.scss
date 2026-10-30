@@ -1,4 +1,5 @@
-// Sticky bar of hairline-separated cells: logo | links | contact block
+// Sticky bar of hairline-separated cells: logo | links | contact block.
+// Every size in the bar is a base value times --nav-scale (styles.scss).
 .nav {
   position: sticky;
   top: 0;
@@ -17,15 +18,24 @@
     display: flex;
     align-items: stretch;
     height: var(--nav-height);
+
+    // Desktop: the links start on the content frame's left line once the
+    // screen is wide enough, so the menus sit above the content. The logo
+    // column grows from the logo's width up to the frame's left edge.
+    @media (min-width: 769px) {
+      display: grid;
+      grid-template-columns: minmax(max-content, calc((100% - var(--frame-max)) / 2)) 1fr auto auto;
+    }
   }
 
+  // The wordmark's face and style are fixed; it only scales with the bar
   &__logo {
     display: flex;
     align-items: center;
-    padding: 0 1.25rem;
-    border-right: 1px solid var(--color-line);
+    justify-self: start;
+    padding: 0 calc(1.25rem * var(--nav-scale));
     font-family: var(--font-display);
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--nav-scale));
     font-weight: 700;
     font-stretch: 125%;
     letter-spacing: -0.01em;
@@ -37,20 +47,15 @@
     &:hover {
       color: var(--color-ink);
     }
-
-    // The toggle carries the only divider on phones
-    @media (max-width: 768px) {
-      border-right: none;
-    }
   }
 
   &__toggle {
     display: none;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
+    gap: calc(5px * var(--nav-scale));
     order: 4;
-    padding: 0 1.25rem;
+    padding: 0 calc(1.25rem * var(--nav-scale));
     background: none;
     border: none;
     border-left: 1px solid var(--color-line);
@@ -63,8 +68,8 @@
 
   &__toggle-bar {
     display: block;
-    width: 20px;
-    height: 1.5px;
+    width: calc(20px * var(--nav-scale));
+    height: calc(1.5px * var(--nav-scale));
     background: var(--color-ink);
   }
 
@@ -92,11 +97,16 @@
   &__links {
     display: flex;
     align-items: stretch;
-    gap: 0.5rem;
+    gap: calc(0.5rem * var(--nav-scale));
     flex: 1;
     order: 1;
     list-style: none;
-    padding: 0 1.25rem;
+    padding: 0 calc(1.25rem * var(--nav-scale));
+
+    // The divider after the logo; on wide screens it lies on the frame line
+    @media (min-width: 769px) {
+      border-left: 1px solid var(--color-line);
+    }
 
     > li {
       display: flex;
@@ -104,9 +114,9 @@
     }
 
     > li > a {
-      padding: 4px 8px;
+      padding: calc(4px * var(--nav-scale)) calc(8px * var(--nav-scale));
       font-family: var(--font-mono);
-      font-size: 0.6875rem;
+      font-size: calc(0.6875rem * var(--nav-scale));
       font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -376,8 +386,8 @@
   }
 
   &__theme-icon {
-    width: 16px;
-    height: 16px;
+    width: calc(16px * var(--nav-scale));
+    height: calc(16px * var(--nav-scale));
   }
 
   // Contact: full-height signal-orange block at the right edge
@@ -385,11 +395,11 @@
     display: flex;
     align-items: center;
     order: 3;
-    padding: 0 1.5rem;
+    padding: 0 calc(1.5rem * var(--nav-scale));
     background: var(--color-signal);
     color: var(--color-on-signal);
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: calc(0.6875rem * var(--nav-scale));
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
