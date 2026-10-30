@@ -43,6 +43,14 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'products/cogpit',
+    loadComponent: () => import('./pages/products/cogpit/cogpit.component').then(m => m.CogpitComponent),
+  },
+  {
+    path: 'products/trove',
+    loadComponent: () => import('./pages/products/trove/trove.component').then(m => m.TroveComponent),
+  },
+  {
     path: 'products/internal-secrets-operator',
     loadComponent: () => import('./pages/products/internal-secrets-operator/internal-secrets-operator.component').then(m => m.InternalSecretsOperatorComponent),
   },

@@ -28,29 +28,14 @@
     @include dot-grid;
   }
 
-  // Lines break around lettering, as on a drawing or a chart: a solid paper
-  // halo (unblurred shadows in eight directions) keeps the text readable
-  // wherever the wheel runs behind it
-  &__headline,
+  // The wheel runs behind the text: paper halo around the lettering
   &__sub,
   &__meta {
-    --halo: 3px;
-    --halo-d: 2px;
-    text-shadow:
-      var(--halo) 0 var(--color-paper),
-      calc(var(--halo) * -1) 0 var(--color-paper),
-      0 var(--halo) var(--color-paper),
-      0 calc(var(--halo) * -1) var(--color-paper),
-      var(--halo-d) var(--halo-d) var(--color-paper),
-      calc(var(--halo-d) * -1) var(--halo-d) var(--color-paper),
-      var(--halo-d) calc(var(--halo-d) * -1) var(--color-paper),
-      calc(var(--halo-d) * -1) calc(var(--halo-d) * -1) var(--color-paper),
-      0 0 10px var(--color-paper);
+    @include paper-halo;
   }
 
   &__headline {
-    --halo: 6px;
-    --halo-d: 4px;
+    @include paper-halo(6px, 4px);
   }
 
   // Seen from the helm: the hub sits on the bottom edge and the upper half

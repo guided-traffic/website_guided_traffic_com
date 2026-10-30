@@ -1,0 +1,356 @@
+<!-- Hero Section -->
+<section class="pd-hero">
+  <div class="frame pd-hero__frame">
+    <div class="pd-hero__content">
+      <div class="pd-hero__title">
+        <!-- The app icon from the cogpit repository (docs/developer/assets/logo/helm-glow.svg) -->
+        <img class="pd-hero__logo" src="/assets/products/cogpit.svg" alt="Cogpit-Logo" width="88" height="88" />
+        <h1 class="pd-hero__headline"><em>Cogpit</em></h1>
+      </div>
+      <p class="pd-hero__sub">
+        Die Kubernetes-IDE für den Desktop: Workloads, Konfiguration, Netzwerk, Storage
+        und jede Custom Resource in einem Fenster, dazu Helm, Flux CD und Argo CD. Die
+        Oberfläche liest aus einem Live-Cache, und KI-Agenten arbeiten mit Ihnen — nicht
+        hinter Ihrem Rücken.
+      </p>
+      <div class="pd-hero__meta">
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Status</span>
+          <span class="pd-hero__meta-badge pd-hero__meta-badge--alpha">Alpha</span>
+        </span>
+        <span class="pd-hero__meta-separator"></span>
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Lizenz</span>
+          <span class="pd-hero__meta-value">Apache 2.0</span>
+        </span>
+        <span class="pd-hero__meta-separator"></span>
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Plattformen</span>
+          <span class="pd-hero__meta-value">macOS / Linux / Windows</span>
+        </span>
+        <span class="pd-hero__meta-separator"></span>
+        <span class="pd-hero__meta-item">
+          <span class="pd-hero__meta-label">Version</span>
+          <span class="pd-hero__meta-value">v0.60.0 (Oktober 2026)</span>
+        </span>
+      </div>
+      <div class="pd-hero__actions">
+        <a
+          href="https://github.com/guided-traffic/cogpit/releases"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >Herunterladen</a>
+        <a
+          href="https://github.com/guided-traffic/cogpit"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Auf GitHub ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="pd-problem frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Problem</span></span>
+      <span class="label">cogpit</span>
+    </div>
+    <div class="pd-problem__content">
+      <h2 class="pd-problem__headline">Das Problem</h2>
+      <p class="pd-problem__text">
+        Der Kubernetes-Alltag verteilt sich auf viele Werkzeuge: <code>kubectl</code> in
+        mehreren Terminals, Helm auf der Kommandozeile, eigene Oberflächen für Flux CD und
+        Argo CD, Dashboards für Metriken. In großen Clustern werden Listen träge, und jedes
+        Neuladen fragt den API-Server erneut. Wer KI-Agenten mit <code>kubectl</code>
+        arbeiten lässt, gibt ihnen dieselben Rechte wie sich selbst — ohne Rückfrage vor
+        einer Änderung.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="pd-features frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">02 /</span> <span class="frame-bar__title">Funktionen</span></span>
+      <span class="label">cogpit</span>
+    </div>
+    <h2 class="pd-features__headline">Ein Fenster für den ganzen Cluster</h2>
+    <div class="pd-features__grid">
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Jede Ressource, ein Klick zu den Details</h3>
+        <p class="pd-feature-card__desc">
+          Workloads, Konfiguration, Netzwerk, Storage, Zugriffsrechte und jede Custom
+          Resource Ihres Clusters — durchsuchbar, auch per regulärem Ausdruck, und nach
+          Status gefiltert. CPU und Speicher kommen aus dem Metrics Server oder aus
+          Prometheus.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Live-Cache statt Dauerabfragen</h3>
+        <p class="pd-feature-card__desc">
+          Jede Liste liest aus einem Cache, den die Watches des Clusters aktuell halten.
+          Listen mit 10.000 Pods bleiben flüssig, und der Sprung zurück zu einer Ansicht
+          kostet den API-Server keine Anfrage.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Logs über ein ganzes Deployment</h3>
+        <p class="pd-feature-card__desc">
+          Ein Container oder alle Pods eines Deployments, StatefulSets oder Jobs in einem
+          Tab, jede Zeile mit Pod und Container markiert. Dazu Shells in jedem Container und
+          ein Terminal im Kontext des Clusters.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">YAML bearbeiten mit Diff und Dry-Run</h3>
+        <p class="pd-feature-card__desc">
+          Vor dem Anwenden sehen Sie den Diff und das Dry-Run-Ergebnis des API-Servers. Hat
+          jemand das Objekt inzwischen geändert, meldet Cogpit das, statt die Änderung zu
+          überschreiben.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Helm ohne helm-Binary</h3>
+        <p class="pd-feature-card__desc">
+          Charts aus Ihren Repositories durchsuchen und installieren, Releases mit Historie
+          und Values ansehen, upgraden, zurückrollen oder deinstallieren — über das Helm SDK.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">GitOps mit Flux CD und Argo CD</h3>
+        <p class="pd-feature-card__desc">
+          Ein Dashboard über alle Flux-Ressourcen mit Reconcile, Suspend und Resume, auch für
+          eine ganze Auswahl. Argo-CD-Applications mit Sync- und Health-Status, Sync und
+          Refresh.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Alle Cluster in einem Fenster</h3>
+        <p class="pd-feature-card__desc">
+          Cogpit liest jede kubeconfig in <code>~/.kube</code> und folgt ihren Änderungen.
+          Cluster auf F1–F12, Tabs mehrerer Cluster nebeneinander und eine Befehlspalette
+          für jede Ansicht und Aktion.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Zertifikate, entschlüsselt</h3>
+        <p class="pd-feature-card__desc">
+          Jedes Zertifikat in einem Secret mit Aussteller, Namen und Laufzeit, mit Warnung
+          30 Tage vor Ablauf. Cogpit prüft, ob <code>tls.key</code> zu <code>tls.crt</code>
+          passt und die Kette stimmt — ohne den Schlüssel je anzuzeigen.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Agents Section -->
+<section class="pd-features frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">03 /</span> <span class="frame-bar__title">KI-Agenten</span></span>
+      <span class="label">cogpit</span>
+    </div>
+    <h2 class="pd-features__headline">Agenten über MCP, mit Ihrer Freigabe</h2>
+    <div class="pd-features__grid">
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Jeder Befehl ist ein MCP-Tool</h3>
+        <p class="pd-feature-card__desc">
+          Ein Agent wie Claude Code sieht, was Sie sehen: Er liest Listen und Logs und
+          navigiert das Fenster für Sie. Der MCP-Server ist aus, bis Sie ihn einschalten.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Änderungen warten auf Ihr OK</h3>
+        <p class="pd-feature-card__desc">
+          Lesen ist frei. Jede Änderung wartet auf Ihre Freigabe im Fenster, mit Objekten,
+          Namespace und Cluster — destruktive Aktionen immer. Manche Befehle, etwa das
+          Anlegen eines Secrets, führen nur Sie selbst aus.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Alles im Audit-Log</h3>
+        <p class="pd-feature-card__desc">
+          Was Agenten getan haben, steht im Audit-Log der Anwendung — nachvollziehbar, auch
+          im Nachhinein.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Eigener Agent-Chat</h3>
+        <p class="pd-feature-card__desc">
+          Ein Chat am Fensterrand mit einem Modell Ihrer Wahl: LM Studio auf Ihrem Rechner,
+          ein LiteLLM-Proxy, Open WebUI oder ein anderer OpenAI-kompatibler Endpunkt. Seine
+          Änderungen warten auf Ihr OK wie die eines MCP-Agenten.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Safety Section -->
+<section class="pd-features frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">04 /</span> <span class="frame-bar__title">Sicherheit</span></span>
+      <span class="label">cogpit</span>
+    </div>
+    <h2 class="pd-features__headline">Sicher von Grund auf</h2>
+    <div class="pd-features__grid">
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Keine Überraschungen im Cluster</h3>
+        <p class="pd-feature-card__desc">
+          Browsen schreibt nie. Cogpit installiert nichts in Ihre Cluster, wenn Sie es nicht
+          verlangen, und schreibt nie in Ihre kubeconfig-Dateien.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Fragt, bevor etwas verloren geht</h3>
+        <p class="pd-feature-card__desc">
+          Löschen, Drain, Evict, Skalieren auf null, Helm-Rollback und -Deinstallation und die
+          Node-Shell fragen immer nach und nennen Objekte, Namespace und Cluster.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Secrets bleiben geheim</h3>
+        <p class="pd-feature-card__desc">
+          Werte bleiben maskiert, bis Sie sie aufdecken. Agenten lesen sie nicht — außer Sie
+          markieren die Verbindung des eingebauten Agenten als privat, etwa für ein lokales
+          Modell. Tokens und Schlüssel landen nie in einem Log.
+        </p>
+      </article>
+
+      <article class="pd-feature-card">
+        <h3 class="pd-feature-card__title">Ihre Credentials bleiben Ihre</h3>
+        <p class="pd-feature-card__desc">
+          Cogpit meldet sich an wie <code>kubectl</code>, mit Ihrer kubeconfig, und startet ein
+          Credential-Plugin erst, nachdem Sie es erlaubt haben.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="pd-stack frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">05 /</span> <span class="frame-bar__title">Technik</span></span>
+      <span class="label">cogpit</span>
+    </div>
+    <h2 class="pd-stack__headline">Technischer Stack und Integrationen</h2>
+    <p class="pd-stack__intro">
+      In Go geschrieben, als native Anwendung. Ein mitgeliefertes <code>cogpit-cli</code>
+      verbindet Agenten mit den MCP-Tools.
+    </p>
+    <div class="pd-stack__chips">
+      <span class="pd-stack__chip">Go</span>
+      <span class="pd-stack__chip">Model Context Protocol (MCP)</span>
+      <span class="pd-stack__chip">Helm SDK</span>
+      <span class="pd-stack__chip">Flux CD</span>
+      <span class="pd-stack__chip">Argo CD</span>
+      <span class="pd-stack__chip">Metrics Server</span>
+      <span class="pd-stack__chip">Prometheus</span>
+      <span class="pd-stack__chip">node-exporter</span>
+      <span class="pd-stack__chip">OpenAI-kompatible Endpunkte</span>
+      <span class="pd-stack__chip">Apache 2.0</span>
+    </div>
+  </div>
+</section>
+
+<!-- License & Status Section -->
+<section class="pd-license frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">06 /</span> <span class="frame-bar__title">Lizenz</span></span>
+      <span class="label">cogpit</span>
+    </div>
+    <div class="pd-license__content">
+      <h2 class="pd-license__headline">Lizenz, Status und Plattformen</h2>
+      <div class="pd-license__grid">
+        <div class="pd-license__item">
+          <span class="pd-license__item-label">Status</span>
+          <span class="pd-license__item-value">
+            <strong>Alpha</strong> — alle Kern-Workflows laufen durchgängig auf echten
+            Clustern; einige Ansichten und Aktionen sind noch unvollständig. Probieren Sie
+            Cogpit zuerst an einem Test-Cluster aus.
+          </span>
+        </div>
+        <div class="pd-license__item">
+          <span class="pd-license__item-label">Lizenz</span>
+          <span class="pd-license__item-value">
+            <strong>Apache 2.0</strong> — frei nutzbar, auch kommerziell.
+          </span>
+        </div>
+        <div class="pd-license__item">
+          <span class="pd-license__item-label">Plattformen</span>
+          <span class="pd-license__item-value">
+            <strong>macOS 13+</strong> auf Apple Silicon, signiert und notarisiert;
+            <strong>Debian 13 / Ubuntu 24.04+</strong> (amd64, arm64);
+            <strong>Windows 10 und 11</strong> (x64).
+          </span>
+        </div>
+      </div>
+      <p class="pd-license__note">
+        Unter Linux kommen Updates über das signierte APT-Repository; unter Windows prüft
+        Cogpit die Signatur jedes Updates vor der Installation.
+      </p>
+      <a
+        href="https://github.com/guided-traffic/cogpit/releases"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary"
+      >Herunterladen</a>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="pd-cta frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">07 /</span> <span class="frame-bar__title">Nächster Schritt</span></span>
+      <span class="label">cogpit</span>
+    </div>
+    <div class="pd-cta__content">
+      <h2 class="pd-cta__headline">Brauchen Sie Unterstützung im Kubernetes-Betrieb?</h2>
+      <p class="pd-cta__sub">
+        Cogpit ist frei verfügbar. Wenn Sie Ihre Cluster aufbauen, absichern oder KI-Agenten
+        kontrolliert in den Betrieb einbinden wollen, begleiten wir Sie — von der
+        Evaluierung bis zum produktiven Einsatz.
+      </p>
+      <div class="pd-cta__actions">
+        <a routerLink="/contact" class="btn btn-primary">Beratung anfragen</a>
+        <a
+          href="https://github.com/guided-traffic/cogpit"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >Repository ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>

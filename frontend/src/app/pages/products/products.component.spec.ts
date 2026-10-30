@@ -32,18 +32,43 @@ describe('ProductsComponent', () => {
     expect(render().querySelectorAll('.product-card').length).toBe(products.length);
   });
 
-  it('should split products into open-source and commercial sections by license', () => {
+  it('should render one section per category, in order, with its products', () => {
+    const service = TestBed.inject(ProductsService);
+    const sections = Array.from(render().querySelectorAll('section.products'));
+    expect(sections.map(s => s.querySelector('h2')?.textContent?.trim())).toEqual([
+      'Desktop-Anwendungen',
+      'Kubernetes-Operatoren',
+      'Plattform-Dienste',
+      'Security-Anwendungen',
+    ]);
+    service.getCategories().forEach((category, i) => {
+      const names = Array.from(sections[i].querySelectorAll('.product-card__name')).map(n => n.textContent?.trim());
+      expect(names).toEqual(service.getProducts().filter(p => p.category === category.key).map(p => p.name));
+    });
+  });
+
+  it('should keep the product list grouped in category order', () => {
+    const service = TestBed.inject(ProductsService);
+    const order = service.getCategories().map(c => c.key);
+    const ranks = service.getProducts().map(p => order.indexOf(p.category));
+    expect(ranks).toEqual([...ranks].sort((a, b) => a - b));
+    expect(ranks).not.toContain(-1);
+  });
+
+  it('should mark products in development on their card', () => {
     const products = TestBed.inject(ProductsService).getProducts();
-    const sections = render().querySelectorAll('section.products');
-    expect(sections.length).toBe(2);
-    expect(sections[0].querySelectorAll('.product-card__badge--free').length).toBe(products.filter(p => p.license === 'FREE').length);
-    expect(sections[1].querySelectorAll('.product-card__badge--licensed').length).toBe(products.filter(p => p.license === 'LICENSED').length);
+    const marked = Array.from(render().querySelectorAll('.product-card'))
+      .filter(card => card.querySelector('.product-card__badge--status'))
+      .map(card => card.id);
+    expect(marked).toEqual(products.filter(p => p.status === 'in-development').map(p => p.slug));
+    expect(marked).toContain('trove');
   });
 
   it('should render product names and link internal CTAs to the detail pages', () => {
     const el = render();
-    expect(el.querySelector('.product-card__name')?.textContent).toContain('Internal Secrets Operator');
+    expect(el.querySelector('.product-card__name')?.textContent).toContain('Cogpit');
     const internal = Array.from(el.querySelectorAll('.product-card__cta.btn-primary')).map(a => a.getAttribute('href'));
+    expect(internal).toContain('/products/cogpit');
     expect(internal).toContain('/products/internal-secrets-operator');
     expect(internal).toContain('/products/s3-encryption-proxy');
   });

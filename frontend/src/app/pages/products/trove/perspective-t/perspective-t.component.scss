@@ -1,0 +1,45 @@
+// Drawn like the helm wheel on the home page: hairlines on paper, faces filled with paper so
+// they hide what lies behind them
+:host {
+  display: block;
+  aspect-ratio: 8 / 5;
+  pointer-events: none;
+}
+
+.ptower {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+
+  path {
+    stroke-width: 1px;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+.ptower__construction {
+  fill: none;
+  stroke: var(--color-line-strong);
+  stroke-dasharray: 4 6;
+}
+
+.ptower__horizon {
+  fill: none;
+  stroke: var(--color-line-strong);
+}
+
+.ptower__vp {
+  fill: none;
+  stroke: var(--color-ink);
+}
+
+.ptower__face {
+  fill: var(--color-paper);
+  stroke: var(--color-mark);
+}
+
+.ptower__facade {
+  fill: none;
+  stroke: var(--color-line);
+}

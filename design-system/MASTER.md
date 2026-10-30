@@ -166,7 +166,7 @@ Shared stylesheets instead of per-page copies:
   panel anchored to the bottom, 30px above the ticker on every screen height (one column: the
   terminal follows the copy).
   Content sits at the top; the helm wheel runs behind it. Headline, lead and meta line carry a
-  solid paper halo (unblurred `text-shadow` in eight directions), so the wheel's lines break around
+  solid paper halo (`paper-halo` mixin: unblurred `text-shadow` in eight directions), so the wheel's lines break around
   the lettering as they would on a drawing.
 - **Helm wheel** — [`HelmWheelComponent`](../frontend/src/app/pages/home/helm-wheel/helm-wheel.component.ts):
   a ship's wheel drawn as hairlines on paper with eight turned handles; only the king spoke's
@@ -186,6 +186,33 @@ Shared stylesheets instead of per-page copies:
 - **Topic cards** — four cells as 2 × 2 (one column on phones), separated by hairlines; a bar with the route slug and number, then
   title, text and a mono CTA. The whole cell is the click target.
 - **Footer** — framed four-column grid with mono headings and a mono bottom bar.
+
+## Components (product pages)
+
+- **Products overview** — one framed section per category, in the order of
+  [`ProductsService`](../frontend/src/app/services/products.service.ts) (Desktop-Anwendungen,
+  Kubernetes-Operatoren, Plattform-Dienste, Security-Anwendungen); a category without products is
+  left out. Cards keep one width in every category (`auto-fill`, at most three per row), so a
+  category with one product does not stretch it across the frame.
+- **Status badge** — a product that is not released yet carries `status: 'in-development'`: a
+  dashed "In Entwicklung" badge on its card, and the same dashed style for Alpha, Beta and
+  "In Entwicklung" in the detail page's hero.
+- **Product logo** — a product with its own logo shows it in the hero on the name's line, left of the name (88px, 56px on phones). It
+  keeps its own colors and shape, rounded corners included: it is the product's mark, not page
+  chrome. The file lives at `src/assets/products/<slug>.svg` (served under `/assets/`), never in
+  `public/products/<slug>/`: a folder there shadows the route `/products/<slug>`, and the static
+  server answers it with a 301 to `/products/<slug>/`, which renders an empty page.
+- **Perspective T** — the trove hero is a stage like the home hero:
+  [`PerspectiveTComponent`](../frontend/src/app/pages/products/trove/perspective-t/perspective-t.component.ts)
+  draws a T-shaped tower in three-point perspective, seen from the ground in front of it, as
+  hairlines on paper like the helm wheel: faces filled with paper hide what lies behind them,
+  facades carry floor and bay lines, dashed construction lines run to the vanishing points, and
+  the horizon carries a cross at the depth vanishing point. No signal color, and no motion:
+  the drawing is still. The geometry is a pure function
+  ([`perspective-t.geometry.ts`](../frontend/src/app/pages/products/trove/perspective-t/perspective-t.geometry.ts))
+  computed once, so the server renders the finished drawing and no script runs for it in the
+  browser. Right of the text column on desktop, below the text at ≤ 1024px.
+  Decorative, `aria-hidden`; text in front carries the paper halo (`paper-halo` mixin).
 
 ## Avoid
 

@@ -18,14 +18,22 @@
     display: flex;
     align-items: stretch;
     height: var(--nav-height);
+
+    // Desktop: the links start on the content frame's left line once the
+    // screen is wide enough, so the menus sit above the content. The logo
+    // column grows from the logo's width up to the frame's left edge.
+    @media (min-width: 769px) {
+      display: grid;
+      grid-template-columns: minmax(max-content, calc((100% - var(--frame-max)) / 2)) 1fr auto auto;
+    }
   }
 
   // The wordmark's face and style are fixed; it only scales with the bar
   &__logo {
     display: flex;
     align-items: center;
+    justify-self: start;
     padding: 0 calc(1.25rem * var(--nav-scale));
-    border-right: 1px solid var(--color-line);
     font-family: var(--font-display);
     font-size: calc(0.9375rem * var(--nav-scale));
     font-weight: 700;
@@ -38,11 +46,6 @@
 
     &:hover {
       color: var(--color-ink);
-    }
-
-    // The toggle carries the only divider on phones
-    @media (max-width: 768px) {
-      border-right: none;
     }
   }
 
@@ -99,6 +102,11 @@
     order: 1;
     list-style: none;
     padding: 0 calc(1.25rem * var(--nav-scale));
+
+    // The divider after the logo; on wide screens it lies on the frame line
+    @media (min-width: 769px) {
+      border-left: 1px solid var(--color-line);
+    }
 
     > li {
       display: flex;

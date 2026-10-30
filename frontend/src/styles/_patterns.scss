@@ -21,6 +21,21 @@
   background-position: -1px -1px;
 }
 
+// Lines break around lettering, as on a drawing or a chart: a solid paper halo (unblurred
+// shadows in eight directions) keeps text readable where a drawing runs behind it
+@mixin paper-halo($radius: 3px, $diagonal: 2px) {
+  text-shadow:
+    $radius 0 var(--color-paper),
+    (-$radius) 0 var(--color-paper),
+    0 $radius var(--color-paper),
+    0 (-$radius) var(--color-paper),
+    $diagonal $diagonal var(--color-paper),
+    (-$diagonal) $diagonal var(--color-paper),
+    $diagonal (-$diagonal) var(--color-paper),
+    (-$diagonal) (-$diagonal) var(--color-paper),
+    0 0 10px var(--color-paper);
+}
+
 @mixin page-hero {
   padding: var(--space-4xl) var(--frame-pad) var(--space-3xl);
   @include dot-grid;

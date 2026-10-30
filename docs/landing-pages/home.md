@@ -123,8 +123,8 @@ mitlesen. Die Werkzeuge, die dabei entstehen, veröffentlichen wir als Open Sour
     Tag an mit.
 
 03  Open Source
-    Fünf eigene Kubernetes-Operators und gehärtete Container-Images,
-    Apache-2.0-lizenziert. Sie können den Code lesen, bevor Sie mit uns sprechen.
+    Eine Kubernetes-IDE für den Desktop, fünf Kubernetes-Operators, gehärtete
+    Container-Images und ein S3-Verschlüsselungs-Proxy, Apache-2.0-lizenziert. Sie können den Code lesen, bevor Sie mit uns sprechen.
     [Zu den Produkten →] (/products)
 
 04  Über zehn Jahre Praxis
@@ -133,7 +133,7 @@ mitlesen. Die Werkzeuge, die dabei entstehen, veröffentlichen wir als Open Sour
 ```
 
 **Notes:**
-- Card 03 states the count from `products.service.ts` (five operators + container images). The Kubernetes detail page and strategy.md §3 still say "sieben Operators" — needs a decision which wording is meant.
+- Card 03 states the count from `products.service.ts` (Cogpit, five operators, container images and the S3 Encryption Proxy, Apache-2.0 since 2026-10-29). The Kubernetes detail page and strategy.md §3 still say "sieben Operators" — needs a decision which wording is meant.
 - "BSI-Grundschutz" describes experience under its requirements, not a certification claim — same wording as the Kubernetes detail page.
 
 ---

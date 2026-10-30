@@ -14,6 +14,25 @@ section {
     @include page-hero;
   }
 
+  // A product's own logo on the name's line, left of the name; it keeps its own colors and shape
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+
+    .pd-hero__headline {
+      margin-bottom: 0;
+    }
+  }
+
+  &__logo {
+    display: block;
+    flex-shrink: 0;
+    width: 88px;
+    height: 88px;
+  }
+
   &__headline {
     max-width: 18ch;
     margin-bottom: var(--space-xl);
@@ -51,6 +70,8 @@ section {
   &__meta-badge {
     @include badge;
 
+    // Pre-release states: dashed; stable: solid
+    &--alpha,
     &--beta {
       border-style: dashed;
     }
@@ -320,5 +341,15 @@ p[class$='__intro'],
 
   .pd-catalog-group__note {
     grid-column: 1;
+  }
+
+  // Shrinks with the headline, which is 40px here
+  .pd-hero__logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .pd-hero__title {
+    gap: var(--space-md);
   }
 }

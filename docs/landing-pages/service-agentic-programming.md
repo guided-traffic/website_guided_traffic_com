@@ -92,8 +92,8 @@ Only assets from the [trust stack](strategy.md#3-trust-stack-shared-assets-reusa
 there is no agentic-programming customer reference yet, and none is implied.
 
 - Sicherheitsmaßstäbe aus regulierten Umgebungen (BaFin-Privatbank, BSI-Grundschutz-Dienstleister)
-- Eigene Software: fünf Kubernetes-Operatoren und gehärtete Container-Images als Open Source, ein
-  kommerzieller S3-Verschlüsselungs-Proxy
+- Eigene Software: eine Kubernetes-IDE mit MCP-Anbindung (Cogpit), fünf Kubernetes-Operatoren,
+  gehärtete Container-Images und ein S3-Verschlüsselungs-Proxy, alle als Open Source unter Apache 2.0
 - CKS-zertifiziert
 - 10+ Jahre Infrastruktur, DevOps und Data Engineering
 
