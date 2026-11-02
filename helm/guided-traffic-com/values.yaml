@@ -43,7 +43,7 @@ frontend:
       cpu: 200m
       memory: 256Mi
   healthCheck:
-    path: /
+    path: /healthz
     port: 4000
   extraPodLabels: {}
   extraPodAnnotations: {}

@@ -1,6 +1,7 @@
 @use '../../../styles/patterns' as *;
 
-// Shared by all service detail pages, which have identical structure
+// Shared by all service detail pages, which have identical structure, and by
+// the about page, which uses their hero, trust rows and closing CTA
 
 section {
   padding: 0;
@@ -40,6 +41,11 @@ section {
 .svc-approach__intro,
 .svc-trust__intro {
   @include section-intro;
+}
+
+// Intro that ends its section: keep the space a list would bring
+.svc-trust__intro--last {
+  padding-bottom: var(--space-2xl);
 }
 
 // ─── Pain cards ──────────────────────────────────────────────────────────────

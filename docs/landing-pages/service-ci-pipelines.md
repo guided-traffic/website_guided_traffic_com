@@ -16,8 +16,8 @@
 ```
 # Eine Pipeline. Alle Teams. Kein Drama.
 
-Wir bauen einheitliche CI-Pipeline-Templates, die jedes Team in Ihrem Unternehmen
-ohne Umlernen nutzen kann. Mit Tests, Security-Scans und Quality-Gates — von
+Als GitLab-Experten bauen wir einheitliche CI-Pipeline-Templates, die jedes Team
+in Ihrem Unternehmen ohne Umlernen nutzen kann. Mit Tests, Security-Scans und Quality-Gates — von
 Anfang an dabei, nicht als Nachgedanke.
 
 [Kennenlernen →]  [So arbeiten wir]

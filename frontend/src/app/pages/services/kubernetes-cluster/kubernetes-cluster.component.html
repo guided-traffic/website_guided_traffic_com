@@ -2,7 +2,7 @@
 <section class="svc-hero">
   <div class="frame svc-hero__frame">
     <div class="svc-hero__content">
-      <h1 class="svc-hero__headline">Kubernetes. Ohne <em>Black Box.</em></h1>
+      <h1 class="svc-hero__headline">Kubernetes-Experten. Ohne <em>Black Box.</em></h1>
       <p class="svc-hero__sub">
         Wir bauen produktionsreife Kubernetes-Cluster auf Ihrer Hardware, in Ihrer Cloud
         oder hybrid — inklusive Containerisierung Ihrer bestehenden Anwendungen. Nach der
@@ -16,7 +16,7 @@
           rel="noopener noreferrer"
           class="btn btn-primary"
         >Kennenlerngespräch buchen</a>
-        <a href="#so-loesen-wir-das" class="btn btn-secondary">So arbeiten wir</a>
+        <a [routerLink]="[]" fragment="so-loesen-wir-das" class="btn btn-secondary">So arbeiten wir</a>
       </div>
     </div>
   </div>
@@ -212,6 +212,7 @@
     <p class="svc-trust__intro">
       Wir reden nicht nur über Kubernetes. Wir betreiben es seit Jahren in
       regulierten Umgebungen — und wir bauen selbst Werkzeuge dafür.
+      <a routerLink="/ueber-uns" class="svc-trust__link">Über Hans Fischer →</a>
     </p>
     <ul class="svc-trust__list">
       <li class="svc-trust__item">

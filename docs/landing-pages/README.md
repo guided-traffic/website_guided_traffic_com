@@ -13,6 +13,7 @@ The site uses **one home page + one services overview page + one detail page per
 /services/agentic-programming   → service-agentic-programming.md
 /services/ci-pipelines          → service-ci-pipelines.md
 /services/ansible-automation    → service-ansible-automation.md
+/ueber-uns                      → about.md                        (person page behind the site)
 ```
 
 Each service detail page is its own specialized landing page targeting a single concrete problem with its own pain-point framing, SEO cluster, and CTA funnel.
@@ -22,6 +23,8 @@ Each service detail page is its own specialized landing page targeting a single 
 | File | Corresponds to route | Role | Status |
 |---|---|---|---|
 | [strategy.md](strategy.md) | — | Shared foundation: audience, voice, trust assets, pain-point pool, service template | `FINAL` |
+| [about.md](about.md) | `/ueber-uns` | Person page — Hans Fischer, credentials, anonymized projects; third person | `DRAFT` |
+| [seo.md](seo.md) | — | Keyword targets per URL ("Kubernetes Experte", "GitLab Experte"), search-result findings, off-page levers | `DRAFT` |
 | [home.md](home.md) | `/` | Home hub — brief pitch + routing to services overview | `IN PROGRESS` |
 | [services-overview.md](services-overview.md) | `/services` | Services overview — lists the 4 services with teasers | `TODO` |
 | [service-kubernetes-cluster.md](service-kubernetes-cluster.md) | `/services/kubernetes-cluster` | Detail page — Production-ready Kubernetes Cluster (incl. app containerization / legacy migration) | `DRAFT` |

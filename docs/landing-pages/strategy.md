@@ -11,7 +11,7 @@ Mid-sized German decision makers — CTOs, Heads of IT, Geschäftsführer with t
 
 ## 2. Voice decisions (locked)
 
-- **"Wir"** throughout the site, never "Ich". Bus-factor concern is addressed via "network of trusted colleagues" in FAQ.
+- **"Wir"** throughout the site, never "Ich". Bus-factor concern is addressed via "network of trusted colleagues" in FAQ. *Exception decided 2026-11-02:* the person page [`/ueber-uns`](about.md) names Hans Fischer and speaks about him in the third person, so searches for an "Experte" find a person; it still never uses "Ich".
 - **All customer references are anonymized.** Never name Baader Bank, Dataport, HANSAINVEST, Otto, bonprix, SpotX. Use descriptors:
   - "Deutsche Privatbank unter BaFin-Aufsicht"
   - "Öffentlicher IT-Dienstleister mit BSI-Grundschutz-Auflagen"

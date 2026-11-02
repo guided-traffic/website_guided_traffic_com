@@ -147,7 +147,9 @@ Layout inside the frame comes from the mixins in
 Shared stylesheets instead of per-page copies:
 
 - [`pages/services/service-detail.scss`](../frontend/src/app/pages/services/service-detail.scss) —
-  all service detail pages (identical structure)
+  all service detail pages (identical structure) and the about page `/ueber-uns`, which uses their
+  hero, trust rows and closing CTA. A trust intro that ends its section takes
+  `.svc-trust__intro--last` for the bottom space a list would bring.
 - [`pages/products/product-detail.scss`](../frontend/src/app/pages/products/product-detail.scss) —
   all product detail pages. They use one class prefix, `pd-`; product-specific sections map onto
   the cell-grid, chip-group and chip-block patterns in that file.

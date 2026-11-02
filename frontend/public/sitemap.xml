@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.guided-traffic.com/</loc></url>
+  <url><loc>https://www.guided-traffic.com/services</loc></url>
+  <url><loc>https://www.guided-traffic.com/services/ci-pipelines</loc></url>
+  <url><loc>https://www.guided-traffic.com/services/ansible-automation</loc></url>
+  <url><loc>https://www.guided-traffic.com/services/kubernetes-cluster</loc></url>
+  <url><loc>https://www.guided-traffic.com/services/agentic-programming</loc></url>
+  <url><loc>https://www.guided-traffic.com/products</loc></url>
+  <url><loc>https://www.guided-traffic.com/ueber-uns</loc></url>
+  <url><loc>https://www.guided-traffic.com/contact</loc></url>
+  <url><loc>https://www.guided-traffic.com/impressum</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/cogpit</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/trove</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/internal-secrets-operator</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/jinja-template-operator</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/openldap-operator</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/valkey-operator</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/dex-operator</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/container-images</loc></url>
+  <url><loc>https://www.guided-traffic.com/products/s3-encryption-proxy</loc></url>
+</urlset>

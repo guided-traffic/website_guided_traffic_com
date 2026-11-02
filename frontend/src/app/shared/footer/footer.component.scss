@@ -123,8 +123,16 @@
 
   &__bottom-links {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: var(--space-sm);
+
+    // Wrap between entries on phones, never inside one
+    a,
+    p {
+      white-space: nowrap;
+    }
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     letter-spacing: 0.15em;

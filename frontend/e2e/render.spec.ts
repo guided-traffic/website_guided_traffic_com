@@ -26,6 +26,18 @@ test.describe('Homepage render test', () => {
     await expect(nav.getByRole('link', { name: /Produkte/ }).first()).toBeVisible();
   });
 
+  test('in-page buttons stay on their page', async ({ page }) => {
+    // A plain href="#x" resolves against <base href="/"> and lands on the home page
+    for (const [path, label, fragment] of [
+      ['/services/kubernetes-cluster', 'So arbeiten wir', 'so-loesen-wir-das'],
+      ['/ueber-uns', 'Projekte ansehen', 'projekte'],
+    ]) {
+      await page.goto(path);
+      await page.getByRole('link', { name: label }).click();
+      await expect(page).toHaveURL(`${path}#${fragment}`);
+    }
+  });
+
   test('products page renders', async ({ page }) => {
     await page.goto('/products');
 

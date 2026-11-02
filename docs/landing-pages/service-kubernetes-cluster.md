@@ -15,7 +15,7 @@
 
 ### Option A (recommended)
 ```
-# Kubernetes. Ohne Black Box.
+# Kubernetes-Experten. Ohne Black Box.
 
 Wir bauen produktionsreife Kubernetes-Cluster auf Ihrer Hardware, in Ihrer Cloud
 oder hybrid — inklusive Containerisierung Ihrer bestehenden Anwendungen. Nach der

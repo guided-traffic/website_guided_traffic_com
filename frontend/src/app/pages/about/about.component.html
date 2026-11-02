@@ -1,0 +1,160 @@
+<!-- Hero -->
+<section class="svc-hero">
+  <div class="frame svc-hero__frame">
+    <div class="svc-hero__content">
+      <h1 class="svc-hero__headline">Hinter Guided Traffic steht <em>Hans Fischer.</em></h1>
+      <p class="svc-hero__sub">
+        Hans Fischer ist Cloud Architect und Kubernetes-Experte, zertifiziert als
+        Certified Kubernetes Security Specialist (CKS). Seit über zehn Jahren baut er
+        Infrastruktur, Pipelines und Plattformen — in einer Privatbank unter BaFin-Aufsicht,
+        im öffentlichen Sektor unter BSI-Grundschutz und bei E-Commerce-Plattformen mit
+        Millionen Kunden.
+      </p>
+      <div class="svc-hero__actions">
+        <a
+          href="https://cal.eu/hans-fischer/kennenlernen"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >Kennenlerngespräch buchen</a>
+        <a [routerLink]="[]" fragment="projekte" class="btn btn-secondary">Projekte ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Focus areas -->
+<section class="svc-trust frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">01 /</span> <span class="frame-bar__title">Schwerpunkte</span></span>
+      <span class="label">ueber-uns</span>
+    </div>
+    <h2 class="svc-trust__headline">Woran er <em>arbeitet</em></h2>
+    <ul class="svc-trust__list">
+      <li class="svc-trust__item">
+        <strong>Kubernetes-Plattformen.</strong> Produktionsreife Cluster on-prem, in der Cloud
+        oder hybrid, inklusive Containerisierung bestehender Anwendungen.
+        <a routerLink="/services/kubernetes-cluster" class="svc-trust__link">Kubernetes-Cluster →</a>
+      </li>
+      <li class="svc-trust__item">
+        <strong>GitLab CI und Pipeline-Templates.</strong> Einheitliche Pipelines mit Tests,
+        Security-Scans und Quality-Gates. Außerdem Jenkins, GitHub Actions, Azure DevOps und Tekton.
+        <a routerLink="/services/ci-pipelines" class="svc-trust__link">CI-Pipelines →</a>
+      </li>
+      <li class="svc-trust__item">
+        <strong>GitOps und Automatisierung.</strong> Auslieferung über FluxCD, Provisionierung
+        bestehender Server mit Ansible.
+        <a routerLink="/services/ansible-automation" class="svc-trust__link">Ansible →</a>
+      </li>
+      <li class="svc-trust__item">
+        <strong>Security und Compliance.</strong> Network Policies, Pod Security und
+        Secret-Handling vom ersten Tag an, in Umgebungen unter BaFin-Aufsicht und BSI-Grundschutz.
+      </li>
+      <li class="svc-trust__item">
+        <strong>Eigene Werkzeuge.</strong> Eine Kubernetes-IDE für den Desktop, Kubernetes-Operatoren,
+        gehärtete Container-Images und ein S3-Verschlüsselungs-Proxy, als Open Source veröffentlicht.
+        <a routerLink="/products" class="svc-trust__link">Zu den Produkten →</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projekte" class="svc-trust frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">02 /</span> <span class="frame-bar__title">Projekte</span></span>
+      <span class="label">ueber-uns</span>
+    </div>
+    <h2 class="svc-trust__headline">Ausgewählte <em>Projekte</em></h2>
+    <p class="svc-trust__intro">
+      Kundennamen nennen wir nicht. Die Projekte beschreiben wir so genau, wie es die
+      Vertraulichkeit erlaubt.
+    </p>
+    <ul class="svc-trust__list">
+      <li class="svc-trust__item">
+        <strong>Deutsche Privatbank unter BaFin-Aufsicht.</strong> Hybrid-Kubernetes mit
+        Control-Plane in AWS und latenzkritischen Workloads on-prem, PCI-DSS- und DSGVO-konform.
+        Dazu eine DevSecOps-Plattform auf GitLab Enterprise mit SAST, DAST und Container-Scanning.
+      </li>
+      <li class="svc-trust__item">
+        <strong>Öffentlicher IT-Dienstleister unter BSI-Grundschutz.</strong> Dreieinhalb Jahre
+        Multi-Cluster-Plattform mit automatisiertem Auf- und Abbau virtueller Rechenzentren,
+        dazu GitLab-CI- und FluxCD-Pipelines im Produktivbetrieb.
+      </li>
+      <li class="svc-trust__item">
+        <strong>Finanzsektor.</strong> AKS-Automatisierung inklusive sicherer Secret-Übernahme
+        aus Azure Key Vault.
+      </li>
+      <li class="svc-trust__item">
+        <strong>E-Commerce-Plattformen mit Millionen Kunden.</strong> Network-Policy-Framework
+        nach Zero-Trust-Ansatz für einen produktiven Kubernetes-Cluster und Spark-basierte
+        Datenpipelines.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section class="svc-trust frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">03 /</span> <span class="frame-bar__title">Zertifikate</span></span>
+      <span class="label">ueber-uns</span>
+    </div>
+    <h2 class="svc-trust__headline">Geprüftes <em>Wissen</em></h2>
+    <ul class="svc-trust__list">
+      <li class="svc-trust__item">
+        <strong>Certified Kubernetes Security Specialist (CKS)</strong> — das anspruchsvollste
+        Kubernetes-Security-Zertifikat der Linux Foundation.
+      </li>
+      <li class="svc-trust__item">
+        <strong>AWS Certified Cloud Practitioner</strong> — Amazon Web Services.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Network -->
+<section class="svc-trust frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">04 /</span> <span class="frame-bar__title">Netzwerk</span></span>
+      <span class="label">ueber-uns</span>
+    </div>
+    <h2 class="svc-trust__headline">Vertretung und <em>Kapazität</em></h2>
+    <p class="svc-trust__intro svc-trust__intro--last">
+      Für größere Projekte und als Vertretung arbeitet Guided Traffic mit einem Netzwerk
+      vertrauter Kollegen, die bei Bedarf einspringen. Alles, was wir bauen, liegt dokumentiert
+      in Ihrem Git-Repository, und Ihr Team baut von Anfang an mit.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="svc-cta frame-rule">
+  <div class="frame">
+    <div class="frame-bar">
+      <span class="label"><span class="frame-bar__num">05 /</span> <span class="frame-bar__title">Nächster Schritt</span></span>
+      <span class="label">ueber-uns</span>
+    </div>
+    <div class="svc-cta__content">
+      <h2 class="svc-cta__headline">Lernen wir uns kennen.</h2>
+      <p class="svc-cta__sub">
+        Wir starten mit einem 30-minütigen Kennenlerngespräch. Unverbindlich,
+        ohne Vertrieb, ohne PowerPoint. Sie beschreiben Ihre Situation, wir
+        sagen Ihnen ehrlich, ob und wie wir helfen können.
+      </p>
+      <div class="svc-cta__actions">
+        <a
+          href="https://cal.eu/hans-fischer/kennenlernen"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >Kennenlerngespräch buchen</a>
+        <a routerLink="/contact" class="btn btn-secondary">E-Mail schreiben</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -52,9 +52,10 @@ describe('FooterComponent', () => {
     expect(bottom?.textContent).toContain('Guided Traffic');
   });
 
-  it('should render the imprint link and the Kubernetes note', () => {
+  it('should render the about and imprint links and the Kubernetes note', () => {
     const bottom = render().querySelector('.footer__bottom');
-    expect(bottom?.querySelector('a')?.getAttribute('href')).toBe('/impressum');
+    const links = Array.from(bottom?.querySelectorAll('a') ?? []).map((a) => a.getAttribute('href'));
+    expect(links).toEqual(['/ueber-uns', '/impressum']);
     expect(bottom?.textContent).toContain('Entwickelt mit Kubernetes');
   });
 });
