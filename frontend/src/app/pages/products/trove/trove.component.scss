@@ -1,8 +1,8 @@
 @use '../../../../styles/patterns' as *;
 
 // ─── Hero as a stage ─────────────────────────────────────────────────────────
-// Like the home page: the hero fills the first screen, the tower rises behind the content and
-// the frame clips it. Own stacking context: the tower (z-index -1) paints above the dot grid
+// Like the home page: the hero fills the first screen, the chest stands behind the content and
+// the frame clips it. Own stacking context: the chest (z-index -1) paints above the dot grid
 // and below the text.
 .trove-hero__frame {
   position: relative;
@@ -22,38 +22,32 @@
   @include paper-halo(6px, 4px);
 }
 
-// Right of the text column, nearly as tall as the stage; the base stands on a strip of ground
-// between the horizon and the bottom edge
-.trove-hero__tower {
+// Right of the text column, nearly as tall as the stage; the feet stand on the bottom edge and
+// artifacts fall through the space above the chest. Capped at 800px, about 530px wide, so on
+// tall screens the chest still fits between the text column and the frame's right side.
+.trove-hero__chest {
   position: absolute;
   z-index: -1;
   bottom: 0;
-  left: 71%;
-  height: calc(100% - var(--space-2xl));
+  left: 74%;
+  height: min(calc(100% - var(--space-2xl)), 800px);
   transform: translateX(-50%);
 }
 
-// One column: the tower follows the text, wider than the frame and centered, its base on the
-// frame's bottom edge
+// One column: the chest follows the text, centered, its feet on the frame's bottom edge
 @media (max-width: 1024px) {
   .trove-hero__frame {
     padding-bottom: 0;
   }
 
-  .trove-hero__tower {
+  .trove-hero__chest {
     position: relative;
     order: 1;
     align-self: center;
     left: auto;
-    width: 150%;
+    width: min(100%, 420px);
     height: auto;
     margin-top: var(--space-xl);
     transform: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .trove-hero__tower {
-    width: 240%;
   }
 }

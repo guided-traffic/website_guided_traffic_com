@@ -204,17 +204,24 @@ Shared stylesheets instead of per-page copies:
   chrome. The file lives at `src/assets/products/<slug>.svg` (served under `/assets/`), never in
   `public/products/<slug>/`: a folder there shadows the route `/products/<slug>`, and the static
   server answers it with a 301 to `/products/<slug>/`, which renders an empty page.
-- **Perspective T** — the trove hero is a stage like the home hero:
-  [`PerspectiveTComponent`](../frontend/src/app/pages/products/trove/perspective-t/perspective-t.component.ts)
-  draws a T-shaped tower in three-point perspective, seen from the ground in front of it, as
-  hairlines on paper like the helm wheel: faces filled with paper hide what lies behind them,
-  facades carry floor and bay lines, dashed construction lines run to the vanishing points, and
-  the horizon carries a cross at the depth vanishing point. No signal color, and no motion:
-  the drawing is still. The geometry is a pure function
-  ([`perspective-t.geometry.ts`](../frontend/src/app/pages/products/trove/perspective-t/perspective-t.geometry.ts))
-  computed once, so the server renders the finished drawing and no script runs for it in the
-  browser. Right of the text column on desktop, below the text at ≤ 1024px.
-  Decorative, `aria-hidden`; text in front carries the paper halo (`paper-halo` mixin).
+- **Treasure chest** — the trove hero is a stage like the home hero:
+  [`TroveChestComponent`](../frontend/src/app/pages/products/trove/trove-chest/trove-chest.component.ts)
+  draws an open chest in isometric projection as hairlines on paper like the helm wheel: faces
+  filled with paper hide what lies behind them, the body carries plank lines and corner plates,
+  and the contents' surface sits flush with the rim, hatched like a section. Artifacts — vertical
+  prisms and cylinders (parcel, crate, tall box, jar, coin, nut, wedge) — stand in twelve slots,
+  sink at one speed (2.2 units/s) and are cut exactly where they meet the surface; their
+  cross-section does not change with height, so a fixed clip per artifact is exact. Each slot
+  cycles through three shapes: the next one drops from the top of the drawing and lands the
+  moment the previous one has sunk, so the chest stays about as full. Only the lock's hasp and
+  the twinkling sparkles carry the signal color. The geometry is a pure function
+  ([`trove-chest.geometry.ts`](../frontend/src/app/pages/products/trove/trove-chest/trove-chest.geometry.ts))
+  that computes every outline and every keyframe once; the motion runs as SMIL animations, not
+  CSS keyframes, because each artifact needs its own key times (when it is gone depends on its
+  height), and no script runs for it. SMIL ignores `prefers-reduced-motion`, so a second layer
+  holds a still pose (one artifact per slot at rest) that CSS swaps in. Right of the text column
+  on desktop, at most 800px tall so it stays inside the frame on tall screens; below the text at
+  ≤ 1024px. Decorative, `aria-hidden`; text in front carries the paper halo (`paper-halo` mixin).
 
 ## Avoid
 
@@ -231,7 +238,7 @@ Shared stylesheets instead of per-page copies:
 - [ ] Text contrast ≥ 4.5:1 on paper (secondary and muted tokens already comply)
 - [ ] Headings checked at 390px for overflow (`scrollWidth > clientWidth`)
 - [ ] Hover and visible focus states (`:focus-visible` = 2px ink outline)
-- [ ] `prefers-reduced-motion` respected (ticker and helm wheel stop)
+- [ ] `prefers-reduced-motion` respected (ticker and helm wheel stop, the trove chest shows its still pose)
 - [ ] Responsive at 390px, 768px, 1024px, 1440px and a wide viewport (≥ 2560px), no horizontal page scroll
 - [ ] Animations checked over their full cycle, not only at t=0
 - [ ] Component styles under the 10kB error budget in `angular.json`
