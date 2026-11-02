@@ -6,7 +6,7 @@
 
 The person page behind "Kubernetes Experte" and "GitLab Experte" searches: those results are dominated by profiles that lead with a name and certifications (see [seo.md](seo.md)). Decided by Hans on 2026-11-02.
 
-**Voice:** third person about Hans Fischer ("Hans Fischer ist …"); "Wir" stays for Guided Traffic, including on this page. This is the one page that names the person behind the site, an explicit exception to the bus-factor framing in [strategy.md](strategy.md) §2. The network section answers the bus-factor question on the page itself.
+**Voice:** "Wir" throughout, like every other page (Hans, 2026-11-02); no third-person "er" copy. The name Hans Fischer appears in the H1, the page title, the meta description and the `Person` JSON-LD, so name searches still land here; in the body he is "unser Gründer". This is the one page that names the person behind the site, an explicit exception to the bus-factor framing in [strategy.md](strategy.md) §2. The network section answers the bus-factor question on the page itself.
 
 ## Sections and where each claim comes from
 
