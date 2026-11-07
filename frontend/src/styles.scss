@@ -14,7 +14,10 @@
   --color-accent-subtle: rgba(16, 16, 20, 0.06);
   --color-signal: #ea580c;        // 3.2:1 on paper — #ff6a00 is 2.5:1, under the 3:1 floor for large text and marks
   --color-signal-hover: #ff6a00;  // lightens: dark text on a darker orange would drop under 4.5:1
-  --color-success: #15803d;
+  // Status, never decoration: success for what is built, checked or passed, danger for a problem
+  // or a block. Icons and marks only, the text beside them stays ink.
+  --color-success: #15803d;       // 4.4:1 on paper
+  --color-danger: #b91c1c;        // 5.7:1 on paper
 }
 
 @mixin theme-dark {
@@ -31,7 +34,8 @@
   --color-accent-subtle: rgba(242, 241, 238, 0.06);
   --color-signal: #ff6a00;        // 6.6:1 on dark paper
   --color-signal-hover: #ea580c;
-  --color-success: #4ade80;
+  --color-success: #4ade80;       // 10.8:1 on dark paper
+  --color-danger: #f87171;        // 6.8:1 on dark paper
 }
 
 :root {
@@ -323,6 +327,11 @@ section {
   cursor: pointer;
   text-decoration: none;
   transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+// An icon before the label; the button's gap spaces them
+.btn app-icon {
+  --icon-size: 1rem;
 }
 
 .btn-primary {

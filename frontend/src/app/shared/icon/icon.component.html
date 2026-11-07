@@ -1,0 +1,5 @@
+<svg class="icon" [class.icon--fill]="icon().fill" viewBox="0 0 24 24" focusable="false">
+  @for (d of icon().paths; track $index) {
+    <path [attr.d]="d" />
+  }
+</svg>
