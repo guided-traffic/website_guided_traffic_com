@@ -1,0 +1,182 @@
+<!-- One viewBox: the public registries above, the own S3 store below, the hub with its endpoints
+     between them. Clients wait beyond the right edge, where the hero's frame clips them. -->
+<svg class="flow" [attr.viewBox]="viewBox" preserveAspectRatio="xMaxYMax meet">
+  <defs>
+    @for (arc of drawing.arcs; track arc.id) {
+      <path [attr.id]="arc.id" [attr.d]="arc.d" />
+    }
+  </defs>
+
+  <!-- Globe, connectors, S3 store, hub with scale, bus, branch, spokes and sockets -->
+  @for (part of drawing.parts; track $index) {
+    <path [attr.class]="'flow__' + part.kind" [attr.d]="part.d" />
+  }
+  @for (label of drawing.labels; track $index) {
+    <text
+      [attr.class]="label.print ? 'flow__label flow__label--print' : 'flow__label'"
+      [attr.x]="label.x"
+      [attr.y]="label.y"
+      [attr.text-anchor]="label.anchor"
+    >{{ label.text }}</text>
+  }
+  @for (arc of drawing.arcs; track arc.id) {
+    <text class="flow__label">
+      <textPath [attr.href]="'#' + arc.id" startOffset="50%" text-anchor="middle">{{ arc.text }}</textPath>
+    </text>
+  }
+
+  <ng-template #beam>
+    <path class="flow__wedge" [attr.d]="drawing.beam.wedge" />
+    <path class="flow__beam" [attr.d]="drawing.beam.line" />
+  </ng-template>
+
+  <ng-template #tile let-client>
+    <path class="flow__actor" [attr.d]="drawing.tile.body" />
+    <path class="flow__logo" [attr.d]="client.icon" transform="translate(-12 -12)" />
+    <text class="flow__caption" y="35" text-anchor="middle">{{ client.label }}</text>
+  </ng-template>
+
+  <ng-template #parcel>
+    <path class="flow__actor" [attr.d]="drawing.parcel.body" />
+    <path class="flow__fold" [attr.d]="drawing.parcel.edges" />
+  </ng-template>
+
+  <!-- What the scan found: a check, or the artifact outlined in the danger color and crossed out -->
+  <ng-template #verdict let-artifact>
+    @if (artifact.client === null) {
+      <path class="flow__actor flow__actor--blocked" [attr.d]="drawing.parcel.body" />
+      <path class="flow__fold flow__fold--blocked" [attr.d]="drawing.parcel.edges" />
+      <path class="flow__mark flow__mark--block" [attr.d]="drawing.parcel.cross" />
+    } @else {
+      <path class="flow__mark flow__mark--ok" [attr.d]="drawing.parcel.check" />
+    }
+  </ng-template>
+
+  <!-- In motion: the beam turns, the meridians turn, clients come and go, artifacts drop onto
+       the shelves and leave with a client -->
+  <g class="flow__motion">
+    <g>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        repeatCount="indefinite"
+        [attr.values]="drawing.beam.turn"
+        [attr.dur]="drawing.beam.dur"
+      />
+      <ng-container *ngTemplateOutlet="beam" />
+    </g>
+    @for (meridian of drawing.globe.meridians; track $index) {
+      <ellipse
+        class="flow__line"
+        [attr.cx]="drawing.globe.x"
+        [attr.cy]="drawing.globe.y"
+        [attr.rx]="meridian.still"
+        [attr.ry]="drawing.globe.r"
+      >
+        <animate
+          attributeName="rx"
+          repeatCount="indefinite"
+          [attr.dur]="drawing.globe.dur"
+          [attr.values]="meridian.values"
+          [attr.keyTimes]="meridian.keyTimes"
+        />
+      </ellipse>
+    }
+    @for (client of drawing.clients; track client.name) {
+      <g opacity="0">
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          calcMode="spline"
+          repeatCount="indefinite"
+          [attr.dur]="client.dur"
+          [attr.values]="client.motion.values"
+          [attr.keyTimes]="client.motion.keyTimes"
+          [attr.keySplines]="client.motion.keySplines"
+        />
+        <animate
+          attributeName="opacity"
+          repeatCount="indefinite"
+          [attr.dur]="client.dur"
+          [attr.values]="client.fade.values"
+          [attr.keyTimes]="client.fade.keyTimes"
+        />
+        <ng-container *ngTemplateOutlet="tile; context: { $implicit: client }" />
+        <path class="flow__mark flow__mark--ok" opacity="0" [attr.d]="drawing.tile.check">
+          <animate
+            attributeName="opacity"
+            repeatCount="indefinite"
+            [attr.dur]="client.dur"
+            [attr.values]="client.mark.values"
+            [attr.keyTimes]="client.mark.keyTimes"
+          />
+        </path>
+      </g>
+    }
+    @for (artifact of drawing.artifacts; track $index) {
+      <g opacity="0">
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          calcMode="spline"
+          repeatCount="indefinite"
+          [attr.dur]="artifact.dur"
+          [attr.values]="artifact.motion.values"
+          [attr.keyTimes]="artifact.motion.keyTimes"
+          [attr.keySplines]="artifact.motion.keySplines"
+        />
+        <animate
+          attributeName="opacity"
+          repeatCount="indefinite"
+          [attr.dur]="artifact.dur"
+          [attr.values]="artifact.fade.values"
+          [attr.keyTimes]="artifact.fade.keyTimes"
+        />
+        <ng-container *ngTemplateOutlet="parcel" />
+        <g opacity="0">
+          <animate
+            attributeName="opacity"
+            repeatCount="indefinite"
+            [attr.dur]="artifact.dur"
+            [attr.values]="artifact.mark.values"
+            [attr.keyTimes]="artifact.mark.keyTimes"
+          />
+          <ng-container *ngTemplateOutlet="verdict; context: { $implicit: artifact }" />
+        </g>
+      </g>
+    }
+  </g>
+
+  <!-- Still: the pose shown under prefers-reduced-motion, one client docked at each endpoint and
+       the shelves stocked with scanned artifacts -->
+  <g class="flow__still">
+    <ng-container *ngTemplateOutlet="beam" />
+    @for (meridian of drawing.globe.meridians; track $index) {
+      <ellipse
+        class="flow__line"
+        [attr.cx]="drawing.globe.x"
+        [attr.cy]="drawing.globe.y"
+        [attr.rx]="meridian.still"
+        [attr.ry]="drawing.globe.r"
+      />
+    }
+    @for (client of drawing.clients; track client.name) {
+      @if (client.still) {
+        <g [attr.transform]="client.still">
+          <ng-container *ngTemplateOutlet="tile; context: { $implicit: client }" />
+          <path class="flow__mark flow__mark--ok" [attr.d]="drawing.tile.check" />
+        </g>
+      }
+    }
+    @for (artifact of drawing.artifacts; track $index) {
+      @if (artifact.still) {
+        <g [attr.transform]="artifact.still">
+          <ng-container *ngTemplateOutlet="parcel" />
+          @if (artifact.marked) {
+            <ng-container *ngTemplateOutlet="verdict; context: { $implicit: artifact }" />
+          }
+        </g>
+      }
+    }
+  </g>
+</svg>

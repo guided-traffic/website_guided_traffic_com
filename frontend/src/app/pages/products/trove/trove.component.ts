@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TroveChestComponent } from './trove-chest/trove-chest.component';
+import { IconComponent } from '../../../shared/icon/icon.component';
+import { TroveFlowComponent } from './trove-flow/trove-flow.component';
 
 @Component({
   selector: 'app-trove',
   standalone: true,
-  imports: [RouterLink, TroveChestComponent],
+  imports: [RouterLink, TroveFlowComponent, IconComponent],
   templateUrl: './trove.component.html',
   styleUrls: ['../product-detail.scss', './trove.component.scss'],
 })

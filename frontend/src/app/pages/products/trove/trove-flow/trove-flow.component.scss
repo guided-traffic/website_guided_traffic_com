@@ -1,0 +1,140 @@
+// Drawn like the helm wheel on the home page: hairlines on paper, faces filled with paper so they
+// hide what lies behind them. The moving parts, clients and artifacts, are drawn in full ink so
+// they read against the structure. No signal color; the scan's verdict carries the status
+// colors: success for a check, danger for a blocked artifact.
+:host {
+  display: block;
+  aspect-ratio: 520 / 800;
+  pointer-events: none;
+}
+
+// Clients wait beyond the right edge of the drawing; the hero's frame clips them, not the SVG
+.flow {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.flow__face,
+.flow__edge,
+.flow__line,
+.flow__dash,
+.flow__slot,
+.flow__beam,
+.flow__actor,
+.flow__fold,
+.flow__mark {
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+}
+
+.flow__face {
+  fill: var(--color-paper);
+  stroke: var(--color-mark);
+}
+
+.flow__edge {
+  fill: none;
+  stroke: var(--color-mark);
+}
+
+.flow__line {
+  fill: none;
+  stroke: var(--color-line-strong);
+}
+
+.flow__dash {
+  fill: none;
+  stroke: var(--color-line-strong);
+  stroke-dasharray: 3 5;
+}
+
+.flow__slot {
+  fill: none;
+  stroke: var(--color-line-strong);
+  stroke-dasharray: 2 3;
+}
+
+.flow__dot {
+  fill: var(--color-mark);
+}
+
+.flow__label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  fill: var(--color-text-muted);
+
+  &--print {
+    font-size: 13px;
+    fill: var(--color-mark);
+  }
+}
+
+// The beam leads, a faint wedge trails it
+.flow__beam {
+  fill: none;
+  stroke: var(--color-ink);
+}
+
+.flow__wedge {
+  fill: var(--color-ink);
+  opacity: 0.06;
+}
+
+.flow__actor {
+  fill: var(--color-paper);
+  stroke: var(--color-ink);
+}
+
+.flow__fold {
+  fill: none;
+  stroke: var(--color-ink);
+}
+
+.flow__logo {
+  fill: var(--color-ink);
+}
+
+.flow__caption {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  fill: var(--color-text-muted);
+}
+
+.flow__mark {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+
+  &--ok {
+    stroke: var(--color-success);
+  }
+
+  &--block {
+    stroke: var(--color-danger);
+  }
+}
+
+.flow__actor--blocked,
+.flow__fold--blocked {
+  stroke: var(--color-danger);
+}
+
+// SMIL keeps running under prefers-reduced-motion, so the still pose is a layer of its own
+.flow__still {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow__motion {
+    display: none;
+  }
+
+  .flow__still {
+    display: inline;
+  }
+}

@@ -1,8 +1,8 @@
 @use '../../../../styles/patterns' as *;
 
 // ─── Hero as a stage ─────────────────────────────────────────────────────────
-// Like the home page: the hero fills the first screen, the chest stands behind the content and
-// the frame clips it. Own stacking context: the chest (z-index -1) paints above the dot grid
+// Like the home page: the hero fills the first screen, the drawing stands behind the content and
+// the frame clips it. Own stacking context: the drawing (z-index -1) paints above the dot grid
 // and below the text.
 .trove-hero__frame {
   position: relative;
@@ -22,32 +22,39 @@
   @include paper-halo(6px, 4px);
 }
 
-// Right of the text column, nearly as tall as the stage; the feet stand on the bottom edge and
-// artifacts fall through the space above the chest. Capped at 800px, about 530px wide, so on
-// tall screens the chest still fits between the text column and the frame's right side.
-.trove-hero__chest {
+// Against the frame's right side, so clients come in over the hero's edge and leave over it
+.trove-hero__flow {
   position: absolute;
   z-index: -1;
+  right: 0;
   bottom: 0;
-  left: 74%;
-  height: min(calc(100% - var(--space-2xl)), 800px);
-  transform: translateX(-50%);
 }
 
-// One column: the chest follows the text, centered, its feet on the frame's bottom edge
-@media (max-width: 1024px) {
-  .trove-hero__frame {
-    padding-bottom: 0;
+// Two columns: nearly as tall as the stage, at most 820px on tall screens, and clear of the meta
+// line, which ends about 21rem below the stage's top and 53.5rem from the frame's left side.
+// Either the hub's scale, a third of the way down the drawing, stays below it, or the drawing
+// stays right of it (the scale's left edge lies 0.87 of the drawing's width from its right
+// side, the drawing is 0.65 as wide as tall).
+@media (min-width: 1025px) {
+  .trove-hero__flow {
+    height: min(
+      calc(100% - var(--space-2xl)),
+      820px,
+      max(calc((100% - 21rem) * 1.48), calc((min(100vw, var(--frame-max)) - 53.5rem) * 1.77))
+    );
   }
+}
 
-  .trove-hero__chest {
+// One column: the drawing follows the text, its right side still on the frame's edge
+@media (max-width: 1024px) {
+  .trove-hero__flow {
     position: relative;
     order: 1;
-    align-self: center;
-    left: auto;
-    width: min(100%, 420px);
+    align-self: flex-end;
+    right: auto;
+    width: min(calc(100% + var(--frame-pad)), 440px);
     height: auto;
     margin-top: var(--space-xl);
-    transform: none;
+    margin-right: calc(-1 * var(--frame-pad));
   }
 }

@@ -106,6 +106,7 @@ h2[class$='__headline']:not(.pd-cta__headline) {
 
 p[class$='__intro'],
 .pd-problem__text,
+.pd-problem__list,
 .pd-license__text,
 .pd-crds__api-group {
   @include section-intro;
@@ -115,6 +116,26 @@ p[class$='__intro'],
 .pd-problem__content,
 .pd-license__content {
   padding-bottom: var(--space-3xl);
+}
+
+// Problems as a list, each point marked in the danger color
+.pd-problem__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.pd-problem__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.pd-problem__mark {
+  --icon-size: 1.25rem;
+  margin-top: 0.2em;
+  color: var(--color-danger);
 }
 
 // ─── Cell grids ──────────────────────────────────────────────────────────────
@@ -157,6 +178,34 @@ p[class$='__intro'],
 .pd-step__number {
   margin-bottom: var(--space-md);
   @include label;
+}
+
+// A feature's icon above its title; its state sits right in the number row: built in the
+// success color, planned muted
+.pd-feature-card {
+  position: relative;
+}
+
+.pd-feature-card__icon {
+  --icon-size: 1.75rem;
+  display: flex;
+  margin-bottom: var(--space-md);
+  color: var(--color-ink);
+}
+
+.pd-feature-card__state {
+  --icon-size: 1.125rem;
+  position: absolute;
+  top: calc(var(--space-xl) - 1px);
+  right: var(--frame-pad);
+
+  &--done {
+    color: var(--color-success);
+  }
+
+  &--planned {
+    color: var(--color-text-muted);
+  }
 }
 
 // Cell titles
@@ -206,7 +255,14 @@ p[class$='__intro'],
 }
 
 .pd-license__item-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   @include label;
+
+  app-icon {
+    --icon-size: 0.875rem;
+  }
 }
 
 .pd-license__item-value {

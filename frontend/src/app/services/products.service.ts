@@ -110,7 +110,7 @@ export class ProductsService {
     },
     {
       slug: 'trove',
-      name: 'trove',
+      name: 'Trove',
       description:
         'Selbst gehosteter, hochverfügbarer Paket-Server für eigene Pakete und öffentliche Registries. Anmeldung über OIDC, Zugriff standardmäßig verweigert, jede Aktion im Audit-Log.',
       category: 'platform',

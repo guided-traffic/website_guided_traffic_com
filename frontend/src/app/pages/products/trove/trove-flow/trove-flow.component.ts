@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { VIEW, drawChest } from './trove-chest.geometry';
+import { VIEW, drawFlow } from './trove-flow.geometry';
 
 @Component({
-  selector: 'app-trove-chest',
+  selector: 'app-trove-flow',
   standalone: true,
   imports: [NgTemplateOutlet],
-  templateUrl: './trove-chest.component.html',
-  styleUrls: ['./trove-chest.component.scss'],
+  templateUrl: './trove-flow.component.html',
+  styleUrls: ['./trove-flow.component.scss'],
   host: { 'aria-hidden': 'true' },
 })
-export class TroveChestComponent {
+export class TroveFlowComponent {
   readonly viewBox = `${VIEW.x} ${VIEW.y} ${VIEW.width} ${VIEW.height}`;
 
   // Computed once; the browser plays the keyframes in it, no script runs for the motion
-  readonly drawing = drawChest();
+  readonly drawing = drawFlow();
 }

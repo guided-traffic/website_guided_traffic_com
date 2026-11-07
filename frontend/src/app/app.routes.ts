@@ -110,7 +110,7 @@ export const routes: Routes = [
   {
     path: 'products/trove',
     loadComponent: () => import('./pages/products/trove/trove.component').then(m => m.TroveComponent),
-    title: 'trove: selbst gehosteter Paket-Server | Guided Traffic',
+    title: 'Trove: selbst gehosteter Paket-Server | Guided Traffic',
     data: {
       description:
         'Hochverfügbarer Paket-Server für eigene Pakete und öffentliche Registries. Login über OIDC, Zugriff standardmäßig verweigert, Audit-Log. In Entwicklung.',

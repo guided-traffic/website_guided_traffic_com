@@ -40,6 +40,8 @@ Theme-dependent values (defined in the `theme-light` / `theme-dark` mixins):
 | Text muted | ink at `.60` — 4.7:1 | ink at `.60` — 6.5:1 | `--color-text-muted` |
 | Signal — brand orange from the previous design; ticker dots, terminal arrow, king spoke of the hero wheel, accent word in headings, nav "Kontakt" CTA | `#ea580c` — 3.2:1 | `#ff6a00` — 6.6:1 | `--color-signal` |
 | Signal hover (nav "Kontakt" CTA) | `#ff6a00` | `#ea580c` | `--color-signal-hover` |
+| Success — built, checked, passed: status icons, the scan's checks | `#15803d` — 4.4:1 | `#4ade80` — 10.8:1 | `--color-success` |
+| Danger — a problem, a block: problem markers, the scan's cross | `#b91c1c` — 5.7:1 | `#f87171` — 6.8:1 | `--color-danger` |
 
 Constant in both themes:
 
@@ -55,6 +57,10 @@ Gradient tokens are flat and written as `linear-gradient(c, c)` so they stay val
 
 *Deviation from the reference:* getartcraft uses `.42` alpha for muted text (≈2.7:1). We raise it
 to `.60` so small mono labels meet 4.5:1.
+
+*Status colors:* success and danger mark a state, never decorate. They color icons and marks only;
+the text beside them stays ink, so no text relies on them (success at 4.4:1 in light mode stays
+above the 3:1 floor for graphics). Something planned or neutral stays muted, not colored.
 
 *Signal per theme:* `#ff6a00` reaches only 2.5:1 on light paper, under the 3:1 floor for large text
 and for marks. Light mode therefore uses the darker `#ea580c` (3.2:1) for every signal use; dark mode
@@ -110,6 +116,28 @@ Inner padding of a frame is `--frame-pad` (40px, 20px ≤ 768px). Nav height is 
 48px × `--nav-scale`, which steps with the width — 4/3 (64px) above 1024px, 7/6 (56px) up to 1024px,
 1 (48px) on phones — so the bar never overflows. Every size inside the bar is a base value times
 the same factor.
+
+## Icons
+
+[`IconComponent`](../frontend/src/app/shared/icon/icon.component.ts) (`<app-icon name="…" />`) draws
+an icon from [`icon.registry.ts`](../frontend/src/app/shared/icon/icon.registry.ts) in
+`currentColor`, sized by `--icon-size` (default 1rem), decorative and `aria-hidden` — the text
+beside it carries the meaning. Line icons are Lucide 1.66.0, stroked at 1.5 in a 24 box so they sit
+with the hairlines; marks (the GitHub mark, Simple Icons 16.36.0) are filled. The registry holds
+only what the site uses, as path data, with the license notices of both sets.
+
+| Where | Icon |
+|---|---|
+| Every button that links to a GitHub repository | `github` |
+| Buttons to a GitHub release (Cogpit "Herunterladen") | `download` |
+| Other buttons, where an icon names the action (Trove: "Stand der Entwicklung", "Gespräch vereinbaren") | `arrow-down`, `message-square` |
+| Feature cards: topic above the title, ink, 1.75rem | per card |
+| Feature cards: state in the number row, 1.125rem | `circle-check` in success (built), `clock` muted (planned) |
+| Problem points, 1.25rem | `circle-x` in danger |
+| License and status labels, 0.875rem | per label |
+
+Feature-card icons, card states, problem lists and label icons are in use on the Trove page; the
+other product pages carry only the GitHub and download icons on their buttons so far.
 
 ## Page structure
 
@@ -196,6 +224,10 @@ Shared stylesheets instead of per-page copies:
   Kubernetes-Operatoren, Plattform-Dienste, Security-Anwendungen); a category without products is
   left out. Cards keep one width in every category (`auto-fill`, at most three per row), so a
   category with one product does not stretch it across the frame.
+- **Problem list** — a problem section may list its points (`pd-problem__list`), each marked with
+  a `circle-x` in the danger color, instead of one paragraph.
+- **Feature card** — a topic icon above the title (`pd-feature-card__icon`) and, top right in the
+  number row, its state (`pd-feature-card__state--done` in success, `--planned` muted).
 - **Status badge** — a product that is not released yet carries `status: 'in-development'`: a
   dashed "In Entwicklung" badge on its card, and the same dashed style for Alpha, Beta and
   "In Entwicklung" in the detail page's hero.
@@ -204,32 +236,49 @@ Shared stylesheets instead of per-page copies:
   chrome. The file lives at `src/assets/products/<slug>.svg` (served under `/assets/`), never in
   `public/products/<slug>/`: a folder there shadows the route `/products/<slug>`, and the static
   server answers it with a 301 to `/products/<slug>/`, which renders an empty page.
-- **Treasure chest** — the trove hero is a stage like the home hero:
-  [`TroveChestComponent`](../frontend/src/app/pages/products/trove/trove-chest/trove-chest.component.ts)
-  draws an open chest in isometric projection as hairlines on paper like the helm wheel: faces
-  filled with paper hide what lies behind them, the body carries plank lines and corner plates,
-  and the contents' surface sits flush with the rim, hatched like a section. Artifacts — vertical
-  prisms and cylinders (parcel, crate, tall box, jar, coin, nut, wedge) — stand in twelve slots,
-  sink at one speed (2.2 units/s) and are cut exactly where they meet the surface; their
-  cross-section does not change with height, so a fixed clip per artifact is exact. Each slot
-  cycles through three shapes: the next one drops from the top of the drawing and lands the
-  moment the previous one has sunk, so the chest stays about as full. Only the lock's hasp and
-  the twinkling sparkles carry the signal color. The geometry is a pure function
-  ([`trove-chest.geometry.ts`](../frontend/src/app/pages/products/trove/trove-chest/trove-chest.geometry.ts))
-  that computes every outline and every keyframe once; the motion runs as SMIL animations, not
-  CSS keyframes, because each artifact needs its own key times (when it is gone depends on its
-  height), and no script runs for it. SMIL ignores `prefers-reduced-motion`, so a second layer
-  holds a still pose (one artifact per slot at rest) that CSS swaps in. Right of the text column
-  on desktop, at most 800px tall so it stays inside the frame on tall screens; below the text at
-  ≤ 1024px. Decorative, `aria-hidden`; text in front carries the paper halo (`paper-halo` mixin).
+- **Package flow** — the Trove hero is a stage like the home hero:
+  [`TroveFlowComponent`](../frontend/src/app/pages/products/trove/trove-flow/trove-flow.component.ts)
+  draws what Trove does as a flat technical drawing in hairlines on paper: a globe for the public
+  registries above (its meridians turn), an S3 cylinder for the own packages below, and between
+  them the hub, a circle with a tick scale. Inside it, artifacts from the registries rest on the
+  upper shelf (REMOTE), artifacts from S3 on the lower (LOKAL), three dotted slots each; the bus
+  between the shelves fans out to the three endpoints `/api/npm/`, `/api/nuget/` and `/files/`
+  (Trove's protocol paths). A scan beam turns over the hub every 5s and each artifact gets its
+  check the moment the beam crosses it; once per loop the beam crosses out a malicious artifact,
+  which sinks out of sight. The seven clients Trove serves today (npm, pnpm, Yarn, dotnet, NuGet,
+  curl, a browser) come in over the frame's right edge one at a time, dock at their endpoint,
+  take an artifact from either shelf (the check moves from the artifact to the client's tile),
+  hop once and fly off over the edge. Client marks are the monochrome Simple Icons paths (CC0) in
+  [`trove-flow.icons.ts`](../frontend/src/app/pages/products/trove/trove-flow/trove-flow.icons.ts),
+  drawn in ink like everything else; the browser is our own glyph. The moving parts are drawn in
+  full ink, the structure in the lighter mark and line tokens — no signal color. Only the scan's
+  verdict is colored: checks in success, the blocked artifact's cross and outline in danger (the
+  outline turns red with the cross, not before). The flights fan out like the spokes — the top
+  client swoops up, the middle one keeps its lane, the bottom one sinks away — so no client crosses
+  the dock where the next one arrives; a test keeps any two clients in view apart. The geometry is a
+  pure function
+  ([`trove-flow.geometry.ts`](../frontend/src/app/pages/products/trove/trove-flow/trove-flow.geometry.ts))
+  that computes every outline and every keyframe once: a 20s loop of eight events 2.5s apart, the
+  beam turning four times per loop so its marks fall on the same pass in every loop. The motion
+  runs as SMIL, and no animation carries a `begin` offset: Chrome starts an animation at 0s when it
+  is inserted, and a `begin` that Angular binds afterwards does not move it, so each actor's phase
+  is baked into its keyframes (the leg that runs over the loop's end is split there, easing curve
+  included). SMIL ignores `prefers-reduced-motion`, so a second layer holds a still pose (one
+  client docked at each endpoint, the shelves stocked) that CSS swaps in. Against the frame's
+  right side on desktop, at most 820px tall and kept clear of the hero's meta line; at ≤ 1024px it
+  follows the text, its right side still on the frame's edge so clients enter and leave there.
+  Decorative, `aria-hidden`; text in front carries the paper halo (`paper-halo` mixin).
 
 ## Avoid
 
 - Rounded corners, drop shadows, glass/blur effects (the scrolled nav is the one exception)
 - Brand hue on text or large surfaces — the signal color is for dots, markers, the contact CTA and
   the one accent word per heading
-- Emoji or icon sets as list markers — number instead
+- Emoji, and icons from outside the registry — add the icon to the registry instead
+- Colored topic icons: icons are ink; only a state (success, danger) takes a color
 - More than one accent word per heading; italic or a second typeface for accents
+- Signal color in a hero animation unless it was explicitly asked for — the drawings stay ink on
+  paper; status colors mark an outcome in them (the Trove scan)
 - Hard-coded colors in component styles — use the tokens (they are what makes dark mode work)
 
 ## Pre-delivery checklist
@@ -238,7 +287,7 @@ Shared stylesheets instead of per-page copies:
 - [ ] Text contrast ≥ 4.5:1 on paper (secondary and muted tokens already comply)
 - [ ] Headings checked at 390px for overflow (`scrollWidth > clientWidth`)
 - [ ] Hover and visible focus states (`:focus-visible` = 2px ink outline)
-- [ ] `prefers-reduced-motion` respected (ticker and helm wheel stop, the trove chest shows its still pose)
+- [ ] `prefers-reduced-motion` respected (ticker and helm wheel stop, the Trove package flow shows its still pose)
 - [ ] Responsive at 390px, 768px, 1024px, 1440px and a wide viewport (≥ 2560px), no horizontal page scroll
 - [ ] Animations checked over their full cycle, not only at t=0
 - [ ] Component styles under the 10kB error budget in `angular.json`
